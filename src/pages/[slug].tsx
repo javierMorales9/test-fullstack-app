@@ -25,9 +25,9 @@ const ProfileFeed = (props: { userId: string }) => {
   );
 };
 
-const ProfilePage: NextPage<{ username: string }> = ({ username }) => {
-  const { data } = api.profile.getUserByUsername.useQuery({
-    username,
+const ProfilePage: NextPage<{ id: string }> = ({ id }) => {
+  const { data } = api.profile.getById.useQuery({
+    id: id,
   });
   if (!data) return <div>404</div>;
   return (
@@ -62,14 +62,14 @@ export const getStaticProps: GetStaticProps = async (context) => {
 
   if (typeof slug !== "string") throw new Error("no slug");
 
-  const username = slug.replace("@", "");
+  const id = slug.replace("@", "");
 
-  await ssg.profile.getUserByUsername.prefetch({ username });
+  await ssg.profile.getById.prefetch({ id: id });
 
   return {
     props: {
       trpcState: ssg.dehydrate(),
-      username,
+      id: id,
     },
   };
 };
