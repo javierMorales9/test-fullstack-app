@@ -1,7 +1,6 @@
 import { Post } from "../domain/Post";
 import { PostRepository } from "../domain/PostRepository";
 import { PostId } from "../domain/values/PostId";
-import { PrismaPostRepository } from "../infrastructure/PrismaPostRepository";
 import { Ratelimit } from "@upstash/ratelimit"; // for deno: see above
 import { Redis } from "@upstash/redis";
 
@@ -11,12 +10,8 @@ const ratelimit = new Ratelimit({
   analytics: true,
 });
 
-export class PostCreator {
-  private postRepo: PostRepository;
-
-  constructor() {
-    this.postRepo = new PrismaPostRepository();
-  }
+export default class PostCreator {
+  constructor(private postRepo: PostRepository) {}
 
   async execute(authorId: string, content: string) {
     const { success } = await ratelimit.limit(authorId);

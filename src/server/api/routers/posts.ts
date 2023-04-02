@@ -12,7 +12,8 @@ import { Ratelimit } from "@upstash/ratelimit"; // for deno: see above
 import { Redis } from "@upstash/redis";
 import { filterUserForClient } from "~/server/api/helpers/filterUserForClient";
 import type { Post } from "@prisma/client";
-import { PostCreator } from "../../Context/Posts/application/PostCreator";
+import PostCreator from "../../Context/Posts/application/PostCreator";
+import container from "../dependency_injection";
 
 const addUserDataToPosts = async (posts: Post[]) => {
   const userId = posts.map((post) => post.authorId);
@@ -110,7 +111,9 @@ export const postsRouter = createTRPCRouter({
       const authorId = ctx.userId;
       const content = input.content;
 
-      const postCreator = new PostCreator();
+      const postCreator = container.get<PostCreator>(
+        "Posts.application.PostCreator"
+      );
       return await postCreator.execute(authorId, content);
     }),
 });
