@@ -1,7 +1,7 @@
 import { PostId } from "./values/PostId";
 
 export class Post {
-  private id: PostId;
+  readonly id: PostId;
   private authorId: string;
   private content: string;
   private createdAt: Date;
