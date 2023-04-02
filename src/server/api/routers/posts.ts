@@ -10,8 +10,9 @@ import {
 
 import { Ratelimit } from "@upstash/ratelimit"; // for deno: see above
 import { Redis } from "@upstash/redis";
-import { filterUserForClient } from "~/server/helpers/filterUserForClient";
+import { filterUserForClient } from "~/server/api/helpers/filterUserForClient";
 import type { Post } from "@prisma/client";
+import { PostCreator } from "../../Context/Posts/application/PostCreator";
 
 const addUserDataToPosts = async (posts: Post[]) => {
   const userId = posts.map((post) => post.authorId);
@@ -23,7 +24,6 @@ const addUserDataToPosts = async (posts: Post[]) => {
   ).map(filterUserForClient);
 
   return posts.map((post) => {
-
     const author = users.find((user) => user.id === post.authorId);
 
     if (!author) {
@@ -108,17 +108,9 @@ export const postsRouter = createTRPCRouter({
     )
     .mutation(async ({ ctx, input }) => {
       const authorId = ctx.userId;
+      const content = input.content;
 
-      const { success } = await ratelimit.limit(authorId);
-      if (!success) throw new TRPCError({ code: "TOO_MANY_REQUESTS" });
-
-      const post = await ctx.prisma.post.create({
-        data: {
-          authorId,
-          content: input.content,
-        },
-      });
-
-      return post;
+      const postCreator = new PostCreator();
+      return await postCreator.execute(authorId, content);
     }),
 });
