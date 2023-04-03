@@ -1,7 +1,0 @@
-services:
-  Posts.domain.PostRepository:
-    class: ../../Context/Posts/infrastructure/PrismaPostRepository
-  
-  Posts.application.PostCreator:
-    class: ../../Context/Posts/application/PostCreator
-    arguments: ['@Posts.domain.PostRepository']
