@@ -42,6 +42,7 @@ import { initTRPC, TRPCError } from "@trpc/server";
 import superjson from "superjson";
 import { getAuth } from "@clerk/nextjs/server";
 import { ZodError } from "zod";
+import { Account } from "~/server/Context/Accounts/domain/account";
 
 const t = initTRPC.context<typeof createTRPCContext>().create({
   transformer: superjson,
@@ -87,9 +88,12 @@ const enforceUserIsAuthed = t.middleware(async ({ ctx, next }) => {
     });
   }
 
+  const account = new Account("123", "api key");
+
   return next({
     ctx: {
       userId: ctx.userId,
+      account,
     },
   });
 });
