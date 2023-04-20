@@ -1,4 +1,4 @@
-import FlowRepository from '../repos/FlowRepository';
+import FlowRepository from "../repos/FlowRepository";
 
 export default class GetTheDatesOfAFlowService {
   constructor(private flowRepo: FlowRepository) {}

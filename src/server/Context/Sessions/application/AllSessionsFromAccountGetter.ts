@@ -1,5 +1,5 @@
-import { SessionRepository } from '../domain/SessionRepository';
-import { Session } from '../domain/session';
+import { SessionRepository } from "../domain/SessionRepository";
+import { Session } from "../domain/session";
 
 export default class AllSessionsFromAccountGetter {
   constructor(private sessionRepo: SessionRepository) {}

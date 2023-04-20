@@ -1,7 +1,7 @@
-import { randomUUID } from 'crypto';
-import { CompanyData } from './CompanyData';
-import { encryptApiKey } from '../../Shared/infrastructure/security/securityUtils';
-import { Uuid } from '../../Shared/domain/value-object/Uuid';
+import { randomUUID } from "crypto";
+import { CompanyData } from "./CompanyData";
+import { encryptApiKey } from "../../Shared/infrastructure/security/securityUtils";
+import { Uuid } from "../../Shared/domain/value-object/Uuid";
 
 export class Account {
   readonly id: Uuid;

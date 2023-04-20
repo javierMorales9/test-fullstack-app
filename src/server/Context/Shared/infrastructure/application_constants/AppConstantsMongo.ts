@@ -1,4 +1,4 @@
-import { model, Schema } from 'mongoose';
+import { model, Schema } from "mongoose";
 
 export interface AppConstantsMongo {
   boostedRevenueDate: Date;
@@ -9,6 +9,6 @@ const AppConstantsSchema = new Schema<AppConstantsMongo>({
 });
 
 export const AppConstantsModel = model<AppConstantsMongo>(
-  'AppConstants',
+  "AppConstants",
   AppConstantsSchema,
 );

@@ -8,7 +8,7 @@ export default class MongoPostRepository implements PostRepository {
     const createdPost = await PostModel.findByIdAndUpdate(
       post.id.value,
       { ...post.toPrimitives(), _id: post.id.value },
-      { upsert: true, new: true }
+      { upsert: true, new: true },
     );
 
     return Post.fromPrimitives(createdPost);

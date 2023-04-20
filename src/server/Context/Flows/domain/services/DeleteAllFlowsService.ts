@@ -1,6 +1,6 @@
-import FlowRepository from '../repos/FlowRepository';
-import { Uuid } from '../../../../Context/Shared/domain/value-object/Uuid';
-import DeleteFlowService from './DeleteFlowService';
+import FlowRepository from "../repos/FlowRepository";
+import { Uuid } from "../../../../Context/Shared/domain/value-object/Uuid";
+import DeleteFlowService from "./DeleteFlowService";
 
 export default class DeleteAllFlowsService {
   constructor(

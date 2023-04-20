@@ -1,6 +1,6 @@
-import bcrypt from 'bcrypt';
-import { UserRequest } from './UserRequest';
-import { Uuid } from '../../Shared/domain/value-object/Uuid';
+import bcrypt from "bcrypt";
+import { UserRequest } from "./UserRequest";
+import { Uuid } from "../../Shared/domain/value-object/Uuid";
 
 export class User {
   constructor(

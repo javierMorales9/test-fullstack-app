@@ -1,0 +1,27 @@
+.step {
+  @apply mt-14;
+}
+
+.step:first-of-type {
+  @apply mt-8;
+}
+
+.step .title {
+  @apply text-lg font-bold text-black;
+  line-height: 48px;
+}
+
+.step .description {
+  @apply text-black-3 text-base font-semibold;
+}
+
+.step .description span {
+  @apply text-primary;
+}
+
+.step .btnCopy {
+  @apply ml-auto text-right;
+}
+.step .btnCopy button {
+  min-width: 138px;
+}

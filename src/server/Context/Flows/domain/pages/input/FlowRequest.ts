@@ -1,5 +1,5 @@
-import { PageRequest } from './PageRequest';
-import { createPageRequest } from '../PageFactory';
+import { PageRequest } from "./PageRequest";
+import { createPageRequest } from "../PageFactory";
 
 export class FlowRequest {
   public id?: string;
@@ -16,7 +16,7 @@ export class FlowRequest {
       !data.pages ||
       data.audiences === undefined
     )
-      throw new Error('Incorrect Flow data');
+      throw new Error("Incorrect Flow data");
 
     this.id = data.id || undefined;
     this.name = data.name;

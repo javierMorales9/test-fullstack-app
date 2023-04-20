@@ -1,4 +1,4 @@
-import { Uuid } from '../../../Context/Shared/domain/value-object/Uuid';
+import { Uuid } from "../../../Context/Shared/domain/value-object/Uuid";
 
 export class Offer {
   readonly id: Uuid;

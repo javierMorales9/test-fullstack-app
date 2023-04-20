@@ -8,15 +8,15 @@ export class UserRequest {
   constructor(data: any) {
     if (
       !data.firstName ||
-      typeof data.firstName !== 'string' ||
+      typeof data.firstName !== "string" ||
       !data.lastName ||
-      typeof data.lastName !== 'string' ||
+      typeof data.lastName !== "string" ||
       !data.email ||
-      typeof data.email !== 'string' ||
+      typeof data.email !== "string" ||
       !data.password ||
-      typeof data.password !== 'string'
+      typeof data.password !== "string"
     )
-      throw new Error('Bad user data');
+      throw new Error("Bad user data");
 
     this.firstName = data.firstName;
     this.lastName = data.lastName;

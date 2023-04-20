@@ -1,9 +1,9 @@
-import { Offer } from './Offer';
-import { CouponRequest } from './request/CouponRequest';
+import { Offer } from "./Offer";
+import { CouponRequest } from "./request/CouponRequest";
 
 export class Coupon extends Offer {
   constructor(
-    type: 'coupon',
+    type: "coupon",
     title: string,
     public header: string,
     message: string,

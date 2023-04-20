@@ -1,14 +1,14 @@
-import { PaymentProviderRepository } from '../../domain/PaymentProviderRepository';
-import { LocalPaymentProvider } from '../LocalPaymentProvider';
-import { PaymentProvider } from '../../domain/paymentProvider';
-import { StripePaymentProviderModel } from './StripePaymentProviderMongo';
-import { BraintreePaymentProviderModel } from './BraintreePaymentProviderMongo';
+import { PaymentProviderRepository } from "../../domain/PaymentProviderRepository";
+import { LocalPaymentProvider } from "../LocalPaymentProvider";
+import { PaymentProvider } from "../../domain/paymentProvider";
+import { StripePaymentProviderModel } from "./StripePaymentProviderMongo";
+import { BraintreePaymentProviderModel } from "./BraintreePaymentProviderMongo";
 import {
   reconstituteArrayOfPaymentProvidersFromMongoFactory,
   reconstitutePaymentProviderFromMongoFactory,
-} from './reconstitutePaymentProviderFactory';
-import { PaymentProviderModel } from './PaymentProviderMongo';
-import logger from '../../../../Context/Shared/infrastructure/logger/logger';
+} from "./reconstitutePaymentProviderFactory";
+import { PaymentProviderModel } from "./PaymentProviderMongo";
+import logger from "../../../../Context/Shared/infrastructure/logger/logger";
 
 export default class MongoPaymentProviderRepository
   implements PaymentProviderRepository
@@ -41,21 +41,21 @@ export default class MongoPaymentProviderRepository
     console.log(paymentProvider);
     let paymentProviderResponse = null;
     try {
-      if (paymentProvider.type === 'stripe') {
+      if (paymentProvider.type === "stripe") {
         paymentProviderResponse =
           await StripePaymentProviderModel.findOneAndUpdate(
             { account: paymentProvider.account, type: paymentProvider.type },
             { $set: { ...paymentProvider } },
             { upsert: true, new: true },
           );
-      } else if (paymentProvider.type === 'braintree') {
+      } else if (paymentProvider.type === "braintree") {
         paymentProviderResponse =
           await BraintreePaymentProviderModel.findOneAndUpdate(
             { account: paymentProvider.account, type: paymentProvider.type },
             { $set: { ...paymentProvider } },
             { upsert: true, new: true },
           );
-      } else if ((paymentProvider.type = 'local'))
+      } else if ((paymentProvider.type = "local"))
         return new LocalPaymentProvider();
 
       return reconstitutePaymentProviderFromMongoFactory(
@@ -63,9 +63,9 @@ export default class MongoPaymentProviderRepository
       );
     } catch (err: any) {
       logger.debug(
-        'Unable to save the payment provider. Reason: ' + err.message,
+        "Unable to save the payment provider. Reason: " + err.message,
       );
-      throw new Error('Unable to save the payment provider');
+      throw new Error("Unable to save the payment provider");
     }
   }
 
@@ -74,9 +74,9 @@ export default class MongoPaymentProviderRepository
       await PaymentProviderModel.deleteMany({ account: accountId });
     } catch (err: any) {
       logger.debug(
-        'Unable to delete the payment providers. Reason: ' + err.message,
+        "Unable to delete the payment providers. Reason: " + err.message,
       );
-      throw new Error('Unable to delete the payment providers');
+      throw new Error("Unable to delete the payment providers");
     }
   }
 }

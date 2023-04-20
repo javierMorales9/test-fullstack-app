@@ -1,4 +1,4 @@
-import { Audience } from './Audience';
+import { Audience } from "./Audience";
 
 export interface AudienceRepository {
   getAll(accountId: string): Promise<Audience[]>;

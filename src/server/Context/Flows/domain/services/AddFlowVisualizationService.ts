@@ -1,4 +1,4 @@
-import FlowRepository from '../repos/FlowRepository';
+import FlowRepository from "../repos/FlowRepository";
 
 export default class AddFlowVisualizationService {
   constructor(private flowRepo: FlowRepository) {}

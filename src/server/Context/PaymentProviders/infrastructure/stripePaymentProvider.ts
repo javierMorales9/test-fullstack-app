@@ -1,13 +1,13 @@
-import { PaymentProvider } from '../domain/paymentProvider';
-import Stripe from 'stripe';
-import { PlanPaymentData } from '../domain/PlanPaymentData';
-import { UserData } from '../../../Context/Shared/domain/UserData';
-import logger from '../../../Context/Shared/infrastructure/logger/logger';
-import errorLogger from '../../../Context/Shared/infrastructure/error_logger/ErrorLogger';
-import { CouponPaymentDataAlternative } from '../../Offers/domain/CouponPaymentData';
+import { PaymentProvider } from "../domain/paymentProvider";
+import Stripe from "stripe";
+import { PlanPaymentData } from "../domain/PlanPaymentData";
+import { UserData } from "../../../Context/Shared/domain/UserData";
+import logger from "../../../Context/Shared/infrastructure/logger/logger";
+import errorLogger from "../../../Context/Shared/infrastructure/error_logger/ErrorLogger";
+import { CouponPaymentDataAlternative } from "../../Offers/domain/CouponPaymentData";
 
 export class StripePaymentProvider implements PaymentProvider {
-  public readonly type = 'stripe';
+  public readonly type = "stripe";
   public readonly apiKey: string;
   public readonly account: string;
 
@@ -18,32 +18,32 @@ export class StripePaymentProvider implements PaymentProvider {
 
   public async getUserData(subscriptionId: string): Promise<UserData | null> {
     logger.info(
-      'retrieving information of session from user with subscription ' +
+      "retrieving information of session from user with subscription " +
         subscriptionId,
     );
 
     const stripe = new Stripe(this.apiKey, {
-      apiVersion: '2022-11-15',
+      apiVersion: "2022-11-15",
     });
 
     const subscription = await stripe.subscriptions.retrieve(subscriptionId);
     if (!subscription) {
       logger.debug(
-        'No subscription found for user with subscription ' + subscriptionId,
+        "No subscription found for user with subscription " + subscriptionId,
       );
       return null;
     }
 
     const plan = subscription.items.data[0].plan;
     if (!plan.amount) {
-      throw new Error('The user subscription has no plan amount');
+      throw new Error("The user subscription has no plan amount");
     }
 
     const date = subscription.created * 1000;
 
     return new UserData(
       subscriptionId,
-      plan.id || '',
+      plan.id || "",
       plan.amount / 100 || 0,
       plan.interval,
       calculateMonthsUpToToday(date),
@@ -54,10 +54,10 @@ export class StripePaymentProvider implements PaymentProvider {
 
   public async pauseSubscription(subscriptionId: string, answer: number) {
     try {
-      logger.info('Pausing stripe subscription: ' + subscriptionId);
+      logger.info("Pausing stripe subscription: " + subscriptionId);
 
       const stripe = new Stripe(this.apiKey, {
-        apiVersion: '2022-11-15',
+        apiVersion: "2022-11-15",
       });
 
       const trialEndDate =
@@ -67,15 +67,15 @@ export class StripePaymentProvider implements PaymentProvider {
         trial_end: trialEndDate,
       });
 
-      logger.info('Stripe subscription: ' + subscriptionId + ' paused');
+      logger.info("Stripe subscription: " + subscriptionId + " paused");
     } catch (err: any) {
-      logger.debug('Error while pausing the subscription: ' + err.message);
-      errorLogger.errorFound('Pausing subscription error', {
+      logger.debug("Error while pausing the subscription: " + err.message);
+      errorLogger.errorFound("Pausing subscription error", {
         context:
-          'pausing subscription ' +
-          ' to ' +
+          "pausing subscription " +
+          " to " +
           subscriptionId +
-          ' request account ' +
+          " request account " +
           this.apiKey,
         stripeError: err.message,
       });
@@ -86,27 +86,27 @@ export class StripePaymentProvider implements PaymentProvider {
   public async applyCoupon(subscriptionId: string, couponId: string) {
     try {
       logger.info(
-        'Applying stripe coupon ' + couponId + ' to ' + subscriptionId,
+        "Applying stripe coupon " + couponId + " to " + subscriptionId,
       );
 
       const stripe = new Stripe(this.apiKey, {
-        apiVersion: '2022-11-15',
+        apiVersion: "2022-11-15",
       });
 
       await stripe.subscriptions.update(subscriptionId, {
         coupon: couponId,
       });
 
-      logger.info('Coupon ' + couponId + 'applied to ' + subscriptionId);
+      logger.info("Coupon " + couponId + "applied to " + subscriptionId);
     } catch (err: any) {
-      logger.debug('Error while applying the coupon: ' + err.message);
-      errorLogger.errorFound('Applying Coupon error', {
+      logger.debug("Error while applying the coupon: " + err.message);
+      errorLogger.errorFound("Applying Coupon error", {
         context:
-          'apply coupon ' +
+          "apply coupon " +
           couponId +
-          ' to ' +
+          " to " +
           subscriptionId +
-          ' request account ' +
+          " request account " +
           this.apiKey,
         stripeError: err.message,
       });
@@ -116,21 +116,21 @@ export class StripePaymentProvider implements PaymentProvider {
 
   public async cancelSubscription(subscriptionId: string) {
     try {
-      logger.info('Canceling stripe subscription ' + subscriptionId);
+      logger.info("Canceling stripe subscription " + subscriptionId);
 
       const stripe = new Stripe(this.apiKey, {
-        apiVersion: '2022-11-15',
+        apiVersion: "2022-11-15",
       });
       await stripe.subscriptions.del(subscriptionId);
 
-      logger.info('Cancelling stripe finished for id: ' + subscriptionId);
+      logger.info("Cancelling stripe finished for id: " + subscriptionId);
     } catch (err: any) {
-      logger.debug('Error while applying the cancellation: ' + err.message);
-      errorLogger.errorFound('Cancelling Subscription error', {
+      logger.debug("Error while applying the cancellation: " + err.message);
+      errorLogger.errorFound("Cancelling Subscription error", {
         context:
-          'cancelling subscription ' +
+          "cancelling subscription " +
           subscriptionId +
-          ' request account ' +
+          " request account " +
           this.apiKey,
         stripeError: err.message,
       });
@@ -141,27 +141,27 @@ export class StripePaymentProvider implements PaymentProvider {
   public async validateApiKey(apiKey: string): Promise<void> {
     try {
       const stripe = new Stripe(apiKey, {
-        apiVersion: '2022-11-15',
+        apiVersion: "2022-11-15",
       });
       await stripe.subscriptions.search({ query: "status: 'active'" });
     } catch (err: any) {
-      logger.debug('Invalid api key ' + apiKey + '. Error: ' + err.message);
-      throw new Error('Invalid API key');
+      logger.debug("Invalid api key " + apiKey + ". Error: " + err.message);
+      throw new Error("Invalid API key");
     }
   }
 
   public async validateUser(userId: string): Promise<void> {
     try {
       const stripe = new Stripe(this.apiKey, {
-        apiVersion: '2022-11-15',
+        apiVersion: "2022-11-15",
       });
       await stripe.subscriptions.retrieve(userId);
     } catch (err: any) {
       logger.debug(
-        'Invalid subscription ' + userId + '. Error: ' + err.message,
+        "Invalid subscription " + userId + ". Error: " + err.message,
       );
       throw new Error(
-        'Invalid user. Try sending the subscriptionId instead of the userId',
+        "Invalid user. Try sending the subscriptionId instead of the userId",
       );
     }
   }
@@ -169,15 +169,15 @@ export class StripePaymentProvider implements PaymentProvider {
   public async getCouponsData(): Promise<CouponPaymentDataAlternative[]> {
     try {
       const stripe = new Stripe(this.apiKey, {
-        apiVersion: '2022-11-15',
+        apiVersion: "2022-11-15",
       });
       const stripeCoupons = await stripe.coupons.list();
       return stripeCoupons.data.map((coupon: any) => {
         return {
           id: coupon.id,
-          name: coupon.name || '',
+          name: coupon.name || "",
           duration:
-            coupon.duration === 'forever' ? null : coupon.duration_in_months,
+            coupon.duration === "forever" ? null : coupon.duration_in_months,
           basedOnPercentage: coupon.percent_off !== null,
           basedOnAmount: coupon.amount_off !== null,
           amount:
@@ -190,22 +190,22 @@ export class StripePaymentProvider implements PaymentProvider {
       });
     } catch (err: any) {
       logger.debug(
-        'Unable to get the coupons from the account ||  Error: ' + err.message,
+        "Unable to get the coupons from the account ||  Error: " + err.message,
       );
-      throw new Error('Unable to get the coupons from the account');
+      throw new Error("Unable to get the coupons from the account");
     }
   }
 
   public async getPlans(): Promise<PlanPaymentData[]> {
     try {
       const stripe = new Stripe(this.apiKey, {
-        apiVersion: '2022-11-15',
+        apiVersion: "2022-11-15",
       });
       const activeProductIds = (
         await stripe.products.search({ query: "active:'true'" })
       ).data.map((el: any) => el.id);
 
-      let query = '';
+      let query = "";
       for (const id of activeProductIds) query += "product:'" + id + "' OR ";
       query = query.substring(0, query.length - 4);
 
@@ -215,14 +215,14 @@ export class StripePaymentProvider implements PaymentProvider {
         return {
           id: el.id,
           product: el.product.toString(),
-          name: el.nickname || '',
+          name: el.nickname || "",
           price: el.unit_amount ? el.unit_amount / 100 : 0,
-          interval: el.recurring ? el.recurring.interval : 'no-interval',
+          interval: el.recurring ? el.recurring.interval : "no-interval",
         };
       });
     } catch (err: any) {
-      logger.debug('Unable to get the plans data ||  Error: ' + err.message);
-      throw new Error('Unable to get the plans data');
+      logger.debug("Unable to get the plans data ||  Error: " + err.message);
+      throw new Error("Unable to get the plans data");
     }
   }
 }
@@ -241,13 +241,13 @@ const calculateMonthsUpToToday = (createdEpochDate: number) => {
 export async function validateStripeApiKey(apiKey: string) {
   try {
     const stripe = new Stripe(apiKey, {
-      apiVersion: '2022-11-15',
+      apiVersion: "2022-11-15",
     });
     await stripe.subscriptions.search({ query: "status: 'active'" });
   } catch (err: any) {
     logger.debug(
-      'Invalid Stripe api key ' + apiKey + '. Error: ' + err.message,
+      "Invalid Stripe api key " + apiKey + ". Error: " + err.message,
     );
-    throw new Error('Invalid API key');
+    throw new Error("Invalid API key");
   }
 }

@@ -1,0 +1,238 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@600&family=Manrope:wght@400;500;600;700&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --primary-color: #5542f6;
+  --secondary-color: #00a5ff;
+  --font-inter: "Inter", sans-serif;
+  --font-manrope: "Manrope", sans-serif;
+  --toastify-color-dark: theme(colors.black.DEFAULT);
+  --toastify-color-info: theme(colors.primary.DEFAULT);
+  --toastify-color-success: theme(colors.success.DEFAULT);
+  --toastify-color-warning: theme(colors.warning.DEFAULT);
+  --toastify-color-error: theme(colors.error.DEFAULT);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+}
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: var(--font-manrope);
+  height: 100%;
+  @apply bg-grey-4 text-black;
+}
+
+#main {
+  @apply flex flex-col;
+  height: 100%;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+hr {
+  @apply border-grey-3;
+}
+
+#__next {
+  height: 100%;
+}
+
+.h1 {
+  @apply text-3xl font-semibold;
+  line-height: 1.33;
+}
+
+.link {
+  @apply text-primary font-semibold hover:underline;
+  line-height: 1.429;
+}
+
+.label {
+  @apply text-black-3 text-sm font-medium;
+}
+
+.linkText {
+  @apply text-black-3 font-medium;
+  line-height: 1.429;
+}
+
+.container-fluid {
+  @apply mx-auto w-full px-4;
+}
+
+.center {
+  @apply flex items-center justify-center;
+}
+
+.line-text {
+  @apply relative text-center text-sm font-medium;
+  line-height: 1.429;
+}
+
+.line-text::after {
+  content: "";
+  border-bottom: 1px solid;
+  @apply border-grey-3 absolute left-0 top-1/2 w-full -translate-y-1/2;
+}
+
+.line-text span {
+  padding-left: 7px;
+  padding-right: 7px;
+  position: relative;
+  z-index: 1;
+  background: white;
+}
+
+.status-pill {
+  @apply rounded py-1 px-2 text-center text-xs font-semibold;
+  min-width: 72px;
+}
+
+.active .status-pill {
+  @apply bg-secondary/10 text-secondary;
+}
+
+.paused .status-pill {
+  @apply bg-error-3/60 text-error;
+}
+
+.status-pill.braintree-pill {
+  color: #ffa043;
+  background: #fff5eb;
+  min-width: unset;
+}
+
+.status-pill.stripe-pill {
+  color: #5542f6;
+  background: #f5f4ff;
+  min-width: unset;
+}
+
+.status-pill.local-pill {
+  color: #84818a;
+  background: #e3e1e5;
+  min-width: unset;
+}
+
+.stats-count {
+  @apply flex inline-flex items-center items-center gap-x-2 text-sm font-medium;
+}
+
+.stats-count .icon {
+  height: 18px;
+  width: auto;
+}
+
+.stats-count .icon svg {
+  height: 100%;
+  width: auto;
+}
+
+.active .stats-count {
+  @apply text-secondary;
+}
+
+.active .stats-count .icon svg {
+  @apply fill-secondary;
+}
+
+.paused .stats-count {
+  @apply text-grey;
+}
+
+.paused .stats-count .icon svg {
+  @apply fill-grey;
+}
+
+.tabs {
+  @apply border-grey-3 flex items-stretch justify-start border-b;
+  padding-bottom: 1px;
+}
+
+.tabs .tab {
+  @apply text-black-3 cursor-pointer border-b-2 border-transparent px-3 text-sm font-semibold transition-all;
+  padding-bottom: 14px;
+}
+.tabs .tab.active {
+  @apply border-primary text-black;
+}
+
+input[type="checkbox"] {
+  flex-shrink: 0;
+  border-radius: 2px;
+  margin: 0;
+  width: 18px;
+  height: 18px;
+  background-color: #fff;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  border: 2px solid;
+  @apply border-black-3;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  -webkit-print-color-adjust: exact;
+  color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+input[type="checkbox"]:checked {
+  @apply border-0 bg-contain bg-center bg-no-repeat;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg viewBox='0 0 18 18' fill='none' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M16 0H2C0.89 0 0 0.9 0 2V16C0 17.1 0.89 18 2 18H16C17.11 18 18 17.1 18 16V2C18 0.9 17.11 0 16 0ZM7 14L2 9L3.41 7.59L7 11.17L14.59 3.58L16 5L7 14Z' fill='%235542F6'/%3e%3c/svg%3e ");
+}
+
+.input-error {
+  @apply text-error inline-block pl-1 text-xs font-medium;
+}
+
+.order-number {
+  width: 9px;
+  height: 18px;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 18px;
+  color: #b6b4ba;
+}
+
+.ml-auto {
+  margin-left: auto;
+}
+
+/*@media (prefers-color-scheme: dark) {*/
+/*    html {*/
+/*        color-scheme: dark;*/
+/*    }*/
+
+/*    body {*/
+/*        color: white;*/
+/*        background: black;*/
+/*    }*/
+/*}*/
+
+/*.toast-close {*/
+/*    width: 12px;*/
+/*    height: 12px;*/
+/*}*/
+/*.toast-close svg {*/
+/*    fill: white;*/
+/*    height: 100%;*/
+/*    width: 100%;*/
+/*}*/

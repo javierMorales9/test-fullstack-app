@@ -1,10 +1,10 @@
-import winston, { Logger as WinstonLoggerType } from 'winston';
-import Logger from '../../domain/Logger';
+import winston, { Logger as WinstonLoggerType } from "winston";
+import Logger from "../../domain/Logger";
 
 enum Levels {
-  DEBUG = 'debug',
-  ERROR = 'error',
-  INFO = 'info',
+  DEBUG = "debug",
+  ERROR = "error",
+  INFO = "info",
 }
 
 class WinstonLogger implements Logger {

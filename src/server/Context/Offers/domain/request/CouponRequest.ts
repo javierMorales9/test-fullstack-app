@@ -1,5 +1,5 @@
 export class CouponRequest {
-  public type: 'coupon';
+  public type: "coupon";
   public title: string;
   header: string;
   public message: string;
@@ -9,13 +9,13 @@ export class CouponRequest {
   constructor(data: any) {
     if (
       !data.type ||
-      data.type !== 'coupon' ||
+      data.type !== "coupon" ||
       !data.title ||
       !data.header ||
       !data.message ||
       !data.paymentProviderId
     )
-      throw new Error('Bad Coupon Offer');
+      throw new Error("Bad Coupon Offer");
 
     this.type = data.type;
     this.title = data.title;

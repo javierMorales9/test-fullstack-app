@@ -1,5 +1,5 @@
-import { Schema } from 'mongoose';
-import { OfferModel } from './OfferMongo';
+import { Schema } from "mongoose";
+import { OfferModel } from "./OfferMongo";
 
 export interface CouponMongo {
   _id: string;
@@ -16,11 +16,11 @@ const CouponSchema = new Schema<CouponMongo>({
   header: { type: String },
   message: { type: String },
   paymentProviderId: { type: String },
-  account: { type: String, ref: 'Account' },
+  account: { type: String, ref: "Account" },
 });
 
 //TODO remove the Offer from the CouponOffer below
 export const CouponModel = OfferModel.discriminator<CouponMongo>(
-  'CouponOffer',
+  "CouponOffer",
   CouponSchema,
 );

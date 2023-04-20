@@ -1,8 +1,8 @@
-import { Pause } from '../Pause';
+import { Pause } from "../Pause";
 
 export class PauseResponse {
   public id?: string;
-  public type: 'pause';
+  public type: "pause";
   public title: string;
   public message: string;
   public maxPauseMonth: number;
@@ -10,7 +10,7 @@ export class PauseResponse {
 
   constructor(pause: Pause) {
     this.id = pause.id.value;
-    this.type = 'pause';
+    this.type = "pause";
     this.title = pause.title;
     this.message = pause.message;
     this.maxPauseMonth = pause.maxPauseMonth;

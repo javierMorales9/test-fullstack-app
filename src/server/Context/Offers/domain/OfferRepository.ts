@@ -1,4 +1,4 @@
-import { Offer } from './Offer';
+import { Offer } from "./Offer";
 
 export interface OfferRepository {
   getAllFromAccount(accountId: string): Promise<Offer[]>;

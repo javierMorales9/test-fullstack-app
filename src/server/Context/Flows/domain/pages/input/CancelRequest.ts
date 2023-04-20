@@ -1,5 +1,5 @@
 export class CancelRequest {
-  public type: 'cancel';
+  public type: "cancel";
   public title: string;
   public message: string;
   public order: number;
@@ -8,12 +8,12 @@ export class CancelRequest {
   constructor(data: any) {
     if (
       !data.type ||
-      data.type !== 'cancel' ||
+      data.type !== "cancel" ||
       !data.title ||
       !data.message ||
       !data.order
     )
-      throw new Error('Incorrect Cancel page data');
+      throw new Error("Incorrect Cancel page data");
 
     this.type = data.type;
     this.title = data.title;

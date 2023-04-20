@@ -1,5 +1,5 @@
 export default class FlowNotFoundError extends Error {
   constructor() {
-    super('Flow not found');
+    super("Flow not found");
   }
 }

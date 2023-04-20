@@ -1,0 +1,30 @@
+.heading {
+  @apply font-semibold text-black;
+  font-size: 36px;
+  line-height: 48px;
+}
+
+.listing {
+  @apply relative rounded bg-white;
+}
+
+.searchInput {
+  background: #fbfafc;
+  /* Grey/5 */
+
+  border: 1px solid #e3e1e5;
+  border-radius: 4px;
+  padding-top: 0.5rem !important;
+  padding-bottom: 0.5rem !important;
+}
+
+.ctaBtn {
+}
+
+.modalFormButton {
+}
+
+.modalFormButton svg {
+  color: white;
+  height: 20px;
+}

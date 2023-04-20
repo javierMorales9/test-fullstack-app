@@ -1,13 +1,13 @@
-import { EnumValueObject } from '../value-object/EnumValueObject';
-import { InvalidArgumentError } from '../value-object/InvalidArgumentError';
+import { EnumValueObject } from "../value-object/EnumValueObject";
+import { InvalidArgumentError } from "../value-object/InvalidArgumentError";
 
 export enum Operator {
-  EQUAL = '=',
-  NOT_EQUAL = '!=',
-  GT = '>',
-  LT = '<',
-  CONTAINS = 'CONTAINS',
-  NOT_CONTAINS = 'NOT_CONTAINS',
+  EQUAL = "=",
+  NOT_EQUAL = "!=",
+  GT = ">",
+  LT = "<",
+  CONTAINS = "CONTAINS",
+  NOT_CONTAINS = "NOT_CONTAINS",
 }
 
 export class FilterOperator extends EnumValueObject<Operator> {

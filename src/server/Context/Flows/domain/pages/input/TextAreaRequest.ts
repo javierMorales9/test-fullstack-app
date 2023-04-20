@@ -1,5 +1,5 @@
 export class TextAreaRequest {
-  public type: 'textarea';
+  public type: "textarea";
   public title: string;
   public description: string;
   public order: number;
@@ -8,12 +8,12 @@ export class TextAreaRequest {
   constructor(data: any) {
     if (
       !data.type ||
-      data.type !== 'textarea' ||
+      data.type !== "textarea" ||
       !data.title ||
       !data.description ||
       !data.order
     )
-      throw new Error('Bad Text Area Page');
+      throw new Error("Bad Text Area Page");
 
     this.type = data.type;
     this.title = data.title;

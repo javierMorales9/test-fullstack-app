@@ -1,0 +1,16 @@
+.domain img {
+  @apply h-auto w-9;
+}
+
+.domain {
+  padding: 22px;
+  font-size: 14px;
+  line-height: 19px;
+  letter-spacing: 0px;
+  @apply text-black-3 flex items-center justify-between font-semibold;
+}
+
+.domain > div {
+  gap: 10px;
+  @apply flex flex-grow items-center justify-start;
+}

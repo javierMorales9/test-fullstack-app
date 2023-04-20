@@ -1,6 +1,6 @@
-import { InvalidArgumentError } from '../value-object/InvalidArgumentError';
+import { InvalidArgumentError } from "../value-object/InvalidArgumentError";
 
-type FieldTypeValue = 'boolean' | 'string' | 'number' | 'Date';
+type FieldTypeValue = "boolean" | "string" | "number" | "Date";
 
 export default class FieldType {
   constructor(private _value: FieldTypeValue) {
@@ -9,19 +9,19 @@ export default class FieldType {
 
   private ensureValueIsDefined(value: string): void {
     if (value === null || value === undefined) {
-      throw new InvalidArgumentError('Value must be defined');
+      throw new InvalidArgumentError("Value must be defined");
     }
   }
 
   checkValue(value: any) {
     switch (this.value) {
-      case 'boolean':
-        return typeof value === 'boolean';
-      case 'string':
-        return typeof value === 'string';
-      case 'number':
-        return typeof value === 'number';
-      case 'Date':
+      case "boolean":
+        return typeof value === "boolean";
+      case "string":
+        return typeof value === "string";
+      case "number":
+        return typeof value === "number";
+      case "Date":
         return value instanceof Date;
     }
     return false;
@@ -29,13 +29,13 @@ export default class FieldType {
 
   normalizeValue(newValue: any) {
     switch (this.value) {
-      case 'boolean':
+      case "boolean":
         return Boolean(newValue);
-      case 'string':
+      case "string":
         return String(newValue);
-      case 'number':
+      case "number":
         return Number(newValue);
-      case 'Date':
+      case "Date":
         return new Date(newValue);
     }
 

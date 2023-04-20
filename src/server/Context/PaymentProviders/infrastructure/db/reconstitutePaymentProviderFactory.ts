@@ -1,6 +1,6 @@
-import { StripePaymentProvider } from '../stripePaymentProvider';
-import { BraintreePaymentProvider } from '../BraintreePaymentProvider';
-import { PaymentProvider } from '../../domain/paymentProvider';
+import { StripePaymentProvider } from "../stripePaymentProvider";
+import { BraintreePaymentProvider } from "../BraintreePaymentProvider";
+import { PaymentProvider } from "../../domain/paymentProvider";
 
 export function reconstitutePaymentProviderFromMongoFactory(data: any) {
   if (!data) return null;
@@ -10,10 +10,10 @@ export function reconstitutePaymentProviderFromMongoFactory(data: any) {
   const account = mongoData.account;
 
   switch (type) {
-    case 'stripe':
+    case "stripe":
       const { apiKey } = mongoData;
       return new StripePaymentProvider(apiKey, account);
-    case 'braintree':
+    case "braintree":
       const { privateKey, publicKey, merchantId } = mongoData;
       return new BraintreePaymentProvider(
         privateKey,
@@ -22,7 +22,7 @@ export function reconstitutePaymentProviderFromMongoFactory(data: any) {
         account,
       );
     default:
-      throw new Error('Not supported payment provider' + type);
+      throw new Error("Not supported payment provider" + type);
   }
 }
 

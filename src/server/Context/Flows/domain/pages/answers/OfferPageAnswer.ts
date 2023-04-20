@@ -1,17 +1,17 @@
-import { Page } from '../Page';
-import { getPageByIdService } from '../PageFactory';
-import { OfferPageView } from '../views/OfferPageView';
-import { IncorrectPageAnsweredError } from '../../../../Sessions/domain/IncorrectPageAnsweredError';
-import { Pause } from '../../../../Offers/domain/Pause';
-import { Coupon } from '../../../../Offers/domain/Coupon';
-import { CustomContent } from '../../../../Offers/domain/CustomContent';
-import { OfferResponse } from '../../../../Offers/domain/response/OfferResponse';
-import logger from '../../../../../Context/Shared/infrastructure/logger/logger';
-import GetOfferByIdService from '../../../../Offers/domain/services/GetOfferByIdService';
+import { Page } from "../Page";
+import { getPageByIdService } from "../PageFactory";
+import { OfferPageView } from "../views/OfferPageView";
+import { IncorrectPageAnsweredError } from "../../../../Sessions/domain/IncorrectPageAnsweredError";
+import { Pause } from "../../../../Offers/domain/Pause";
+import { Coupon } from "../../../../Offers/domain/Coupon";
+import { CustomContent } from "../../../../Offers/domain/CustomContent";
+import { OfferResponse } from "../../../../Offers/domain/response/OfferResponse";
+import logger from "../../../../../Context/Shared/infrastructure/logger/logger";
+import GetOfferByIdService from "../../../../Offers/domain/services/GetOfferByIdService";
 import container from "~/server/api/dependency_injection";
 
 export class OfferPageAnswer {
-  public readonly type = 'offerpage';
+  public readonly type = "offerpage";
 
   constructor(
     public readonly page: Page,
@@ -23,8 +23,8 @@ export class OfferPageAnswer {
     if (data.page !== this.page.id)
       throw new IncorrectPageAnsweredError(this.page, data);
 
-    if (!(typeof data.answer === 'boolean'))
-      throw new Error('Bad Offer page answer');
+    if (!(typeof data.answer === "boolean"))
+      throw new Error("Bad Offer page answer");
 
     this.data.complete(data.data);
 
@@ -32,8 +32,8 @@ export class OfferPageAnswer {
   }
 
   public static async createFromScratch(data: any) {
-    if (!data.page || data.type !== 'offerpage')
-      throw new Error('Bad Offer page answer');
+    if (!data.page || data.type !== "offerpage")
+      throw new Error("Bad Offer page answer");
 
     const page = await getPageByIdService(data.page);
     const answer = data.answer as boolean;
@@ -43,32 +43,32 @@ export class OfferPageAnswer {
   }
 
   private static async createOfferData(offerData: any) {
-    if (!offerData.offer || !(typeof offerData.offer === 'string'))
-      throw new Error('Incorrect offer data');
+    if (!offerData.offer || !(typeof offerData.offer === "string"))
+      throw new Error("Incorrect offer data");
 
     const getOfferByIdService = container.get<GetOfferByIdService>(
-      'Offers.domain.GetOfferByIdService',
+      "Offers.domain.GetOfferByIdService",
     );
     const offer = await getOfferByIdService.execute(offerData.offer);
 
     switch (offer.type) {
-      case 'pause':
+      case "pause":
         return OfferAnswerDataPause.createFromScratch(
           offer as Pause,
           offerData,
         );
-      case 'coupon':
+      case "coupon":
         return OfferAnswerDataCoupon.createFromScratch(
           offer as Coupon,
           offerData,
         );
-      case 'customcontent':
+      case "customcontent":
         return OfferAnswerDataCustomContent.createFromScratch(
           offer as CustomContent,
           offerData,
         );
       default:
-        throw new Error('Incorrect offer data');
+        throw new Error("Incorrect offer data");
     }
   }
 
@@ -80,16 +80,16 @@ export class OfferPageAnswer {
 
   private static async createEmptyOfferData(offerInfo: OfferResponse) {
     const getOfferByIdService = container.get<GetOfferByIdService>(
-      'Offers.domain.GetOfferByIdService',
+      "Offers.domain.GetOfferByIdService",
     );
     const offer = await getOfferByIdService.execute(offerInfo.id!);
 
     switch (offerInfo.type) {
-      case 'pause':
+      case "pause":
         return OfferAnswerDataPause.createEmpty(offer as Pause);
-      case 'coupon':
+      case "coupon":
         return OfferAnswerDataCoupon.createEmpty(offer as Coupon);
-      case 'customcontent':
+      case "customcontent":
         return OfferAnswerDataCustomContent.createEmpty(offer as CustomContent);
     }
   }
@@ -113,7 +113,7 @@ export class OfferAnswerDataPause {
 
   public complete(data: any) {
     let monthPaused = data.monthPaused;
-    if (!monthPaused || typeof monthPaused !== 'number') monthPaused = 0;
+    if (!monthPaused || typeof monthPaused !== "number") monthPaused = 0;
 
     this.monthPaused = monthPaused;
   }
@@ -131,7 +131,7 @@ export class OfferAnswerDataCoupon {
   }
 
   public complete() {
-    logger.debug('complete of OfferAnswerDataCoupon');
+    logger.debug("complete of OfferAnswerDataCoupon");
   }
 }
 
@@ -147,6 +147,6 @@ export class OfferAnswerDataCustomContent {
   }
 
   public complete() {
-    logger.debug('complete answer of CustomContent offer');
+    logger.debug("complete answer of CustomContent offer");
   }
 }

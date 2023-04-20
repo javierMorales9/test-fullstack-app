@@ -1,0 +1,22 @@
+.surveyOption {
+  @apply relative mb-2 flex items-center gap-3 pr-10;
+}
+
+.surveyOption .remove {
+  top: 10px;
+  @apply absolute right-0 p-2;
+}
+
+.dragIcon {
+  @apply relative self-stretch;
+  min-width: 19px;
+}
+
+.dragIcon > * {
+  top: 14px;
+}
+
+.dragIcon,
+.dragIcon * {
+  cursor: move; /* fallback if grab cursor is unsupported */
+}

@@ -1,5 +1,5 @@
-import { View } from './View';
-import { Cancel } from '../Cancel';
+import { View } from "./View";
+import { Cancel } from "../Cancel";
 
 export class CancelView extends View {
   public title: string;

@@ -45,20 +45,20 @@ export class Flow {
   public paymentProvider: string;
 
   constructor({
-                id,
-                name,
-                description,
-                pages,
-                account,
-                audiences,
-                activated,
-                design,
-                createdAt,
-                updatedAt,
-                visualizations,
-                boostedRevenue,
-                paymentProvider
-              }: FlowConstructorOptions) {
+    id,
+    name,
+    description,
+    pages,
+    account,
+    audiences,
+    activated,
+    design,
+    createdAt,
+    updatedAt,
+    visualizations,
+    boostedRevenue,
+    paymentProvider,
+  }: FlowConstructorOptions) {
     this.id = id;
     this.name = name;
     this.description = description;
@@ -76,12 +76,12 @@ export class Flow {
 
   public static async fromRequest(
     request: FlowRequest,
-    account: Account
+    account: Account,
   ): Promise<Flow> {
     const id = request.id ? new Uuid(request.id) : Uuid.random();
 
     const getFlowByIdService = container.get<GetFlowByIdService>(
-      "Flows.domain.GetFlowByIdService"
+      "Flows.domain.GetFlowByIdService",
     );
     const currentFlow = await getFlowByIdService.execute(id.value);
 
@@ -113,7 +113,7 @@ export class Flow {
       updatedAt,
       visualizations,
       boostedRevenue,
-      paymentProvider
+      paymentProvider,
     });
 
     new FlowValidator(flow).validate();
@@ -141,24 +141,19 @@ export class Flow {
   async checkUserData(userData: UserData): Promise<boolean> {
     logger.debug(
       "checking if flow " +
-      this.id +
-      " fulfills the Conditions for userId " +
-      userData.userId
+        this.id +
+        " fulfills the Conditions for userId " +
+        userData.userId,
     );
 
     const checkAudienceMatchesAUserService =
       container.get<CheckAudienceMatchesAUserService>(
-        "Audiences.domain.CheckAudienceMatchesAUserService"
+        "Audiences.domain.CheckAudienceMatchesAUserService",
       );
 
     for (let i = 0; i < this.audiences.length; i++) {
       const audience = this.audiences[i]!;
-      if (
-        await checkAudienceMatchesAUserService.execute(
-          audience,
-          userData
-        )
-      )
+      if (await checkAudienceMatchesAUserService.execute(audience, userData))
         return true;
     }
 
@@ -183,12 +178,12 @@ export class Flow {
 
   private static async checkThatPaymentProviderExist(
     paymentProvider: string,
-    accountId: string
+    accountId: string,
   ) {
     if (process.env.NODE_ENV === "development" && paymentProvider === "local")
       return;
     const getPaymentProvider = container.get<GetPaymentProviderService>(
-      "PaymentProviders.domain.GetPaymentProviderService"
+      "PaymentProviders.domain.GetPaymentProviderService",
     );
     await getPaymentProvider.execute(paymentProvider, accountId);
   }

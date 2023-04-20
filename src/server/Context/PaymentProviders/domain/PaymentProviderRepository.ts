@@ -1,4 +1,4 @@
-import { PaymentProvider } from './paymentProvider';
+import { PaymentProvider } from "./paymentProvider";
 
 export interface PaymentProviderRepository {
   getAll: (accountId: string) => Promise<PaymentProvider[]>;

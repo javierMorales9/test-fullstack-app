@@ -1,6 +1,6 @@
-import { CancellerHistoryRepository } from '../domain/CancellerHistoryRepository';
-import { Uuid } from '../../../Context/Shared/domain/value-object/Uuid';
-import { validateDates } from '../../../Context/Shared/infrastructure/validateDates';
+import { CancellerHistoryRepository } from "../domain/CancellerHistoryRepository";
+import { Uuid } from "../../../Context/Shared/domain/value-object/Uuid";
+import { validateDates } from "../../../Context/Shared/infrastructure/validateDates";
 
 export default class StatsCalculator {
   constructor(private cancellerHistoryRepo: CancellerHistoryRepository) {}

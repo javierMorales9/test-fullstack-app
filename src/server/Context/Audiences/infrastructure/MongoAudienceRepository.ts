@@ -1,13 +1,13 @@
-import { AudienceRepository } from '../domain/AudienceRepository';
-import { Audience } from '../domain/Audience';
-import { AudienceModel, AudienceMongo } from './AudienceMongo';
+import { AudienceRepository } from "../domain/AudienceRepository";
+import { Audience } from "../domain/Audience";
+import { AudienceModel, AudienceMongo } from "./AudienceMongo";
 import {
   transformToArrayOfAudiencesFromRepo,
   transformToAudienceFromRepo,
-} from './transformToAudienceFromRepo';
-import logger from '../../../Context/Shared/infrastructure/logger/logger';
-import AudienceCouldNotBeCreated from '../domain/errors/AudienceCouldNotBeCreated';
-import AudienceAlreadyExistError from '../domain/errors/AudienceAlreadyExistError';
+} from "./transformToAudienceFromRepo";
+import logger from "../../../Context/Shared/infrastructure/logger/logger";
+import AudienceCouldNotBeCreated from "../domain/errors/AudienceCouldNotBeCreated";
+import AudienceAlreadyExistError from "../domain/errors/AudienceAlreadyExistError";
 
 export default class MongoAudienceRepository implements AudienceRepository {
   public async getAll(accountId: string): Promise<Audience[]> {
@@ -23,7 +23,7 @@ export default class MongoAudienceRepository implements AudienceRepository {
   public async save(audience: Audience): Promise<Audience | null> {
     const audienceMongo = createAudienceMongo(audience);
 
-    logger.debug('Saving an audience with id ' + audience.id);
+    logger.debug("Saving an audience with id " + audience.id);
     try {
       const savedAudience = await AudienceModel.findOneAndUpdate(
         { _id: audienceMongo._id },
@@ -31,7 +31,7 @@ export default class MongoAudienceRepository implements AudienceRepository {
         { upsert: true, new: true },
       );
 
-      logger.debug('Saved the audience request the db');
+      logger.debug("Saved the audience request the db");
       return transformToAudienceFromRepo(savedAudience);
     } catch (err) {
       handleAudienceCreationError(err, audience);
@@ -40,7 +40,7 @@ export default class MongoAudienceRepository implements AudienceRepository {
   }
 
   public async delete(audienceId: string, accountId: string): Promise<void> {
-    logger.info('Deleting the audience ' + audienceId + ' from mongo');
+    logger.info("Deleting the audience " + audienceId + " from mongo");
 
     try {
       await AudienceModel.deleteOne(
@@ -48,13 +48,13 @@ export default class MongoAudienceRepository implements AudienceRepository {
         { upsert: true, new: true },
       );
     } catch (err: any) {
-      logger.info('Error deleting the audience ' + err.message);
-      throw new Error('Could not delete the audience');
+      logger.info("Error deleting the audience " + err.message);
+      throw new Error("Could not delete the audience");
     }
   }
 
   public async deleteAll(accountId: string): Promise<void> {
-    logger.info('Deleting all the audiences from ' + accountId + ' from mongo');
+    logger.info("Deleting all the audiences from " + accountId + " from mongo");
 
     try {
       await AudienceModel.deleteMany(
@@ -62,8 +62,8 @@ export default class MongoAudienceRepository implements AudienceRepository {
         { upsert: true, new: true },
       );
     } catch (err: any) {
-      logger.info('Error deleting the audiences ' + err.message);
-      throw new Error('Could not delete the audiences');
+      logger.info("Error deleting the audiences " + err.message);
+      throw new Error("Could not delete the audiences");
     }
   }
 }
@@ -80,9 +80,9 @@ function createAudienceMongo(audience: Audience): AudienceMongo {
 function handleAudienceCreationError(err: any, audience: Audience) {
   const errMessage = err.message as string;
 
-  logger.debug('Error while creating the audience: ' + err.message);
+  logger.debug("Error while creating the audience: " + err.message);
 
-  if (errMessage.includes('duplicate key error'))
+  if (errMessage.includes("duplicate key error"))
     throw new AudienceAlreadyExistError(audience.id);
 
   throw new AudienceCouldNotBeCreated(audience.id);

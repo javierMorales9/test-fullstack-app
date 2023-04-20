@@ -29,14 +29,14 @@ export const accountsRouter = createTRPCRouter({
             phone: z.string().optional(),
           })
           .optional(),
-      })
+      }),
     )
     .mutation(async ({ ctx, input }) => {
       try {
         const account = ctx.account;
 
         const addInfo = container.get<AccountInfoAdder>(
-          "Accounts.application.AccountInfoAdder"
+          "Accounts.application.AccountInfoAdder",
         );
         const savedAccount = await addInfo.execute(input, account);
 
@@ -47,7 +47,7 @@ export const accountsRouter = createTRPCRouter({
     }),
   delete: privateProcedure.mutation(async ({ ctx }) => {
     const deleteAccount = container.get<AccountDeleter>(
-      "Accounts.application.AccountDeleter"
+      "Accounts.application.AccountDeleter",
     );
     try {
       const account = ctx.account;
@@ -60,7 +60,7 @@ export const accountsRouter = createTRPCRouter({
   uploadLogo: privateProcedure.mutation(async ({ ctx }) => {
     throw new TRPCError({ code: "METHOD_NOT_SUPPORTED" });
     const uploadPhoto = container.get<PhotoUploader>(
-      "Accounts.application.PhotoUploader"
+      "Accounts.application.PhotoUploader",
     );
 
     try {
@@ -70,7 +70,7 @@ export const accountsRouter = createTRPCRouter({
 
       const accountWithNewPhoto = await uploadPhoto.execute(
         account,
-        accountImage
+        accountImage,
       );
       const accountResponse = new AccountResponse(accountWithNewPhoto);
       return accountResponse;
@@ -82,11 +82,11 @@ export const accountsRouter = createTRPCRouter({
     .input(
       z.object({
         domains: z.array(z.string()),
-      })
+      }),
     )
     .mutation(async ({ ctx, input }) => {
       const addDomains = container.get<DomainAdder>(
-        "Accounts.application.DomainAdder"
+        "Accounts.application.DomainAdder",
       );
       try {
         const account = ctx.account;
@@ -99,11 +99,11 @@ export const accountsRouter = createTRPCRouter({
     .input(
       z.object({
         domain: z.string(),
-      })
+      }),
     )
     .mutation(async ({ ctx, input }) => {
       const deleteDomain = container.get<DomainDeleter>(
-        "Accounts.application.DomainDeleter"
+        "Accounts.application.DomainDeleter",
       );
       try {
         const account = ctx.account;

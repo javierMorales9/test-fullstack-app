@@ -1,6 +1,6 @@
-import { AppConstants } from './AppConstants';
-import AppConstantsRepo from './appConstantsRepo';
-import { AppConstantsRepoImpl } from './AppConstantsRepoImpl';
+import { AppConstants } from "./AppConstants";
+import AppConstantsRepo from "./appConstantsRepo";
+import { AppConstantsRepoImpl } from "./AppConstantsRepoImpl";
 
 class AppConstantsStore {
   private appConstants: AppConstants | null = null;
@@ -26,7 +26,7 @@ class AppConstantsStore {
   }
 
   public async updateBoostedRevenueDate(date: Date) {
-    if (!this.appConstants) throw new Error('Not initialized');
+    if (!this.appConstants) throw new Error("Not initialized");
 
     this.appConstants?.updateBoostedRevenueDate(date);
     await this.repo.save(this.appConstants);

@@ -1,15 +1,15 @@
-import { OfferRepository } from '../domain/OfferRepository';
-import { Offer } from '../domain/Offer';
-import { PauseModel } from './PauseMongo';
-import { CouponModel } from './CouponMongo';
+import { OfferRepository } from "../domain/OfferRepository";
+import { Offer } from "../domain/Offer";
+import { PauseModel } from "./PauseMongo";
+import { CouponModel } from "./CouponMongo";
 import {
   transformToArrayOfOffersFromRepo,
   transformToOfferFromRepo,
-} from './transformToOfferFromRepo';
-import { OfferModel } from './OfferMongo';
-import { CustomContentModel } from './CustomContentMongo';
-import logger from '../../../Context/Shared/infrastructure/logger/logger';
-import OfferCouldNotBeCreatedError from '../domain/erorrs/OfferCouldNotBeCreatedError';
+} from "./transformToOfferFromRepo";
+import { OfferModel } from "./OfferMongo";
+import { CustomContentModel } from "./CustomContentMongo";
+import logger from "../../../Context/Shared/infrastructure/logger/logger";
+import OfferCouldNotBeCreatedError from "../domain/erorrs/OfferCouldNotBeCreatedError";
 
 export default class MongoOfferRepository implements OfferRepository {
   async getAllFromAccount(accountId: string): Promise<Offer[]> {
@@ -24,9 +24,9 @@ export default class MongoOfferRepository implements OfferRepository {
 
   async saveOffer(offer: Offer): Promise<Offer | null> {
     logger.debug(
-      'Started creating the offer of type: ' +
+      "Started creating the offer of type: " +
         offer.type +
-        ' for the account ' +
+        " for the account " +
         offer.account.value,
     );
     try {
@@ -34,37 +34,37 @@ export default class MongoOfferRepository implements OfferRepository {
       const offerMongo = MongoOfferRepository.createOfferMongo(offer);
 
       console.log(offerMongo);
-      if (offer.type === 'pause')
+      if (offer.type === "pause")
         savedOffer = await PauseModel.findOneAndUpdate(
           { _id: offerMongo._id },
           { $set: { ...offerMongo } },
           { upsert: true, new: true },
         );
 
-      if (offer.type === 'coupon')
+      if (offer.type === "coupon")
         savedOffer = await CouponModel.findOneAndUpdate(
           { _id: offerMongo._id },
           { $set: { ...offerMongo } },
           { upsert: true, new: true },
         );
-      if (offer.type === 'customcontent')
+      if (offer.type === "customcontent")
         savedOffer = await CustomContentModel.findOneAndUpdate(
           { _id: offerMongo._id },
           { $set: { ...offerMongo } },
           { upsert: true, new: true },
         );
 
-      logger.debug('Finished saving the offer request the db');
+      logger.debug("Finished saving the offer request the db");
       return transformToOfferFromRepo(savedOffer);
     } catch (err: any) {
-      logger.debug('Error creating the offer: ' + err.message);
+      logger.debug("Error creating the offer: " + err.message);
       MongoOfferRepository.handleOfferCreationError(err, offer);
       throw err;
     }
   }
 
   public async delete(offerId: string, accountId: string): Promise<void> {
-    logger.info('Deleting the offer ' + offerId + ' from mongo');
+    logger.info("Deleting the offer " + offerId + " from mongo");
 
     try {
       await OfferModel.deleteOne(
@@ -72,13 +72,13 @@ export default class MongoOfferRepository implements OfferRepository {
         { upsert: true, new: true },
       );
     } catch (err) {
-      logger.info('Error deleting the offer ' + offerId);
-      throw new Error('Could not delete the offer');
+      logger.info("Error deleting the offer " + offerId);
+      throw new Error("Could not delete the offer");
     }
   }
 
   public async deleteAll(accountId: string): Promise<void> {
-    logger.debug('Delete all the offers of the account: ' + accountId);
+    logger.debug("Delete all the offers of the account: " + accountId);
 
     try {
       await OfferModel.deleteMany(
@@ -86,8 +86,8 @@ export default class MongoOfferRepository implements OfferRepository {
         { upsert: true, new: true },
       );
     } catch (err: any) {
-      logger.debug('Error deleting the offers ' + err.message);
-      throw new Error('Could not delete the offers from ' + accountId);
+      logger.debug("Error deleting the offers " + err.message);
+      throw new Error("Could not delete the offers from " + accountId);
     }
   }
 
@@ -104,9 +104,9 @@ export default class MongoOfferRepository implements OfferRepository {
   private static handleOfferCreationError(err: any, offer: Offer) {
     const errMessage = err.message as string;
 
-    logger.debug('Error while creating the offer: ' + err.message);
+    logger.debug("Error while creating the offer: " + err.message);
 
-    if (errMessage.includes('duplicate key error'))
+    if (errMessage.includes("duplicate key error"))
       throw new OfferCouldNotBeCreatedError(offer.id);
 
     throw new OfferCouldNotBeCreatedError(offer.id);

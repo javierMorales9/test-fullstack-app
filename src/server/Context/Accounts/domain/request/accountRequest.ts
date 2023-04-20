@@ -1,4 +1,4 @@
-import { CompanyData } from '../CompanyData';
+import { CompanyData } from "../CompanyData";
 
 export type AccountRequest = {
   paymentType?: string;

@@ -1,5 +1,5 @@
-import AccountRepository from '../repos/accountRepository';
-import AccountNotFoundError from '../errors/AccountNotFoundError';
+import AccountRepository from "../repos/accountRepository";
+import AccountNotFoundError from "../errors/AccountNotFoundError";
 
 export default class GetAccountByIdService {
   constructor(private accountRepo: AccountRepository) {}

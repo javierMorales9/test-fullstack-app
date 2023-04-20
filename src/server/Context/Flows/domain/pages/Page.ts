@@ -1,6 +1,6 @@
-import { View } from './views/View';
-import { Answer } from './answers/Answer';
-import { Uuid } from '../../../../Context/Shared/domain/value-object/Uuid';
+import { View } from "./views/View";
+import { Answer } from "./answers/Answer";
+import { Uuid } from "../../../../Context/Shared/domain/value-object/Uuid";
 
 export abstract class Page {
   public id: string;

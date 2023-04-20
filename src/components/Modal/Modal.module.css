@@ -1,0 +1,35 @@
+.modalWrapper {
+  @apply fixed top-0 left-0 h-full w-full overflow-y-auto overflow-x-hidden bg-black/50;
+  z-index: 1055;
+}
+
+.modal {
+  @apply relative mx-auto mb-8 w-auto;
+  margin-top: 20vh;
+  max-width: 500px;
+}
+
+.modal.centered {
+  @apply my-8 flex items-center;
+  min-height: calc(100% - 64px);
+}
+
+.modalContent {
+  @apply relative flex w-full flex-col gap-y-6 rounded bg-white p-6;
+}
+
+.header {
+  @apply relative pr-8 font-semibold text-black;
+  font-size: 32px;
+  line-height: 48px;
+}
+
+.header .btnClose {
+  @apply absolute right-0 flex h-auto w-auto -translate-y-1/2 items-center justify-start px-2;
+  height: 48px;
+  top: 24px;
+}
+
+.body {
+  @apply text-sm font-medium text-black;
+}

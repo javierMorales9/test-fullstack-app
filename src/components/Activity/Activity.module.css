@@ -1,0 +1,85 @@
+.wrapper {
+  @apply container relative rounded bg-white p-0 py-4;
+}
+
+.wrapper > * {
+  @apply px-6;
+}
+
+.titleWrapper {
+  @apply mt-4 flex items-center justify-between;
+}
+
+.titleWrapper .title {
+  font-size: 32px;
+  line-height: 44px;
+  letter-spacing: 0;
+  @apply font-semibold;
+}
+
+.titleWrapper .right {
+  @apply flex flex-grow items-center justify-end gap-2;
+}
+
+.titleWrapper .input {
+  min-width: 262px;
+}
+
+.listing {
+  @apply relative;
+}
+
+.table {
+  @apply mt-10 w-full table-auto;
+}
+
+.table .centered {
+  @apply text-center;
+}
+
+.table thead tr {
+  @apply border-grey-3 border-y;
+}
+
+.table thead th {
+  letter-spacing: 0px;
+  @apply text-black-3 px-6 py-4 text-sm font-semibold;
+}
+
+.table thead th:first-child {
+  @apply pl-0;
+}
+
+.table thead th:last-child {
+  @apply p-0;
+}
+
+.table tbody td {
+  @apply p-4 text-center text-sm;
+}
+
+.table tbody td:first-child {
+  @apply pl-0 text-left;
+}
+
+.table tbody td:last-child {
+  width: 1%;
+  white-space: nowrap;
+  @apply p-0;
+}
+
+.table tbody td .small {
+  font-size: 12px;
+  line-height: 18px;
+}
+
+.table .actionButtons {
+  gap: 10px;
+  @apply flex items-center justify-center;
+}
+
+.table .actionButtons button {
+  font-size: 12px;
+  line-height: 18px;
+  @apply bg-grey-4 border-grey-3 flex-shrink-0 rounded border px-2 py-0.5 font-semibold text-black;
+}

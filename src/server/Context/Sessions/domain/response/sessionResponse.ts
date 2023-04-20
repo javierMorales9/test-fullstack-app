@@ -1,7 +1,7 @@
-import { Session } from '../session';
-import { FlowResponse } from '../../../Flows/domain/pages/output/FlowResponse';
-import { Answer } from '../../../Flows/domain/pages/answers/Answer';
-import { UserData } from '../../../../Context/Shared/domain/UserData';
+import { Session } from "../session";
+import { FlowResponse } from "../../../Flows/domain/pages/output/FlowResponse";
+import { Answer } from "../../../Flows/domain/pages/answers/Answer";
+import { UserData } from "../../../../Context/Shared/domain/UserData";
 
 export class SessionResponse {
   private id?: string;

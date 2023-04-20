@@ -1,5 +1,5 @@
 export class PauseRequest {
-  public type: 'pause';
+  public type: "pause";
   public title: string;
   public message: string;
   public maxPauseMonth: number;
@@ -8,12 +8,12 @@ export class PauseRequest {
   constructor(data: any) {
     if (
       !data.type ||
-      data.type !== 'pause' ||
+      data.type !== "pause" ||
       !data.title ||
       !data.message ||
       !data.maxPauseMonth
     )
-      throw new Error('Bad Offer');
+      throw new Error("Bad Offer");
 
     this.type = data.type;
     this.title = data.title;

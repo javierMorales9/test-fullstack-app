@@ -1,5 +1,5 @@
-import { Schema } from 'mongoose';
-import { PageModel } from './pageMongo';
+import { Schema } from "mongoose";
+import { PageModel } from "./pageMongo";
 
 export interface SurveyMongo {
   _id: string;
@@ -18,6 +18,6 @@ const SurveySchema = new Schema<SurveyMongo>({
 });
 
 export const SurveyModel = PageModel.discriminator<SurveyMongo>(
-  'Survey',
+  "Survey",
   SurveySchema,
 );

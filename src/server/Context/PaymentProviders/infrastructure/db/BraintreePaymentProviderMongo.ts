@@ -1,5 +1,5 @@
-import { Schema } from 'mongoose';
-import { PaymentProviderModel } from './PaymentProviderMongo';
+import { Schema } from "mongoose";
+import { PaymentProviderModel } from "./PaymentProviderMongo";
 
 export interface BraintreePaymentProviderMongo {
   account: string;
@@ -10,7 +10,7 @@ export interface BraintreePaymentProviderMongo {
 
 const BraintreePaymentProviderSchema =
   new Schema<BraintreePaymentProviderMongo>({
-    account: { type: String, ref: 'Account' },
+    account: { type: String, ref: "Account" },
     merchantId: { type: String, required: true },
     publicKey: { type: String, required: true },
     privateKey: { type: String, required: true },
@@ -18,6 +18,6 @@ const BraintreePaymentProviderSchema =
 
 export const BraintreePaymentProviderModel =
   PaymentProviderModel.discriminator<BraintreePaymentProviderMongo>(
-    'braintree',
+    "braintree",
     BraintreePaymentProviderSchema,
   );

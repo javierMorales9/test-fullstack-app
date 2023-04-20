@@ -1,5 +1,5 @@
-import { OfferRepository } from '../OfferRepository';
-import OfferNotFoundError from '../erorrs/OfferNotFoundError';
+import { OfferRepository } from "../OfferRepository";
+import OfferNotFoundError from "../erorrs/OfferNotFoundError";
 
 export default class GetOfferByIdService {
   constructor(private offerRepo: OfferRepository) {}

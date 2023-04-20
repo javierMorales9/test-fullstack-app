@@ -1,0 +1,39 @@
+.title {
+  @apply flex items-start justify-between;
+}
+
+.wrapper {
+}
+
+.button {
+  @apply relative px-5;
+  min-width: 24px;
+  height: 28px;
+}
+
+.button svg {
+  @apply fill-black-3 absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 transform-gpu transition-all;
+  height: 24px;
+  width: 24px;
+  -webkit-backface-visibility: hidden; /* Safari */
+  backface-visibility: hidden;
+}
+.button.open svg {
+  @apply fill-primary;
+}
+
+.button .minus {
+  transform: translate(-50%, -50%) rotateY(90deg);
+}
+
+.button .plus {
+  transform: translate(-50%, -50%) rotateX(0);
+}
+
+.button.open svg.minus {
+  transform: translate(-50%, -50%) rotateY(0);
+}
+
+.button.open svg.plus {
+  transform: translate(-50%, -50%) rotateX(90deg);
+}

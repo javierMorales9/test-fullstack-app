@@ -1,4 +1,4 @@
-import { Account } from '../domain/account';
+import { Account } from "../domain/account";
 
 export function transformToArrayOfAccountsFromRepo(
   mongoAccounts: any[],

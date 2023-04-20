@@ -1,5 +1,5 @@
-import { Schema } from 'mongoose';
-import { PageModel } from './pageMongo';
+import { Schema } from "mongoose";
+import { PageModel } from "./pageMongo";
 
 export interface CancelMongo {
   _id: string;
@@ -16,6 +16,6 @@ const CancelSchema = new Schema<CancelMongo>({
 });
 
 export const CancelModel = PageModel.discriminator<CancelMongo>(
-  'Cancel',
+  "Cancel",
   CancelSchema,
 );

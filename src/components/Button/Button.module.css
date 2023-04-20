@@ -1,0 +1,115 @@
+.btn {
+  @apply relative overflow-hidden rounded py-2 px-4;
+}
+
+.btn > .wrapper {
+  z-index: 1;
+  @apply relative flex flex-grow items-center justify-center gap-x-2 rounded text-sm font-semibold;
+}
+
+.btn > .wrapper[weight="normal"] {
+  @apply font-normal;
+}
+
+.btn > .wrapper[align="left"] {
+  @apply justify-start;
+}
+
+.btn > .wrapper[align="right"] {
+  @apply justify-end;
+}
+
+.btn::before {
+  content: "";
+  transition: all 0.3s ease-in-out;
+  @apply absolute left-0 top-0 h-full w-full;
+  z-index: 0;
+}
+
+.btn[variant="clean"] {
+  @apply border-0;
+}
+
+.btn[variant="primary"] {
+  @apply text-grey-4;
+}
+
+.btn[variant="primary"]::before {
+  @apply bg-primary;
+}
+
+.btn[variant="primary"]:not(:disabled):hover::before {
+  filter: brightness(0.75);
+}
+
+.btn[variant="error"] {
+  @apply text-white;
+}
+
+.btn[variant="error"]::before {
+  @apply bg-error;
+}
+
+.btn[variant="error"]:not(:disabled):hover::before {
+  filter: brightness(0.9);
+}
+
+.btn[variant^="outline"] {
+  @apply border-grey-3 border bg-inherit;
+}
+
+.btn[variant="outline"] {
+  @apply text-black;
+}
+
+.btn[variant="outline-error"] {
+  @apply text-error;
+}
+
+.btn[variant="outline-primary"] {
+  @apply text-primary border-primary;
+}
+
+.btn[variant^="outline"]::before {
+  @apply bg-white;
+}
+
+.btn[variant^="outline"]:not(:disabled):hover::before {
+  filter: brightness(0.97);
+}
+
+.btn:disabled::before {
+  opacity: 0.5;
+}
+
+.btn[variantsize="small"] {
+  padding: 6px 12px;
+}
+
+.btn[variantsize="large"] {
+  padding: 12px 24px;
+}
+
+.btn .icon {
+  @apply relative flex items-center justify-center;
+  width: 16px;
+  height: 16px;
+}
+
+.btn .icon svg {
+  @apply h-auto w-full fill-black;
+}
+
+.btn.loading .wrapper {
+  visibility: hidden;
+}
+
+.btn .loader {
+  height: 25px;
+  width: 25px;
+  @apply absolute left-1/2 top-1/2 -translate-y-1/2 -translate-x-1/2;
+}
+
+.btn .loader svg {
+  @apply text-current;
+}

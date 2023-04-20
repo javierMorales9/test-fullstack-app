@@ -1,0 +1,37 @@
+.pagination {
+  @apply mt-9 flex flex-wrap items-center justify-between gap-4;
+}
+
+.pagination .count {
+  font-size: 12px;
+  line-height: 18px;
+  letter-spacing: 0px;
+  @apply text-black-3 font-medium;
+}
+
+.pagination .pages {
+  @apply flex items-center justify-end gap-2;
+}
+
+.pagination .page {
+  font-size: 12px;
+  line-height: 18px;
+  letter-spacing: 0px;
+  height: 24px;
+  width: 24px;
+  @apply text-black-3 flex cursor-pointer items-center justify-center rounded text-center font-semibold;
+}
+
+.pagination .page.active {
+  @apply bg-primary/10 text-primary;
+}
+
+.pagination .actionButton svg {
+  width: 18px;
+  height: 18px;
+  @apply fill-black-3;
+}
+
+.pagination .actionButton:disabled svg {
+  @apply fill-black-3/50;
+}

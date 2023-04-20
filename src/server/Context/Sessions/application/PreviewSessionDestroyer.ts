@@ -1,4 +1,4 @@
-import { SessionRepository } from '../domain/SessionRepository';
+import { SessionRepository } from "../domain/SessionRepository";
 
 export default class PreviewSessionDestroyer {
   constructor(private sessionRepo: SessionRepository) {}

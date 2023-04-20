@@ -1,0 +1,50 @@
+.table {
+  @apply border-primary mt-10 w-full table-auto border-t-2;
+}
+
+.table .centred {
+  @apply text-center;
+}
+
+.table thead tr {
+  @apply border-grey-3 border-y;
+}
+
+.table thead th {
+  letter-spacing: 0;
+  @apply text-black-3 px-6 py-4 text-sm font-semibold;
+}
+
+.table thead th:first-child,
+.table tbody tr td:first-child {
+  @apply pl-6;
+}
+
+.table thead th:last-child,
+.table tbody tr td:last-child {
+  @apply p-0 pr-6;
+}
+
+.table tbody td {
+  @apply p-4 text-center text-sm;
+}
+
+.table tbody td:first-child {
+  @apply pl-0 text-left;
+}
+
+.table tbody td:last-child {
+  width: 1%;
+  white-space: nowrap;
+  @apply p-0;
+}
+.table .actionButtons {
+  gap: 10px;
+  @apply flex items-center justify-center;
+}
+
+.table .actionButtons button {
+  font-size: 12px;
+  line-height: 18px;
+  @apply bg-grey-4 border-grey-3 flex-shrink-0 rounded border px-2 py-0.5 font-semibold text-black;
+}

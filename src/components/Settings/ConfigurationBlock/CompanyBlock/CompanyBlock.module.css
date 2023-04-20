@@ -1,0 +1,20 @@
+.wrapper {
+  @apply mt-8 flex flex-col-reverse flex-wrap justify-start gap-x-8 gap-y-6 lg:flex-row lg:flex-nowrap;
+}
+
+.left {
+  @apply flex-grow;
+  min-width: 300px;
+}
+
+.right {
+  @apply w-full flex-shrink-0 lg:w-52;
+}
+
+.companyLogo {
+  @apply relative mb-3 aspect-video rounded py-4 px-7;
+  background-color: rgba(224, 224, 224, 0.2);
+}
+.companyLogo img {
+  @apply h-auto w-full;
+}

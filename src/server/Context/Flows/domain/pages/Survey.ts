@@ -1,11 +1,11 @@
-import { Page } from './Page';
-import { SurveyRequest } from './input/SurveyRequest';
-import { SurveyView } from './views/SurveyView';
-import { Answer } from './answers/Answer';
+import { Page } from "./Page";
+import { SurveyRequest } from "./input/SurveyRequest";
+import { SurveyView } from "./views/SurveyView";
+import { Answer } from "./answers/Answer";
 
 export class Survey extends Page {
   constructor(
-    type: 'survey',
+    type: "survey",
     order: number,
     public title: string,
     public hint: string,

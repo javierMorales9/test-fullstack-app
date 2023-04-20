@@ -1,5 +1,5 @@
-import AccountRepository from '../domain/repos/accountRepository';
-import { Account } from '../domain/account';
+import AccountRepository from "../domain/repos/accountRepository";
+import { Account } from "../domain/account";
 
 export default class DomainAdder {
   constructor(private accountRepo: AccountRepository) {}

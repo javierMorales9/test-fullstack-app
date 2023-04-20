@@ -1,5 +1,5 @@
-import { SessionRepository } from '../domain/SessionRepository';
-import GetFlowByIdService from '../../Flows/domain/services/GetFlowByIdService';
+import { SessionRepository } from "../domain/SessionRepository";
+import GetFlowByIdService from "../../Flows/domain/services/GetFlowByIdService";
 
 export default class AllSessionsFromFlowGetter {
   public constructor(
@@ -9,7 +9,7 @@ export default class AllSessionsFromFlowGetter {
 
   public async getAll(flowId: string) {
     const flow = await this.getFlowByIdService.execute(flowId);
-    if (!flow) throw new Error('Flow not found');
+    if (!flow) throw new Error("Flow not found");
 
     return await this.sessionRepo.getAllFromFlow(flow.id.value);
   }

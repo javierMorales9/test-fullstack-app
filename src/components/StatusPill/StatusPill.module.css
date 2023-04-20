@@ -1,0 +1,15 @@
+.statusPill {
+  @apply rounded py-1 px-2 text-center text-xs font-semibold capitalize;
+  /*min-width: 72px;*/
+}
+
+.statusPill.active,
+.statusPill.completed,
+.statusPill.finished {
+  @apply bg-secondary/10 text-secondary;
+}
+
+.statusPill.paused,
+.statusPill.in_progress {
+  @apply bg-error-3/60 text-error;
+}

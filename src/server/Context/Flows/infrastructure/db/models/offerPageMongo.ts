@@ -1,5 +1,5 @@
-import { Schema, Types } from 'mongoose';
-import { PageModel } from './pageMongo';
+import { Schema, Types } from "mongoose";
+import { PageModel } from "./pageMongo";
 
 interface SurveyMapMongo {
   survey: string;
@@ -26,7 +26,7 @@ const SurveyMapSchema = new Schema<SurveyMapMongo>({
 const MapSchema = new Schema<MapMongo>({
   surveys: { type: [SurveyMapSchema] },
   audiences: { type: [String] },
-  offer: { type: String, ref: 'Offer' },
+  offer: { type: String, ref: "Offer" },
 });
 
 const OfferPageSchema = new Schema<OfferPageMongo>({
@@ -36,6 +36,6 @@ const OfferPageSchema = new Schema<OfferPageMongo>({
 });
 
 export const OfferPageModel = PageModel.discriminator<OfferPageMongo>(
-  'offerpage',
+  "offerpage",
   OfferPageSchema,
 );

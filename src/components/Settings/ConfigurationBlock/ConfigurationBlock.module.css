@@ -1,0 +1,27 @@
+.block {
+  @apply border-grey-3 border-b py-5;
+}
+
+.block .top {
+  @apply flex items-center justify-between;
+}
+
+.title {
+  @apply text-sm font-semibold text-black;
+}
+
+.button {
+  @apply border-grey-3 bg-grey-4 rounded border py-1 px-2 text-center text-xs font-semibold text-black;
+  line-height: 18px;
+}
+
+.info {
+  @apply text-black-3 mt-1 text-sm font-medium;
+}
+.readMore {
+  padding: 6px 12px;
+}
+
+.description {
+  @apply text-sm font-medium text-black;
+}

@@ -1,10 +1,10 @@
-import { Operator } from '../../../domain/criteria/FilterOperator';
-import { Filter } from '../../../domain/criteria/Filter';
-import { Criteria } from '../../../domain/criteria/Criteria';
-import { Filters } from '../../../domain/criteria/Filters';
-import { Order } from '../../../domain/criteria/Order';
+import { Operator } from "../../../domain/criteria/FilterOperator";
+import { Filter } from "../../../domain/criteria/Filter";
+import { Criteria } from "../../../domain/criteria/Criteria";
+import { Filters } from "../../../domain/criteria/Filters";
+import { Order } from "../../../domain/criteria/Order";
 
-type MongoFilterOperator = '$eq' | '$ne' | '$gt' | '$lt' | '$regex';
+type MongoFilterOperator = "$eq" | "$ne" | "$gt" | "$lt" | "$regex";
 type MongoFilterValue = boolean | string | number;
 type MongoFilterOperation = {
   [operator in MongoFilterOperator]?: MongoFilterValue;
@@ -75,7 +75,7 @@ export class MongoCriteriaConverter {
 
   protected generateSort(order: Order): MongoSort {
     return {
-      [order.orderBy.value === 'id' ? '_id' : order.orderBy.value]:
+      [order.orderBy.value === "id" ? "_id" : order.orderBy.value]:
         order.orderType.isAsc() ? 1 : -1,
     };
   }

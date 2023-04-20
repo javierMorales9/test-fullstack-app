@@ -1,9 +1,9 @@
-import { Offer } from './Offer';
-import { PauseRequest } from './request/PauseRequest';
+import { Offer } from "./Offer";
+import { PauseRequest } from "./request/PauseRequest";
 
 export class Pause extends Offer {
   constructor(
-    type: 'pause',
+    type: "pause",
     title: string,
     message: string,
     public maxPauseMonth: number,

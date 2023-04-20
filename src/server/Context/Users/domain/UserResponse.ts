@@ -1,4 +1,4 @@
-import { User } from './User';
+import { User } from "./User";
 
 export class UserResponse {
   public readonly id: string;

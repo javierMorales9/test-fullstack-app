@@ -1,6 +1,6 @@
-import { Flow } from '../domain/Flow';
-import FlowRepository from '../domain/repos/FlowRepository';
-import FlowNotFoundError from '../domain/errors/FlowNotFoundError';
+import { Flow } from "../domain/Flow";
+import FlowRepository from "../domain/repos/FlowRepository";
+import FlowNotFoundError from "../domain/errors/FlowNotFoundError";
 
 export default class FlowByIdGetter {
   constructor(private flowRepo: FlowRepository) {}

@@ -1,11 +1,11 @@
-import { SessionRepository } from '../../domain/SessionRepository';
-import { SessionModel, SessionMongo } from './sessionMongo';
-import { Session } from '../../domain/session';
+import { SessionRepository } from "../../domain/SessionRepository";
+import { SessionModel, SessionMongo } from "./sessionMongo";
+import { Session } from "../../domain/session";
 import {
   transformToArrayOfSessionsFromRepo,
   transformToSessionFromRepo,
-} from './transformToSessionFromRepo';
-import { SurveyAnswerModel, SurveyAnswerMongo } from './SurveyAnswerMongo';
+} from "./transformToSessionFromRepo";
+import { SurveyAnswerModel, SurveyAnswerMongo } from "./SurveyAnswerMongo";
 import {
   CouponAnswerDataModel,
   CouponAnswerDataMongo,
@@ -15,33 +15,33 @@ import {
   OfferPageAnswerModel,
   PauseAnswerDataModel,
   PauseAnswerDataMongo,
-} from './OfferAnswerPageMongo';
-import { CancelAnswerModel, CancelAnswerMongo } from './CancelAnswerMongo';
-import { AnswerMongo } from './AnswerMongo';
+} from "./OfferAnswerPageMongo";
+import { CancelAnswerModel, CancelAnswerMongo } from "./CancelAnswerMongo";
+import { AnswerMongo } from "./AnswerMongo";
 import {
   TextareaAnswerModel,
   TextAreaAnswerMongo,
-} from './TextAreaAnswerMongo';
-import logger from '../../../../Context/Shared/infrastructure/logger/logger';
-import SessionCouldNotBeCreated from '../../domain/errors/SessionCouldNotBeCreated';
-import { OfferAnswerData } from '../../../Flows/domain/pages/answers/OfferPageAnswer';
-import { Answer } from '../../../Flows/domain/pages/answers/Answer';
+} from "./TextAreaAnswerMongo";
+import logger from "../../../../Context/Shared/infrastructure/logger/logger";
+import SessionCouldNotBeCreated from "../../domain/errors/SessionCouldNotBeCreated";
+import { OfferAnswerData } from "../../../Flows/domain/pages/answers/OfferPageAnswer";
+import { Answer } from "../../../Flows/domain/pages/answers/Answer";
 
 export default class MongoSessionRepository implements SessionRepository {
   public async getAll(): Promise<Session[]> {
     const session = await SessionModel.find()
       .populate({
-        path: 'flow',
+        path: "flow",
         populate: {
-          path: 'pages',
-          model: 'Page',
+          path: "pages",
+          model: "Page",
         },
       })
       .populate({
-        path: 'flow',
+        path: "flow",
         populate: {
-          path: 'account',
-          model: 'Account',
+          path: "account",
+          model: "Account",
         },
       });
     return transformToArrayOfSessionsFromRepo(session);
@@ -50,17 +50,17 @@ export default class MongoSessionRepository implements SessionRepository {
   public async getById(id: string): Promise<Session | null> {
     const session = await SessionModel.findById(id)
       .populate({
-        path: 'flow',
+        path: "flow",
         populate: {
-          path: 'pages',
-          model: 'Page',
+          path: "pages",
+          model: "Page",
         },
       })
       .populate({
-        path: 'flow',
+        path: "flow",
         populate: {
-          path: 'account',
-          model: 'Account',
+          path: "account",
+          model: "Account",
         },
       });
 
@@ -71,37 +71,37 @@ export default class MongoSessionRepository implements SessionRepository {
     const sessions = await SessionModel.aggregate([
       {
         $lookup: {
-          from: 'flows',
-          localField: 'flow',
-          foreignField: '_id',
-          as: 'flow',
+          from: "flows",
+          localField: "flow",
+          foreignField: "_id",
+          as: "flow",
         },
       },
-      { $unwind: '$flow' },
+      { $unwind: "$flow" },
       {
         $match: {
-          'flow.account': accountId,
+          "flow.account": accountId,
         },
       },
       {
         $lookup: {
-          from: 'accounts',
-          localField: 'flow.account',
-          foreignField: '_id',
-          as: 'flow.account',
+          from: "accounts",
+          localField: "flow.account",
+          foreignField: "_id",
+          as: "flow.account",
         },
       },
       {
         $lookup: {
-          from: 'pages',
-          localField: 'flow.pages',
-          foreignField: '_id',
-          as: 'flow.pages',
+          from: "pages",
+          localField: "flow.pages",
+          foreignField: "_id",
+          as: "flow.pages",
         },
       },
       {
         $unwind: {
-          path: '$flow.account',
+          path: "$flow.account",
           preserveNullAndEmptyArrays: true,
         },
       },
@@ -139,17 +139,17 @@ export default class MongoSessionRepository implements SessionRepository {
       .skip(skip)
       .limit(limit)
       .populate({
-        path: 'flow',
+        path: "flow",
         populate: {
-          path: 'pages',
-          model: 'Page',
+          path: "pages",
+          model: "Page",
         },
       })
       .populate({
-        path: 'flow',
+        path: "flow",
         populate: {
-          path: 'account',
-          model: 'Account',
+          path: "account",
+          model: "Account",
         },
       });
     return {
@@ -163,17 +163,17 @@ export default class MongoSessionRepository implements SessionRepository {
       flow: flowId,
     })
       .populate({
-        path: 'flow',
+        path: "flow",
         populate: {
-          path: 'pages',
-          model: 'Page',
+          path: "pages",
+          model: "Page",
         },
       })
       .populate({
-        path: 'flow',
+        path: "flow",
         populate: {
-          path: 'account',
-          model: 'Account',
+          path: "account",
+          model: "Account",
         },
       });
     return transformToArrayOfSessionsFromRepo(sessions);
@@ -185,17 +185,17 @@ export default class MongoSessionRepository implements SessionRepository {
       finished: false,
     })
       .populate({
-        path: 'flow',
+        path: "flow",
         populate: {
-          path: 'pages',
-          model: 'Page',
+          path: "pages",
+          model: "Page",
         },
       })
       .populate({
-        path: 'flow',
+        path: "flow",
         populate: {
-          path: 'account',
-          model: 'Account',
+          path: "account",
+          model: "Account",
         },
       });
 
@@ -210,29 +210,29 @@ export default class MongoSessionRepository implements SessionRepository {
         { upsert: true, new: true },
       )
         .populate({
-          path: 'flow',
+          path: "flow",
           populate: {
-            path: 'pages',
-            model: 'Page',
+            path: "pages",
+            model: "Page",
           },
         })
         .populate({
-          path: 'flow',
+          path: "flow",
           populate: {
-            path: 'account',
-            model: 'Account',
+            path: "account",
+            model: "Account",
           },
         });
 
       return transformToSessionFromRepo(sessionMongo);
     } catch (err: any) {
-      logger.debug('Session creation error: ' + err.message);
+      logger.debug("Session creation error: " + err.message);
       throw new SessionCouldNotBeCreated(session.id);
     }
   }
 
   public async deleteAllFromAFlow(flowId: string) {
-    logger.info('Deleting all the sessions from ' + flowId + ' from mongo');
+    logger.info("Deleting all the sessions from " + flowId + " from mongo");
 
     try {
       await SessionModel.deleteMany(
@@ -240,8 +240,8 @@ export default class MongoSessionRepository implements SessionRepository {
         { upsert: true, new: true },
       );
     } catch (err: any) {
-      logger.info('Error deleting the sessions: ' + err.message);
-      throw new Error('Error deleting the sessions from account' + flowId);
+      logger.info("Error deleting the sessions: " + err.message);
+      throw new Error("Error deleting the sessions from account" + flowId);
     }
   }
 
@@ -281,20 +281,20 @@ function createMongoAnswer(answer: Answer) {
   };
 
   switch (answer.type) {
-    case 'survey':
+    case "survey":
       return new SurveyAnswerModel({
         ...base,
       }) as SurveyAnswerMongo;
-    case 'offerpage':
+    case "offerpage":
       return new OfferPageAnswerModel({
         ...base,
         data: createOfferDataMongo(answer.data),
       }) as OfferAnswerPageMongo;
-    case 'textarea':
+    case "textarea":
       return new TextareaAnswerModel({
         ...base,
       }) as TextAreaAnswerMongo;
-    case 'cancel':
+    case "cancel":
       return new CancelAnswerModel({
         ...base,
       }) as CancelAnswerMongo;
@@ -306,17 +306,17 @@ function createOfferDataMongo(data: OfferAnswerData) {
   const offerId = offer.id;
 
   switch (offer.type) {
-    case 'pause':
+    case "pause":
       return new PauseAnswerDataModel({
         offer: offerId,
         ...rest,
       }) as PauseAnswerDataMongo;
-    case 'coupon':
+    case "coupon":
       return new CouponAnswerDataModel({
         offer: offerId,
         ...rest,
       }) as CouponAnswerDataMongo;
-    case 'customcontent':
+    case "customcontent":
       return new CustomContentAnswerDataModel({
         offer: offerId,
         ...rest,

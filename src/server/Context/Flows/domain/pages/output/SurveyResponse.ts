@@ -1,8 +1,8 @@
-import { Survey } from '../Survey';
+import { Survey } from "../Survey";
 
 export class SurveyResponse {
   public id: string;
-  public type: 'survey';
+  public type: "survey";
   public title: string;
   public hint: string;
   public options: string[];
@@ -10,7 +10,7 @@ export class SurveyResponse {
 
   constructor(survey: Survey) {
     this.id = survey.id;
-    this.type = 'survey';
+    this.type = "survey";
     this.title = survey.title;
     this.hint = survey.hint;
     this.options = survey.options;

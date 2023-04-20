@@ -1,6 +1,6 @@
-import { OfferPage } from '../OfferPage';
-import { View } from './View';
-import { OfferResponse } from '../../../../Offers/domain/response/OfferResponse';
+import { OfferPage } from "../OfferPage";
+import { View } from "./View";
+import { OfferResponse } from "../../../../Offers/domain/response/OfferResponse";
 
 export class OfferPageView extends View {
   public offerInfo: OfferResponse;

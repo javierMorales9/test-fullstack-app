@@ -1,0 +1,28 @@
+.info {
+  @apply text-black-3 mt-2 mb-6 text-sm font-medium;
+}
+
+.wrapper {
+  @apply grid grid-cols-2 md:grid-cols-1;
+}
+
+.link {
+  @apply flex w-full items-center justify-start gap-x-4 rounded p-4;
+}
+
+.link .icon {
+  width: 24px;
+  height: 24px;
+  @apply relative block flex-shrink-0;
+}
+
+.link .icon svg {
+  @apply fill-black-3 absolute h-full w-full transition-all;
+}
+
+.link.active {
+  @apply bg-primary/10 text-black;
+}
+.link.active .icon svg {
+  @apply fill-primary;
+}

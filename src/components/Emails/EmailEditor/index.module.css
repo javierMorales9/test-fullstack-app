@@ -1,0 +1,15 @@
+.emailEditorModal {
+  width: 95%;
+}
+
+@screen xl {
+  .emailEditorModal {
+    width: 90%;
+  }
+}
+
+@screen 2xl {
+  .emailEditorModal {
+    width: 80%;
+  }
+}

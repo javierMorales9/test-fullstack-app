@@ -1,5 +1,5 @@
-import { Audience } from '../domain/Audience';
-import { Segment } from '../domain/Segment';
+import { Audience } from "../domain/Audience";
+import { Segment } from "../domain/Segment";
 
 export function transformToArrayOfAudiencesFromRepo(
   audiencesReceived: any[],

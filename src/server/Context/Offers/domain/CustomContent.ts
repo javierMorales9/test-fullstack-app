@@ -1,15 +1,15 @@
-import { Offer } from './Offer';
-import { CustomContentRequest } from './request/CustomContentRequest';
+import { Offer } from "./Offer";
+import { CustomContentRequest } from "./request/CustomContentRequest";
 
 export class CustomContent extends Offer {
   constructor(
-    type: 'customcontent',
+    type: "customcontent",
     title: string,
     public content: string,
     account: string,
     id?: string,
   ) {
-    super(type, title, '', account, id);
+    super(type, title, "", account, id);
   }
 
   public static fromOfferRequest(

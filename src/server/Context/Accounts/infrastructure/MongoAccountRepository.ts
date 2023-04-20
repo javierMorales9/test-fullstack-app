@@ -1,11 +1,11 @@
-import { Account } from '../domain/account';
-import AccountRepository from '../domain/repos/accountRepository';
-import { AccountModel, AccountMongo } from './accountMongo';
+import { Account } from "../domain/account";
+import AccountRepository from "../domain/repos/accountRepository";
+import { AccountModel, AccountMongo } from "./accountMongo";
 import {
   transformToAccountFromRepo,
   transformToArrayOfAccountsFromRepo,
-} from './transformToAccountFromRepo';
-import logger from '../../Shared/infrastructure/logger/logger';
+} from "./transformToAccountFromRepo";
+import logger from "../../Shared/infrastructure/logger/logger";
 
 export default class MongoAccountRepository implements AccountRepository {
   async getAll(): Promise<Account[]> {
@@ -32,7 +32,7 @@ export default class MongoAccountRepository implements AccountRepository {
   }
 
   async save(account: Account): Promise<Account | null> {
-    logger.debug('Saving account to mongo');
+    logger.debug("Saving account to mongo");
     const accountMongo: AccountMongo =
       MongoAccountRepository.createAccountMongo(account);
 
@@ -45,13 +45,13 @@ export default class MongoAccountRepository implements AccountRepository {
 
       return transformToAccountFromRepo(savedAccount);
     } catch (err: any) {
-      logger.debug('Account creation error: ' + err.message);
+      logger.debug("Account creation error: " + err.message);
       throw new Error("Couldn't save the account correctly");
     }
   }
 
   public async delete(accountId: string) {
-    logger.debug('Delete account: ' + accountId);
+    logger.debug("Delete account: " + accountId);
 
     try {
       await AccountModel.deleteOne(
@@ -59,8 +59,8 @@ export default class MongoAccountRepository implements AccountRepository {
         { upsert: true, new: true },
       );
     } catch (err: any) {
-      logger.debug('Error deleting the account ' + err.message);
-      throw new Error('Could not delete the account ' + accountId);
+      logger.debug("Error deleting the account " + err.message);
+      throw new Error("Could not delete the account " + accountId);
     }
   }
 

@@ -1,0 +1,15 @@
+.link {
+  @apply text-grey text-xs	font-medium;
+  line-height: 20px;
+}
+.attributesWrapper {
+  @apply my-4 grid grid-cols-1 gap-y-4;
+  @apply pr-0 !important;
+}
+.attribute {
+  @apply relative grid grid-cols-1 gap-x-4 gap-y-2 pr-12 md:grid-cols-2;
+}
+
+.remove {
+  @apply absolute top-1/2 right-2.5 -translate-y-1/2 p-2;
+}

@@ -1,5 +1,5 @@
-import { Account } from '../account';
-import { CompanyData } from '../CompanyData';
+import { Account } from "../account";
+import { CompanyData } from "../CompanyData";
 
 export class AccountResponse {
   readonly id: string;

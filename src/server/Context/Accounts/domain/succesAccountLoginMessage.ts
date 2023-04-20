@@ -1,4 +1,4 @@
-import { AccountResponse } from './response/accountResponse';
+import { AccountResponse } from "./response/accountResponse";
 
 export type SuccessAccountLoginMessage = {
   success: true;

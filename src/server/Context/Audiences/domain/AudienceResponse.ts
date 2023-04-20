@@ -1,5 +1,5 @@
-import { Audience } from './Audience';
-import { Segment } from './Segment';
+import { Audience } from "./Audience";
+import { Segment } from "./Segment";
 
 export class AudienceResponse {
   public id: string;

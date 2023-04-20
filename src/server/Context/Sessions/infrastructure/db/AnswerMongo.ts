@@ -1,8 +1,8 @@
-import { SurveyAnswerMongo } from './SurveyAnswerMongo';
-import { Schema } from 'mongoose';
-import { OfferAnswerPageMongo } from './OfferAnswerPageMongo';
-import { CancelAnswerMongo } from './CancelAnswerMongo';
-import { TextAreaAnswerMongo } from './TextAreaAnswerMongo';
+import { SurveyAnswerMongo } from "./SurveyAnswerMongo";
+import { Schema } from "mongoose";
+import { OfferAnswerPageMongo } from "./OfferAnswerPageMongo";
+import { CancelAnswerMongo } from "./CancelAnswerMongo";
+import { TextAreaAnswerMongo } from "./TextAreaAnswerMongo";
 
 export type AnswerMongo =
   | SurveyAnswerMongo
@@ -10,5 +10,5 @@ export type AnswerMongo =
   | CancelAnswerMongo
   | TextAreaAnswerMongo;
 
-const options = { discriminatorKey: 'type' };
+const options = { discriminatorKey: "type" };
 export const AnswerSchema = new Schema<AnswerMongo>({}, options);

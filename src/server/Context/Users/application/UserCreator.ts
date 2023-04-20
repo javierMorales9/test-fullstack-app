@@ -22,17 +22,17 @@ export class UserCreator {
 
       if (!userSaved) throw new Error();
 
-      logger.info('User created: ' + userSaved.id);
+      logger.info("User created: " + userSaved.id);
 
       return { user: userSaved, account };
     } catch (error: any) {
-      if (error.message.includes('Duplicate email'))
-        throw new Error('Email ' + userRequest.email + ' already request use');
+      if (error.message.includes("Duplicate email"))
+        throw new Error("Email " + userRequest.email + " already request use");
       logger.debug(error.message);
       logger.debug(
-        'Unable to create user with name: ' +
+        "Unable to create user with name: " +
           userRequest.firstName +
-          '. Error: ' +
+          ". Error: " +
           error.message,
       );
       throw new UserCouldNotBeCreated();

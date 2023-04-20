@@ -1,6 +1,6 @@
-import { PlanPaymentData } from './PlanPaymentData';
-import { UserData } from '../../../Context/Shared/domain/UserData';
-import { CouponPaymentDataAlternative } from '../../Offers/domain/CouponPaymentData';
+import { PlanPaymentData } from "./PlanPaymentData";
+import { UserData } from "../../../Context/Shared/domain/UserData";
+import { CouponPaymentDataAlternative } from "../../Offers/domain/CouponPaymentData";
 
 export interface PaymentProvider {
   type: string;

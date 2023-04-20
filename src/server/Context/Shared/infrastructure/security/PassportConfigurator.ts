@@ -1,9 +1,9 @@
-import { ExtractJwt, Strategy, StrategyOptions } from 'passport-jwt';
-import { PassportStatic } from 'passport';
-import { transformKey } from './transformKey';
-import AccessDeniedError from './AccessDeniedError';
-import { UserByEmailGetter } from '../../../Users/application/UserByEmailGetter';
-import GetAccountByIdService from '../../../Accounts/domain/services/GetAccountByIdService';
+import { ExtractJwt, Strategy, StrategyOptions } from "passport-jwt";
+import { PassportStatic } from "passport";
+import { transformKey } from "./transformKey";
+import AccessDeniedError from "./AccessDeniedError";
+import { UserByEmailGetter } from "../../../Users/application/UserByEmailGetter";
+import GetAccountByIdService from "../../../Accounts/domain/services/GetAccountByIdService";
 
 export default class PassportConfigurator {
   constructor(
@@ -15,7 +15,7 @@ export default class PassportConfigurator {
   private options: StrategyOptions = {
     jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
     secretOrKey: this.PUB_KEY,
-    algorithms: ['RS256'],
+    algorithms: ["RS256"],
   };
   private strategy = new Strategy(this.options, async (payload, done) => {
     try {
@@ -24,7 +24,7 @@ export default class PassportConfigurator {
 
       return done(null, user);
     } catch (err) {
-      done(new AccessDeniedError('invalid credentials'), false);
+      done(new AccessDeniedError("invalid credentials"), false);
     }
   });
 

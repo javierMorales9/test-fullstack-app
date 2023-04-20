@@ -1,4 +1,4 @@
-import { model, Schema } from 'mongoose';
+import { model, Schema } from "mongoose";
 
 export interface UserMongo {
   _id: string;
@@ -15,7 +15,7 @@ const UserSchema = new Schema<UserMongo>({
   lastName: { type: String },
   email: { type: String, required: true, unique: true },
   encryptedPassword: { type: String, required: true },
-  account: { type: String, ref: 'Account' },
+  account: { type: String, ref: "Account" },
 });
 
-export const UserModel = model<UserMongo>('User', UserSchema);
+export const UserModel = model<UserMongo>("User", UserSchema);

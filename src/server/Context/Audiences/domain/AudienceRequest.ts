@@ -4,8 +4,8 @@ export class AudienceRequest {
   public id?: string;
 
   constructor(data: any) {
-    if (!data.name || !(typeof data.name === 'string'))
-      throw new Error('Incorrect Audience data');
+    if (!data.name || !(typeof data.name === "string"))
+      throw new Error("Incorrect Audience data");
 
     this.name = data.name;
     this.segments = data.segments;
@@ -21,12 +21,12 @@ export class SegmentRequest {
   constructor(data: any) {
     if (
       !data.field ||
-      typeof data.field !== 'string' ||
+      typeof data.field !== "string" ||
       !data.operator ||
-      typeof data.operator !== 'string' ||
+      typeof data.operator !== "string" ||
       !data.value
     )
-      throw new Error('Invalid audience segment data');
+      throw new Error("Invalid audience segment data");
 
     this.field = data.field;
     this.operator = data.operator;

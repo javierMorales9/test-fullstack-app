@@ -1,9 +1,9 @@
-import * as Sentry from '@sentry/node';
-import { Hub } from '@sentry/node';
-import crypto from 'crypto';
+import * as Sentry from "@sentry/node";
+import { Hub } from "@sentry/node";
+import crypto from "crypto";
 
 class ErrorLogger {
-  private transactions = new Map<string, ReturnType<Hub['startTransaction']>>();
+  private transactions = new Map<string, ReturnType<Hub["startTransaction"]>>();
 
   constructor() {
     Sentry.init({
@@ -18,10 +18,10 @@ class ErrorLogger {
 
   public startCapturingError(name: string) {
     const newTransaction = Sentry.startTransaction({
-      op: 'test',
+      op: "test",
       name,
     });
-    const transactionToken = crypto.randomBytes(64).toString('hex');
+    const transactionToken = crypto.randomBytes(64).toString("hex");
 
     this.transactions.set(transactionToken, newTransaction);
 
@@ -30,7 +30,7 @@ class ErrorLogger {
 
   public errorFound(errorName: string, extra: { [key: string]: string }) {
     Sentry.captureMessage(errorName, {
-      level: 'error',
+      level: "error",
       extra,
     });
   }

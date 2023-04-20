@@ -1,0 +1,67 @@
+.card {
+  @apply flex-grow rounded bg-white p-6 md:rounded-none;
+}
+
+.card[variant="primary"] {
+  @apply bg-primary;
+}
+
+.title {
+  @apply mb-6 flex items-center justify-start gap-x-2 text-sm font-medium text-black;
+}
+
+.card[variant="primary"] .title {
+  @apply text-white;
+}
+
+.iconWrapper {
+  @apply bg-primary/10;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  padding: 6px;
+}
+
+.card[variant="primary"] .iconWrapper {
+  @apply bg-grey-4/10;
+}
+
+.iconWrapper svg {
+  @apply h-auto w-full;
+}
+
+.value {
+  @apply font-bold text-black;
+  font-size: 32px;
+  line-height: 41px;
+}
+
+.card[variant="primary"] .value {
+  @apply text-white;
+}
+
+.bottom {
+  @apply mt-2 flex items-center justify-start gap-2 text-sm font-semibold;
+}
+
+.bottom span {
+  @apply text-black-3 font-normal;
+}
+
+.card[variant="primary"] .bottom {
+  @apply text-white;
+}
+
+.card[variant="primary"] .bottom span {
+  @apply text-grey-2;
+}
+
+.bottom svg {
+  width: 11px;
+  height: auto;
+  @apply fill-success-2;
+}
+
+.bottom[change="negative"] svg {
+  @apply fill-error -scale-y-100;
+}

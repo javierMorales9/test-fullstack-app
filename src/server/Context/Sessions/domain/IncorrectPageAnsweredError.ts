@@ -1,15 +1,15 @@
-import { Page } from '../../Flows/domain/pages/Page';
+import { Page } from "../../Flows/domain/pages/Page";
 
 export class IncorrectPageAnsweredError extends Error {
   constructor(page: Page, data: any) {
     super(
-      'Answer should be done to ' +
+      "Answer should be done to " +
         page.id +
-        ', a ' +
+        ", a " +
         page.type +
-        ', but instead was done to ' +
+        ", but instead was done to " +
         data.page +
-        ', a ' +
+        ", a " +
         data.type,
     );
   }

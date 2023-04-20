@@ -1,15 +1,15 @@
-import { createOfferRequest, OfferRequest } from './request/OfferRequest';
-import { Pause } from './Pause';
-import { Coupon } from './Coupon';
-import { CustomContent } from './CustomContent';
+import { createOfferRequest, OfferRequest } from "./request/OfferRequest";
+import { Pause } from "./Pause";
+import { Coupon } from "./Coupon";
+import { CustomContent } from "./CustomContent";
 
 export function createOfferFromRequest(request: OfferRequest, account: string) {
   switch (request.type) {
-    case 'pause':
+    case "pause":
       return Pause.fromOfferRequest(request, account);
-    case 'coupon':
+    case "coupon":
       return Coupon.fromOfferRequest(request, account);
-    case 'customcontent':
+    case "customcontent":
       return CustomContent.fromOfferRequest(request, account);
   }
 }

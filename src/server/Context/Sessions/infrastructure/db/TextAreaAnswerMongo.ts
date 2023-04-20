@@ -1,6 +1,6 @@
-import { Schema } from 'mongoose';
-import { SurveyAnswerMongo } from './SurveyAnswerMongo';
-import { answers } from './sessionMongo';
+import { Schema } from "mongoose";
+import { SurveyAnswerMongo } from "./SurveyAnswerMongo";
+import { answers } from "./sessionMongo";
 
 export type TextAreaAnswerMongo = {
   page: string;
@@ -8,12 +8,12 @@ export type TextAreaAnswerMongo = {
 };
 
 const TextareaAnswerSchema = new Schema<SurveyAnswerMongo>({
-  page: { type: String, ref: 'Page' },
+  page: { type: String, ref: "Page" },
   answer: { type: String },
 });
 
 export const TextareaAnswerModel = answers.discriminator(
-  'textareaAnswer',
+  "textareaAnswer",
   TextareaAnswerSchema,
-  'textarea',
+  "textarea",
 );

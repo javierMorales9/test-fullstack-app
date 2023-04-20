@@ -19,7 +19,9 @@ export const profileRouter = createTRPCRouter({
           limit: 200,
         });
         const user = users.find((user) =>
-          user.externalAccounts.find((account) => account.username === input.id)
+          user.externalAccounts.find(
+            (account) => account.username === input.id,
+          ),
         );
         if (!user) {
           throw new TRPCError({

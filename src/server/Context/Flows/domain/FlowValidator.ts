@@ -30,21 +30,20 @@ export class FlowValidator {
       { name: "survey", required: true },
       { name: "offerpage", required: true },
       { name: "textarea", required: false },
-      { name: "cancel", required: true }
+      { name: "cancel", required: true },
     ];
     for (let i = 0; i < this.pageTypes.length; i++) {
       const flowType = this.pageTypes[i];
       const fullSequenceElement = fullSequence[count];
       if (!fullSequenceElement) throw new Error("Flow is not valid");
 
-      if (fullSequenceElement.name === flowType)
-        count++;
+      if (fullSequenceElement.name === flowType) count++;
       else if (!fullSequenceElement.required) {
         count++;
         i--;
       } else
         this.errors.push(
-          `Expected ${fullSequenceElement.name} but got ${flowType}`
+          `Expected ${fullSequenceElement.name} but got ${flowType}`,
         );
     }
     return true;

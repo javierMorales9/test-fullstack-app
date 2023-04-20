@@ -1,7 +1,7 @@
-import { SessionRepository } from '../domain/SessionRepository';
-import { Session } from '../domain/session';
-import { Uuid } from '../../../Context/Shared/domain/value-object/Uuid';
-import SessionNotFoundError from '../domain/errors/SessionNotFoundError';
+import { SessionRepository } from "../domain/SessionRepository";
+import { Session } from "../domain/session";
+import { Uuid } from "../../../Context/Shared/domain/value-object/Uuid";
+import SessionNotFoundError from "../domain/errors/SessionNotFoundError";
 
 export default class SessionsByIdFromAccountGetter {
   public constructor(private sessionRepo: SessionRepository) {}

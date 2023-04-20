@@ -1,11 +1,11 @@
-import { CancellerHistoryRepository } from '../../domain/CancellerHistoryRepository';
-import { CancellerHistory } from '../../domain/CancellerHistory';
+import { CancellerHistoryRepository } from "../../domain/CancellerHistoryRepository";
+import { CancellerHistory } from "../../domain/CancellerHistory";
 import {
   CancellerHistoryModel,
   CancellerHistoryMongo,
-} from './CancellerHistoryMongo';
-import { transformToCancellerHistoryFromRepo } from './transformToCancellerHistoryFromRepo';
-import logger from '../../../../Context/Shared/infrastructure/logger/logger';
+} from "./CancellerHistoryMongo";
+import { transformToCancellerHistoryFromRepo } from "./transformToCancellerHistoryFromRepo";
+import logger from "../../../../Context/Shared/infrastructure/logger/logger";
 
 export default class MongoCancellerHistoryRepository
   implements CancellerHistoryRepository
@@ -22,7 +22,7 @@ export default class MongoCancellerHistoryRepository
   public async saveCancellerHistory(
     canceller: CancellerHistory,
   ): Promise<void> {
-    logger.debug('Adding a session to the canceller: ' + canceller.cancellerId);
+    logger.debug("Adding a session to the canceller: " + canceller.cancellerId);
     const cancellerMongo = createCancellerMongo(canceller);
     try {
       await CancellerHistoryModel.findOneAndUpdate(
@@ -30,7 +30,7 @@ export default class MongoCancellerHistoryRepository
         { $set: { ...cancellerMongo } },
         { upsert: true, new: true },
       );
-      logger.debug('Canceller history saved request database');
+      logger.debug("Canceller history saved request database");
     } catch (err) {
       handleCreationError(err, canceller);
       throw new Error();
@@ -49,13 +49,13 @@ export default class MongoCancellerHistoryRepository
       {
         $addFields: {
           firstSession: {
-            $last: '$sessionResults',
+            $last: "$sessionResults",
           },
         },
       },
       {
         $addFields: {
-          date: '$firstSession.date',
+          date: "$firstSession.date",
         },
       },
       {
@@ -68,7 +68,7 @@ export default class MongoCancellerHistoryRepository
         },
       },
       {
-        $count: 'count',
+        $count: "count",
       },
     ]);
     const total = totalAggregate[0] ? (totalAggregate[0].count as number) : 0;
@@ -77,13 +77,13 @@ export default class MongoCancellerHistoryRepository
       {
         $addFields: {
           firstSession: {
-            $last: '$sessionResults',
+            $last: "$sessionResults",
           },
         },
       },
       {
         $addFields: {
-          date: '$firstSession.date',
+          date: "$firstSession.date",
         },
       },
       {
@@ -93,11 +93,11 @@ export default class MongoCancellerHistoryRepository
             $lte: endDate,
           },
           account: accountId,
-          state: 'saved',
+          state: "saved",
         },
       },
       {
-        $count: 'count',
+        $count: "count",
       },
     ]);
     const saved = savedAggregate[0] ? (savedAggregate[0].count as number) : 0;
@@ -119,13 +119,13 @@ export default class MongoCancellerHistoryRepository
       {
         $addFields: {
           firstSession: {
-            $last: '$sessionResults',
+            $last: "$sessionResults",
           },
         },
       },
       {
         $addFields: {
-          date: '$firstSession.date',
+          date: "$firstSession.date",
         },
       },
       {
@@ -138,12 +138,12 @@ export default class MongoCancellerHistoryRepository
         },
       },
       {
-        $group: { _id: '$cancellationReason', count: { $sum: 1 } },
+        $group: { _id: "$cancellationReason", count: { $sum: 1 } },
       },
       {
         $project: {
           count: {
-            $multiply: [{ $divide: ['$count', { $literal: total }] }, 100],
+            $multiply: [{ $divide: ["$count", { $literal: total }] }, 100],
           },
         },
       },
@@ -161,9 +161,9 @@ export default class MongoCancellerHistoryRepository
       },
       {
         $group: {
-          _id: 'account',
+          _id: "account",
           count: {
-            $sum: '$boostedRevenue',
+            $sum: "$boostedRevenue",
           },
         },
       },
@@ -174,9 +174,9 @@ export default class MongoCancellerHistoryRepository
   }
 
   public async increaseBoostedRevenueForAllSavedUsers(): Promise<void> {
-    await CancellerHistoryModel.updateMany({ state: 'saved' }, [
+    await CancellerHistoryModel.updateMany({ state: "saved" }, [
       {
-        $set: { boostedRevenue: { $sum: ['$boostedRevenue', '$ticket'] } },
+        $set: { boostedRevenue: { $sum: ["$boostedRevenue", "$ticket"] } },
       },
     ]);
   }
@@ -187,40 +187,40 @@ export default class MongoCancellerHistoryRepository
     const result = (await CancellerHistoryModel.aggregate([
       {
         $match: {
-          state: 'saved',
+          state: "saved",
         },
       },
       {
         $addFields: {
           sessionData: {
-            $last: '$sessionResults',
+            $last: "$sessionResults",
           },
         },
       },
       {
         $addFields: {
-          session: '$sessionData.session',
+          session: "$sessionData.session",
         },
       },
       {
         $lookup: {
-          from: 'sessions',
-          localField: 'session',
-          foreignField: '_id',
-          as: 'session',
+          from: "sessions",
+          localField: "session",
+          foreignField: "_id",
+          as: "session",
         },
       },
       {
         $addFields: {
-          flow: '$session.flow',
+          flow: "$session.flow",
         },
       },
       {
         $project: {
           flow: {
-            $first: '$session.flow',
+            $first: "$session.flow",
           },
-          ticket: '$ticket',
+          ticket: "$ticket",
         },
       },
     ])) as unknown;
@@ -246,8 +246,8 @@ function createCancellerMongo(
 }
 
 function handleCreationError(err: any, canceller: CancellerHistory) {
-  logger.debug('Error while adding the history: ' + err.message);
+  logger.debug("Error while adding the history: " + err.message);
   throw new Error(
-    'CancellerHistory ' + canceller.cancellerId + ' could not be created',
+    "CancellerHistory " + canceller.cancellerId + " could not be created",
   );
 }

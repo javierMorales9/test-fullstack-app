@@ -1,12 +1,12 @@
-import GetPaymentProviderService from './GetPaymentProviderService';
-import { PaymentProviderIntegrationLeftError } from '../PaymentProviderIntegrationLeftError';
-import logger from '../../../../Context/Shared/infrastructure/logger/logger';
-import { Pause } from '../../../Offers/domain/Pause';
-import { Coupon } from '../../../Offers/domain/Coupon';
-import { Session } from '../../../Sessions/domain/session';
-import { OfferPageAnswer } from '../../../Flows/domain/pages/answers/OfferPageAnswer';
-import { Answer } from '../../../Flows/domain/pages/answers/Answer';
-import GetAccountByIdService from '../../../../Context/Accounts/domain/services/GetAccountByIdService';
+import GetPaymentProviderService from "./GetPaymentProviderService";
+import { PaymentProviderIntegrationLeftError } from "../PaymentProviderIntegrationLeftError";
+import logger from "../../../../Context/Shared/infrastructure/logger/logger";
+import { Pause } from "../../../Offers/domain/Pause";
+import { Coupon } from "../../../Offers/domain/Coupon";
+import { Session } from "../../../Sessions/domain/session";
+import { OfferPageAnswer } from "../../../Flows/domain/pages/answers/OfferPageAnswer";
+import { Answer } from "../../../Flows/domain/pages/answers/Answer";
+import GetAccountByIdService from "../../../../Context/Accounts/domain/services/GetAccountByIdService";
 
 export default class ApplyOfferService {
   constructor(
@@ -17,7 +17,7 @@ export default class ApplyOfferService {
   async execute(session: Session, accountId: string) {
     const answerPreviousToFinal = session.answers[session.answers.length - 1];
     logger.debug(
-      'applying the offer for the answer to the page ' +
+      "applying the offer for the answer to the page " +
         answerPreviousToFinal.page.id,
     );
 
@@ -43,20 +43,20 @@ export default class ApplyOfferService {
 
   private isAnswerDoneToAPause(answerPreviousToFinal: Answer) {
     return (
-      answerPreviousToFinal.type === 'offerpage' &&
-      answerPreviousToFinal.data.offer.type === 'pause'
+      answerPreviousToFinal.type === "offerpage" &&
+      answerPreviousToFinal.data.offer.type === "pause"
     );
   }
 
   private isAnswerDoneToACoupon(answerPreviousToFinal: Answer) {
     return (
-      answerPreviousToFinal.type === 'offerpage' &&
-      answerPreviousToFinal.data.offer.type === 'coupon'
+      answerPreviousToFinal.type === "offerpage" &&
+      answerPreviousToFinal.data.offer.type === "coupon"
     );
   }
 
   private isAnswerDoneToACancel(answerPreviousToFinal: Answer) {
-    return answerPreviousToFinal.type === 'cancel';
+    return answerPreviousToFinal.type === "cancel";
   }
 
   private async applyPause(

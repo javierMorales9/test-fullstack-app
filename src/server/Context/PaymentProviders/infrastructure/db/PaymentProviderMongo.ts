@@ -1,7 +1,7 @@
-import { model, Schema } from 'mongoose';
+import { model, Schema } from "mongoose";
 
 const baseOptions = {
-  discriminatorKey: 'type',
+  discriminatorKey: "type",
 };
 
 const PaymentProviderSchema = new Schema(
@@ -12,6 +12,6 @@ const PaymentProviderSchema = new Schema(
 );
 
 export const PaymentProviderModel = model(
-  'PaymentProvider',
+  "PaymentProvider",
   PaymentProviderSchema,
 );

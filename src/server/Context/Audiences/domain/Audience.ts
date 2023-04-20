@@ -1,7 +1,7 @@
-import { AudienceRequest } from './AudienceRequest';
-import { createSegmentFromRequest, Segment } from './Segment';
-import { Uuid } from '../../../Context/Shared/domain/value-object/Uuid';
-import { UserData } from '../../../Context/Shared/domain/UserData';
+import { AudienceRequest } from "./AudienceRequest";
+import { createSegmentFromRequest, Segment } from "./Segment";
+import { Uuid } from "../../../Context/Shared/domain/value-object/Uuid";
+import { UserData } from "../../../Context/Shared/domain/UserData";
 
 export class Audience {
   constructor(

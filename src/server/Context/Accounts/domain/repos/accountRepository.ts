@@ -1,4 +1,4 @@
-import { Account } from '../account';
+import { Account } from "../account";
 
 export default interface AccountRepository {
   getAll: () => Promise<Account[]>;

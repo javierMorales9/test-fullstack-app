@@ -1,0 +1,96 @@
+.header {
+  @apply border-grey-3 flex items-stretch border-b bg-white py-3;
+  min-height: 72px;
+}
+
+.wrapper {
+  @apply container flex flex-grow items-stretch justify-between;
+}
+
+.wrapper > * {
+  min-width: 140px;
+}
+
+.logo {
+  margin-top: 12px;
+  display: block;
+  position: relative;
+  height: 31px;
+  width: 110px;
+}
+
+.logo * {
+  font-size: 0;
+}
+
+.tabs {
+  @apply flex flex-grow items-center justify-center gap-x-9;
+}
+
+.tab {
+  @apply text-black-3 flex items-center justify-center gap-x-2 rounded py-2 px-3 font-semibold transition-all;
+  min-width: 110px;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.tab .icon {
+  width: 15px;
+  height: 15px;
+  @apply relative block;
+}
+
+.tab .icon svg {
+  @apply fill-black-3 absolute h-full w-full transition-all;
+}
+
+.tab.active {
+  @apply bg-primary/10 text-black;
+}
+.tab.active .icon svg {
+  @apply fill-primary;
+}
+
+.settings {
+  min-width: 0;
+}
+
+.settings .button {
+  height: 47px;
+  width: 47px;
+  @apply border-grey-3 relative flex items-center justify-center gap-x-4 rounded rounded-full border p-1;
+}
+
+.settings .button > div {
+  /*width: 39px;*/
+  /*height: 39px;*/
+  @apply h-full w-full overflow-hidden rounded-full;
+}
+
+.settings .button .companyLogo {
+  object-fit: cover;
+  object-position: center;
+  @apply absolute h-full w-full;
+}
+
+.menubarCaret {
+  transition: all 0.35s;
+}
+
+.menubarCaret > span {
+  height: 14px !important;
+}
+
+.menubarPanel {
+  @apply absolute w-full cursor-pointer rounded border-2 bg-white font-semibold text-black;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.menubarPanel p {
+  @apply flex items-center px-4 py-2;
+}
+
+.menubarPanel p span {
+  height: 16px !important;
+}

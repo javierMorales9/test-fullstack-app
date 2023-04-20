@@ -4,8 +4,7 @@ import DeleteAllUsersService from "../../../Users/domain/DeleteAllUsersService";
 import DeleteAllOffersService from "../../../Offers/domain/services/DeleteAllOffersService";
 import DeleteAllAudiencesService from "../../../Audiences/domain/services/DeleteAllAudiencesService";
 import DeleteAllFlowsService from "../../..//Flows/domain/services/DeleteAllFlowsService";
-import DeleteAllPaymentProvidersOfAnAccountService
-  from "../../../PaymentProviders/domain/services/DeleteAllPaymentProvidersOfAnAccountService";
+import DeleteAllPaymentProvidersOfAnAccountService from "../../../PaymentProviders/domain/services/DeleteAllPaymentProvidersOfAnAccountService";
 
 export default class DeleteAccountService {
   constructor(
@@ -14,9 +13,8 @@ export default class DeleteAccountService {
     private deleteAllOffersService: DeleteAllOffersService,
     private deleteAllAudiencesService: DeleteAllAudiencesService,
     private deleteAllFlowsService: DeleteAllFlowsService,
-    private deleteAllPaymentProvidersOfAnAccountService: DeleteAllPaymentProvidersOfAnAccountService
-  ) {
-  }
+    private deleteAllPaymentProvidersOfAnAccountService: DeleteAllPaymentProvidersOfAnAccountService,
+  ) {}
 
   public async execute(account: Account) {
     await this.deleteAllAudiencesService.execute(account.id);

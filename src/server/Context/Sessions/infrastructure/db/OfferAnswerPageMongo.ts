@@ -1,5 +1,5 @@
-import { Schema } from 'mongoose';
-import { answers } from './sessionMongo';
+import { Schema } from "mongoose";
+import { answers } from "./sessionMongo";
 
 export type OfferAnswerPageMongo = {
   page: string;
@@ -23,47 +23,47 @@ export type CustomContentAnswerDataMongo = {
   content: string;
 };
 
-const options = { discriminatorKey: 'type' };
+const options = { discriminatorKey: "type" };
 const OfferAnswerDataSchema = new Schema<OfferAnswerDataMongo>({}, options);
 
 const PauseAnswerDataSchema = new Schema<PauseAnswerDataMongo>({
-  offer: { type: String, ref: 'Offer' },
+  offer: { type: String, ref: "Offer" },
   monthPaused: Number,
 });
 const CouponAnswerDataSchema = new Schema<CouponAnswerDataMongo>({
-  offer: { type: String, ref: 'Offer' },
+  offer: { type: String, ref: "Offer" },
 });
 const CustomContentAnswerDataSchema = new Schema<CustomContentAnswerDataMongo>({
-  offer: { type: String, ref: 'Offer' },
+  offer: { type: String, ref: "Offer" },
   content: String,
 });
 
 const OfferPageAnswerSchema = new Schema<OfferAnswerPageMongo>({
-  page: { type: String, ref: 'Page' },
+  page: { type: String, ref: "Page" },
   answer: Boolean,
   data: { type: OfferAnswerDataSchema },
 });
 
-const data = OfferPageAnswerSchema.path<Schema.Types.Subdocument>('data');
+const data = OfferPageAnswerSchema.path<Schema.Types.Subdocument>("data");
 export const PauseAnswerDataModel = data.discriminator(
-  'pauseAnswerData',
+  "pauseAnswerData",
   PauseAnswerDataSchema,
-  'pause',
+  "pause",
 );
 export const CouponAnswerDataModel = data.discriminator(
-  'couponAnswerData',
+  "couponAnswerData",
   CouponAnswerDataSchema,
-  'coupon',
+  "coupon",
 );
 
 export const CustomContentAnswerDataModel = data.discriminator(
-  'customContentAnswerData',
+  "customContentAnswerData",
   CustomContentAnswerDataSchema,
-  'customcontent',
+  "customcontent",
 );
 
 export const OfferPageAnswerModel = answers.discriminator(
-  'offerPageAnswer',
+  "offerPageAnswer",
   OfferPageAnswerSchema,
-  'offerpage',
+  "offerpage",
 );

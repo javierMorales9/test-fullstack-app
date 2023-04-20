@@ -11,7 +11,7 @@ type OperatorGroup = {
   parseRequestFunction: (value: any) => any;
   checkDataFunctions: ((
     valueToCheck: SimpleValueType,
-    segmentValue: any
+    segmentValue: any,
   ) => boolean)[];
 };
 
@@ -57,21 +57,21 @@ const equal = (valueToCheck: SimpleValueType, segmentValue: SimpleValueType) =>
   valueToCheck === segmentValue;
 const notEqual = (
   valueToCheck: SimpleValueType,
-  segmentValue: SimpleValueType
+  segmentValue: SimpleValueType,
 ) => valueToCheck !== segmentValue;
 const smaller = (
   valueToCheck: SimpleValueType,
-  segmentValue: SimpleValueType
+  segmentValue: SimpleValueType,
 ) => valueToCheck <= segmentValue;
 const greater = (
   valueToCheck: SimpleValueType,
-  segmentValue: SimpleValueType
+  segmentValue: SimpleValueType,
 ) => valueToCheck >= segmentValue;
 const between = (valueToCheck: SimpleValueType, segmentValue: ArrayValueType) =>
   valueToCheck >= segmentValue[0] && valueToCheck <= segmentValue[1];
 const notBetween = (
   valueToCheck: SimpleValueType,
-  segmentValue: ArrayValueType
+  segmentValue: ArrayValueType,
 ) => valueToCheck < segmentValue[0] || valueToCheck > segmentValue[1];
 
 const equalCheckDataFunctions = [equal, notEqual];
@@ -85,9 +85,9 @@ const valueValidators = new Map<Field, OperatorGroup[]>([
       {
         operators: equalOperators,
         parseRequestFunction: parseValueString,
-        checkDataFunctions: equalCheckDataFunctions
-      }
-    ]
+        checkDataFunctions: equalCheckDataFunctions,
+      },
+    ],
   ],
   [
     "subscriptionPrice",
@@ -95,14 +95,14 @@ const valueValidators = new Map<Field, OperatorGroup[]>([
       {
         operators: sizeOperators,
         parseRequestFunction: parseValueNumber,
-        checkDataFunctions: sizeCheckDataFunctions
+        checkDataFunctions: sizeCheckDataFunctions,
       },
       {
         operators: betweenOperators,
         parseRequestFunction: parseNumberValueBetween,
-        checkDataFunctions: betweenCheckDataFunctions
-      }
-    ]
+        checkDataFunctions: betweenCheckDataFunctions,
+      },
+    ],
   ],
   [
     "billingInterval",
@@ -110,9 +110,9 @@ const valueValidators = new Map<Field, OperatorGroup[]>([
       {
         operators: equalOperators,
         parseRequestFunction: parseValueString,
-        checkDataFunctions: equalCheckDataFunctions
-      }
-    ]
+        checkDataFunctions: equalCheckDataFunctions,
+      },
+    ],
   ],
   [
     "subscriptionAge",
@@ -120,14 +120,14 @@ const valueValidators = new Map<Field, OperatorGroup[]>([
       {
         operators: sizeOperators,
         parseRequestFunction: parseValueNumber,
-        checkDataFunctions: sizeCheckDataFunctions
+        checkDataFunctions: sizeCheckDataFunctions,
       },
       {
         operators: betweenOperators,
         parseRequestFunction: parseNumberValueBetween,
-        checkDataFunctions: betweenCheckDataFunctions
-      }
-    ]
+        checkDataFunctions: betweenCheckDataFunctions,
+      },
+    ],
   ],
   [
     "subscriptionStartDate",
@@ -135,14 +135,14 @@ const valueValidators = new Map<Field, OperatorGroup[]>([
       {
         operators: sizeOperators,
         parseRequestFunction: parseValueDate,
-        checkDataFunctions: sizeCheckDataFunctions
+        checkDataFunctions: sizeCheckDataFunctions,
       },
       {
         operators: betweenOperators,
         parseRequestFunction: parseDateValueBetween,
-        checkDataFunctions: betweenCheckDataFunctions
-      }
-    ]
+        checkDataFunctions: betweenCheckDataFunctions,
+      },
+    ],
   ],
   [
     "subscriptionStatus",
@@ -150,19 +150,18 @@ const valueValidators = new Map<Field, OperatorGroup[]>([
       {
         operators: equalOperators,
         parseRequestFunction: parseValueString,
-        checkDataFunctions: equalCheckDataFunctions
-      }
-    ]
-  ]
+        checkDataFunctions: equalCheckDataFunctions,
+      },
+    ],
+  ],
 ]);
 
 export class Segment {
   constructor(
     public field: Field,
     public operator: string,
-    public value: ValueType
-  ) {
-  }
+    public value: ValueType,
+  ) {}
 
   public checkUserData(userData: UserData) {
     const userValue = userData[this.field];
@@ -176,7 +175,7 @@ export class Segment {
         const operatorIndex = operatorGroup.operators.indexOf(this.operator);
         return operatorGroup.checkDataFunctions[operatorIndex]!(
           userValue,
-          this.value
+          this.value,
         );
       }
     }
@@ -206,7 +205,7 @@ const getValidatedOperator = (field: Field, requestOperator: any) => {
     (previousValue: string[], currentValue) => {
       return previousValue.concat(currentValue.operators);
     },
-    []
+    [],
   );
 
   if (!requestOperator || !allOperators.includes(requestOperator))
@@ -224,11 +223,11 @@ const getValidatedValue = (field: Field, operator: string, value: any) => {
   } catch (err) {
     throw new Error(
       "Invalid value " +
-      value +
-      " for field " +
-      field +
-      " and operator " +
-      operator
+        value +
+        " for field " +
+        field +
+        " and operator " +
+        operator,
     );
   }
 };

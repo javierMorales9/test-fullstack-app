@@ -1,5 +1,5 @@
-import { View } from './View';
-import { Survey } from '../Survey';
+import { View } from "./View";
+import { Survey } from "../Survey";
 
 export class SurveyView extends View {
   public title: string;

@@ -1,16 +1,16 @@
-import { Page } from '../Page';
-import { getPageByIdService } from '../PageFactory';
-import { CancelView } from '../views/CancelView';
-import { IncorrectPageAnsweredError } from '../../../../Sessions/domain/IncorrectPageAnsweredError';
+import { Page } from "../Page";
+import { getPageByIdService } from "../PageFactory";
+import { CancelView } from "../views/CancelView";
+import { IncorrectPageAnsweredError } from "../../../../Sessions/domain/IncorrectPageAnsweredError";
 
 export class CancelAnswer {
-  public readonly type = 'cancel';
+  public readonly type = "cancel";
 
   constructor(public readonly page: Page, public answer: boolean | null) {}
 
   public static async createFromScratch(data: any) {
-    if (!data.page || data.type !== 'cancel')
-      throw new Error('Bad Cancel page answer');
+    if (!data.page || data.type !== "cancel")
+      throw new Error("Bad Cancel page answer");
 
     const page = await getPageByIdService(data.page);
     const answer = data.answer as boolean;
@@ -27,8 +27,8 @@ export class CancelAnswer {
     if (data.page !== this.page.id)
       throw new IncorrectPageAnsweredError(this.page, data);
 
-    if (!(typeof data.answer === 'boolean'))
-      throw new Error('Bad Cancel page answer');
+    if (!(typeof data.answer === "boolean"))
+      throw new Error("Bad Cancel page answer");
 
     this.answer = data.answer;
   }

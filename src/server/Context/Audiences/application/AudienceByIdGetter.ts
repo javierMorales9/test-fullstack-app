@@ -1,5 +1,5 @@
-import { AudienceRepository } from '../domain/AudienceRepository';
-import AudienceNotFoundError from '../domain/errors/AudienceNotFoundError';
+import { AudienceRepository } from "../domain/AudienceRepository";
+import AudienceNotFoundError from "../domain/errors/AudienceNotFoundError";
 
 export default class AudienceByIdGetter {
   constructor(private audienceRepo: AudienceRepository) {}

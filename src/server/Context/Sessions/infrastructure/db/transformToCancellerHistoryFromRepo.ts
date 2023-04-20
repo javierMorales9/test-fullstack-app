@@ -1,4 +1,4 @@
-import { CancellerHistory } from '../../domain/CancellerHistory';
+import { CancellerHistory } from "../../domain/CancellerHistory";
 
 export function transformToCancellerHistoryFromRepo(
   entryCancellerHistory: any,

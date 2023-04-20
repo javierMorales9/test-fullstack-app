@@ -1,5 +1,5 @@
-import { Offer } from '../domain/Offer';
-import { createOfferFromNonSchemaData } from '../domain/offerFactory';
+import { Offer } from "../domain/Offer";
+import { createOfferFromNonSchemaData } from "../domain/offerFactory";
 
 export function transformToOfferFromRepo(entryOffer: any): Offer | null {
   if (entryOffer == null) return null;

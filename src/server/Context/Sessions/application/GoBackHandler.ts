@@ -1,8 +1,8 @@
-import { SessionRepository } from '../domain/SessionRepository';
-import { Session } from '../domain/session';
-import NextPageViewResolverService from '../domain/services/NextPageViewResolverService';
-import logger from '../../../Context/Shared/infrastructure/logger/logger';
-import { View } from '../../Flows/domain/pages/views/View';
+import { SessionRepository } from "../domain/SessionRepository";
+import { Session } from "../domain/session";
+import NextPageViewResolverService from "../domain/services/NextPageViewResolverService";
+import logger from "../../../Context/Shared/infrastructure/logger/logger";
+import { View } from "../../Flows/domain/pages/views/View";
 
 export default class GoBackHandler {
   private session!: Session;
@@ -12,7 +12,7 @@ export default class GoBackHandler {
   public async execute(token: string): Promise<View | null> {
     await this.populateSession(token);
 
-    logger.info('Going back a page request session ' + this.session.id);
+    logger.info("Going back a page request session " + this.session.id);
     this.session.deleteTheLastAnswer();
 
     const nextPageView = await this.getNextPageView();
@@ -20,7 +20,7 @@ export default class GoBackHandler {
 
     await this.sessionRepository.save(this.session);
 
-    logger.info('Answer added. The nextPageView is ' + nextPageView?.id);
+    logger.info("Answer added. The nextPageView is " + nextPageView?.id);
     return nextPageView;
   }
 
@@ -28,7 +28,7 @@ export default class GoBackHandler {
     const session = await this.sessionRepository.getByToken(token);
 
     if (!session)
-      throw new Error('There is no session open with token: ' + token);
+      throw new Error("There is no session open with token: " + token);
 
     this.session = session;
   }

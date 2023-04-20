@@ -1,0 +1,57 @@
+.wrapper {
+  @apply fixed z-10 h-full w-full bg-black/50 opacity-0 transition-all;
+}
+
+.wrapper.active {
+  @apply opacity-100;
+}
+
+.sidebar {
+  width: 320px;
+  right: -320px;
+  @apply fixed z-10 ml-auto h-full overflow-auto bg-white px-2 py-8 transition-all;
+}
+
+.sidebar.active {
+  @apply right-0;
+}
+
+.sidebar hr {
+  @apply border-grey-3;
+}
+
+.top {
+  @apply pt-6 pb-12 text-center;
+}
+
+.top img {
+  width: 84px;
+  @apply mx-auto h-auto;
+}
+
+.top .name {
+  font-size: 16px;
+  line-height: 22px;
+  letter-spacing: 0px;
+  @apply mt-3 mb-1 font-semibold text-black;
+}
+
+.top .email {
+  font-size: 12px;
+  line-height: 18px;
+  letter-spacing: 0px;
+  @apply font-normal text-black;
+}
+
+.userData {
+  @apply py-6 px-4;
+}
+
+.userData .title {
+  letter-spacing: 0px;
+  @apply mb-4 text-sm font-semibold text-black;
+}
+
+.userData > div:not(:last-child) {
+  @apply mb-4;
+}

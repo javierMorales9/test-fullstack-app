@@ -1,8 +1,8 @@
-import { Flow } from '../../Flow';
-import { PageResponse } from './PageResponse';
-import { createPageResponse } from '../PageFactory';
-import { FlowDesign } from '../../FlowDesign';
-import { AccountResponse } from '../../../../../Context/Accounts/domain/response/accountResponse';
+import { Flow } from "../../Flow";
+import { PageResponse } from "./PageResponse";
+import { createPageResponse } from "../PageFactory";
+import { FlowDesign } from "../../FlowDesign";
+import { AccountResponse } from "../../../../../Context/Accounts/domain/response/accountResponse";
 
 export class FlowResponse {
   readonly id: string;

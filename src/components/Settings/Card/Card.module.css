@@ -1,0 +1,40 @@
+.card {
+  @apply mb-6 rounded bg-white p-6;
+}
+
+.card.mb4 {
+  @apply mb-4;
+}
+
+.card.p0 {
+  @apply px-0;
+}
+
+.card.p0 > *:not(hr) {
+  @apply px-6;
+}
+
+.card.pb0 {
+  @apply rounded-b-none pb-0;
+}
+
+.card hr {
+  @apply border-grey-3;
+}
+
+.card .title {
+  @apply mb-5 flex items-center justify-between text-lg font-semibold text-black;
+  line-height: 25px;
+}
+
+.card > *:first-child {
+  @apply pt-0;
+}
+
+.card .title .link {
+  @apply text-grey;
+}
+
+.card .title button {
+  min-width: 130px;
+}

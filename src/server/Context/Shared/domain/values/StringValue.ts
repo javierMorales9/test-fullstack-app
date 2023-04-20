@@ -1,4 +1,4 @@
-import { InvalidArgumentError } from '../value-object/InvalidArgumentError';
+import { InvalidArgumentError } from "../value-object/InvalidArgumentError";
 
 export default class StringValue {
   readonly value: string;
@@ -10,7 +10,7 @@ export default class StringValue {
 
   private ensureValueIsDefined(value: any): void {
     if (value === null || value === undefined) {
-      throw new InvalidArgumentError('Value must be defined');
+      throw new InvalidArgumentError("Value must be defined");
     }
   }
 

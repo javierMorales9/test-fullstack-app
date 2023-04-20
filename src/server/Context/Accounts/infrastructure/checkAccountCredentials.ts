@@ -6,7 +6,7 @@ import container from "~/server/api/dependency_injection";
 export async function checkAccountCredentials(
   req: Request,
   res: Response,
-  next: NextFunction
+  next: NextFunction,
 ) {
   const requestDomain = req.hostname;
   let accountId = req.headers.account_id;
@@ -15,11 +15,12 @@ export async function checkAccountCredentials(
   if (!accountId || !apiKey)
     return res.status(401).json({ message: "Unauthorized" });
 
-  accountId = typeof accountId === "string" ? accountId : accountId[0] as string;
-  apiKey = typeof apiKey === "string" ? apiKey : apiKey[0] as string;
+  accountId =
+    typeof accountId === "string" ? accountId : (accountId[0] as string);
+  apiKey = typeof apiKey === "string" ? apiKey : (apiKey[0] as string);
 
   const getAccountById = container.get<GetAccountByIdService>(
-    "Accounts.domain.GetAccountByIdService"
+    "Accounts.domain.GetAccountByIdService",
   );
   const account = await getAccountById.execute(accountId);
 
@@ -30,7 +31,7 @@ export async function checkAccountCredentials(
 
   // @ts-ignore
   req.user = {
-    account
+    account,
   };
 
   next();

@@ -1,13 +1,13 @@
-import braintree from 'braintree';
-import { PaymentProvider } from '../domain/paymentProvider';
-import { PlanPaymentData } from '../domain/PlanPaymentData';
-import { UserData } from '../../../Context/Shared/domain/UserData';
-import logger from '../../../Context/Shared/infrastructure/logger/logger';
-import errorLogger from '../../../Context/Shared/infrastructure/error_logger/ErrorLogger';
-import { CouponPaymentDataAlternative } from '../../Offers/domain/CouponPaymentData';
+import braintree from "braintree";
+import { PaymentProvider } from "../domain/paymentProvider";
+import { PlanPaymentData } from "../domain/PlanPaymentData";
+import { UserData } from "../../../Context/Shared/domain/UserData";
+import logger from "../../../Context/Shared/infrastructure/logger/logger";
+import errorLogger from "../../../Context/Shared/infrastructure/error_logger/ErrorLogger";
+import { CouponPaymentDataAlternative } from "../../Offers/domain/CouponPaymentData";
 
 export class BraintreePaymentProvider implements PaymentProvider {
-  public readonly type = 'braintree';
+  public readonly type = "braintree";
   public readonly account: string;
   public readonly privateKey: string;
   public readonly merchantId: string;
@@ -26,7 +26,7 @@ export class BraintreePaymentProvider implements PaymentProvider {
     this.account = accountId;
 
     const environment =
-      process.env.NODE_ENV === 'production'
+      process.env.NODE_ENV === "production"
         ? braintree.Environment.Production
         : braintree.Environment.Sandbox;
     this.gateway = new braintree.BraintreeGateway({
@@ -39,7 +39,7 @@ export class BraintreePaymentProvider implements PaymentProvider {
 
   public async getUserData(userId: string): Promise<UserData | null> {
     if (!this.merchantId || !this.publicKey || !this.privateKey)
-      throw new Error('Braintree api keys are not defined');
+      throw new Error("Braintree api keys are not defined");
 
     try {
       const subscription = await this.gateway.subscription.find(userId);
@@ -56,21 +56,21 @@ export class BraintreePaymentProvider implements PaymentProvider {
         subscription.id,
         plan.name,
         price,
-        'month',
+        "month",
         subscriptionAge,
         subscriptionStartDate,
         status,
       );
     } catch (err: any) {
-      if (err.type === 'notFoundError') {
-        logger.debug('Subscription not found: ' + userId);
-        throw new Error('Subscription not found: ' + userId);
+      if (err.type === "notFoundError") {
+        logger.debug("Subscription not found: " + userId);
+        throw new Error("Subscription not found: " + userId);
       }
-      if (err.type === 'authenticationError') {
-        logger.debug('Invalid API keys');
-        throw new Error('Invalid API keys');
+      if (err.type === "authenticationError") {
+        logger.debug("Invalid API keys");
+        throw new Error("Invalid API keys");
       }
-      errorLogger.errorFound('Getting the user Data', {
+      errorLogger.errorFound("Getting the user Data", {
         braintreeError: err.message,
       });
       throw new Error("Couldn't get user data");
@@ -79,7 +79,7 @@ export class BraintreePaymentProvider implements PaymentProvider {
 
   public async validateApiKey(apiKey: string) {
     if (!this.merchantId || !this.publicKey || !apiKey)
-      throw new Error('Braintree api keys are not defined');
+      throw new Error("Braintree api keys are not defined");
 
     const gateway = new braintree.BraintreeGateway({
       environment: braintree.Environment.Sandbox,
@@ -89,18 +89,18 @@ export class BraintreePaymentProvider implements PaymentProvider {
     });
 
     try {
-      await gateway.customer.find('invalidCustomerId');
-      throw new Error('Strange Braintree behaviour');
+      await gateway.customer.find("invalidCustomerId");
+      throw new Error("Strange Braintree behaviour");
     } catch (err: any) {
-      if (err.type === 'notFoundError') return;
-      if (err.type === 'authenticationError') {
-        logger.debug('Invalid api key ' + apiKey + '. Error: ' + err.message);
-        throw new Error('Invalid API keys');
+      if (err.type === "notFoundError") return;
+      if (err.type === "authenticationError") {
+        logger.debug("Invalid api key " + apiKey + ". Error: " + err.message);
+        throw new Error("Invalid API keys");
       }
-      errorLogger.errorFound('Validating braintree api', {
+      errorLogger.errorFound("Validating braintree api", {
         braintreeError: err.message,
       });
-      throw new Error('Invalid API keys');
+      throw new Error("Invalid API keys");
     }
   }
 
@@ -122,7 +122,7 @@ export class BraintreePaymentProvider implements PaymentProvider {
 
   public async getCouponsData(): Promise<CouponPaymentDataAlternative[]> {
     if (!this.merchantId || !this.publicKey || !this.privateKey)
-      throw new Error('Braintree api keys are not defined');
+      throw new Error("Braintree api keys are not defined");
 
     const gateway = new braintree.BraintreeGateway({
       environment: braintree.Environment.Sandbox,
@@ -148,11 +148,11 @@ export class BraintreePaymentProvider implements PaymentProvider {
         };
       });
     } catch (err: any) {
-      if (err.type === 'authenticationError') {
-        logger.debug('Invalid API keys');
-        throw new Error('Invalid API keys');
+      if (err.type === "authenticationError") {
+        logger.debug("Invalid API keys");
+        throw new Error("Invalid API keys");
       }
-      errorLogger.errorFound('Getting the braintree plans', {
+      errorLogger.errorFound("Getting the braintree plans", {
         braintreeError: err.message,
       });
       throw new Error("Couldn't get the plans data");
@@ -161,7 +161,7 @@ export class BraintreePaymentProvider implements PaymentProvider {
 
   public async getPlans(): Promise<PlanPaymentData[]> {
     if (!this.merchantId || !this.publicKey || !this.privateKey)
-      throw new Error('Braintree api keys are not defined');
+      throw new Error("Braintree api keys are not defined");
 
     const gateway = new braintree.BraintreeGateway({
       environment: braintree.Environment.Sandbox,
@@ -176,16 +176,16 @@ export class BraintreePaymentProvider implements PaymentProvider {
           id: plan.id,
           name: plan.name,
           price: Number(plan.price),
-          interval: plan.billingFrequency === 1 ? 'month' : 'year',
+          interval: plan.billingFrequency === 1 ? "month" : "year",
           product: null,
         } as PlanPaymentData;
       });
     } catch (err: any) {
-      if (err.type === 'authenticationError') {
-        logger.debug('Invalid API keys');
-        throw new Error('Invalid API keys');
+      if (err.type === "authenticationError") {
+        logger.debug("Invalid API keys");
+        throw new Error("Invalid API keys");
       }
-      errorLogger.errorFound('Getting the braintree plans', {
+      errorLogger.errorFound("Getting the braintree plans", {
         braintreeError: err.message,
       });
       throw new Error("Couldn't get the plans data");
@@ -216,8 +216,8 @@ export class BraintreePaymentProvider implements PaymentProvider {
    */
 }
 
-function convertToNormalizedStatus(status: string): 'active' {
-  return 'active';
+function convertToNormalizedStatus(status: string): "active" {
+  return "active";
 }
 
 export async function validaBraintreeApiKey(
@@ -233,17 +233,17 @@ export async function validaBraintreeApiKey(
   });
 
   try {
-    await gateway.customer.find('invalidCustomerId');
-    throw new Error('Strange Braintree behaviour');
+    await gateway.customer.find("invalidCustomerId");
+    throw new Error("Strange Braintree behaviour");
   } catch (err: any) {
-    if (err.type === 'notFoundError') return;
-    if (err.type === 'authenticationError') {
-      logger.debug('Invalid keys. Error: ' + err.message);
-      throw new Error('Invalid API keys');
+    if (err.type === "notFoundError") return;
+    if (err.type === "authenticationError") {
+      logger.debug("Invalid keys. Error: " + err.message);
+      throw new Error("Invalid API keys");
     }
-    errorLogger.errorFound('Validating braintree api', {
+    errorLogger.errorFound("Validating braintree api", {
       braintreeError: err.message,
     });
-    throw new Error('Invalid API keys');
+    throw new Error("Invalid API keys");
   }
 }

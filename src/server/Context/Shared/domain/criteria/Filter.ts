@@ -1,7 +1,7 @@
-import { InvalidArgumentError } from '../value-object/InvalidArgumentError';
-import { FilterField } from './FilterField';
-import { FilterOperator } from './FilterOperator';
-import { FilterValue } from './FilterValue';
+import { InvalidArgumentError } from "../value-object/InvalidArgumentError";
+import { FilterField } from "./FilterField";
+import { FilterOperator } from "./FilterOperator";
+import { FilterValue } from "./FilterValue";
 
 export class Filter {
   readonly field: FilterField;
@@ -19,9 +19,9 @@ export class Filter {
   }
 
   static fromValues(values: Map<string, string>): Filter {
-    const field = values.get('field');
-    const operator = values.get('operator');
-    const value = values.get('value');
+    const field = values.get("field");
+    const operator = values.get("operator");
+    const value = values.get("value");
 
     if (!field || !operator || !value) {
       throw new InvalidArgumentError(`The filter is invalid`);

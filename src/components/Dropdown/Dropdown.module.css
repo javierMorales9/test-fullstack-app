@@ -1,0 +1,11 @@
+.dropdown {
+  @apply relative inline-block h-full text-left;
+}
+
+.menu {
+  @apply divide-grey-3 border-grey-3 absolute right-0 z-10 mt-2 w-56 origin-top-right divide-y rounded-md border bg-white focus:outline-none;
+}
+
+.link {
+  @apply block px-4 py-2 text-sm text-gray-700;
+}

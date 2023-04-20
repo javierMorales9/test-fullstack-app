@@ -2,19 +2,17 @@ import AccountRepository from "../domain/repos/accountRepository";
 import { AccountRequest } from "../domain/request/accountRequest";
 import { Account } from "../domain/account";
 import logger from "../../Shared/infrastructure/logger/logger";
-import CreateStripePaymentProviderService
-  from "../../PaymentProviders/domain/services/CreateStripePaymentProviderService";
+import CreateStripePaymentProviderService from "../../PaymentProviders/domain/services/CreateStripePaymentProviderService";
 
 export default class AccountInfoAdder {
   constructor(
     private accountRepo: AccountRepository,
-    private createStripePaymentProviderService: CreateStripePaymentProviderService
-  ) {
-  }
+    private createStripePaymentProviderService: CreateStripePaymentProviderService,
+  ) {}
 
   async execute(
     accountRequest: AccountRequest,
-    account: Account
+    account: Account,
   ): Promise<Account> {
     try {
       const { paymentType, privateKey } = accountRequest;
@@ -25,13 +23,13 @@ export default class AccountInfoAdder {
       )
         await this.createStripePaymentProviderService.execute(
           privateKey,
-          account.id.value
+          account.id.value,
         );
       else if (paymentType)
         throw new Error(
           "Unable to save the payment provider data for the type " +
-          paymentType +
-          ". Use the /payment endpoint instead"
+            paymentType +
+            ". Use the /payment endpoint instead",
         );
 
       const newAccount = new Account(
@@ -41,7 +39,7 @@ export default class AccountInfoAdder {
         accountRequest.privateKey,
         accountRequest.companyData,
         account.imageUrl,
-        account.allowedDomains
+        account.allowedDomains,
       );
 
       const savedAccount = await this.accountRepo.save(newAccount);
@@ -53,9 +51,9 @@ export default class AccountInfoAdder {
     } catch (err: any) {
       logger.debug(
         "Unable to add info to account: " +
-        accountRequest.companyData?.name +
-        ". Error: " +
-        err.message
+          accountRequest.companyData?.name +
+          ". Error: " +
+          err.message,
       );
       throw err;
     }

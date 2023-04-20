@@ -1,8 +1,8 @@
-import { OfferRepository } from '../domain/OfferRepository';
-import { Offer } from '../domain/Offer';
-import { OfferRequest } from '../domain/request/OfferRequest';
-import { createOfferFromRequest } from '../domain/offerFactory';
-import { Uuid } from '../../../Context/Shared/domain/value-object/Uuid';
+import { OfferRepository } from "../domain/OfferRepository";
+import { Offer } from "../domain/Offer";
+import { OfferRequest } from "../domain/request/OfferRequest";
+import { createOfferFromRequest } from "../domain/offerFactory";
+import { Uuid } from "../../../Context/Shared/domain/value-object/Uuid";
 
 export default class OfferSaver {
   constructor(private offerRepo: OfferRepository) {}

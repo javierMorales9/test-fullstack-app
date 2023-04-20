@@ -1,7 +1,7 @@
-import { AggregateRoot } from '../../../domain/AggregateRoot';
-import { Criteria } from '../../../domain/criteria/Criteria';
-import { MongoCriteriaConverter } from './MongoCriteriaConverter';
-import mongoose from 'mongoose';
+import { AggregateRoot } from "../../../domain/AggregateRoot";
+import { Criteria } from "../../../domain/criteria/Criteria";
+import { MongoCriteriaConverter } from "./MongoCriteriaConverter";
+import mongoose from "mongoose";
 
 export abstract class MongooseRepository<T extends AggregateRoot> {
   private criteriaConverter: MongoCriteriaConverter;

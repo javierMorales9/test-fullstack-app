@@ -1,0 +1,79 @@
+.topWrapper {
+  @apply px-3 !important;
+}
+
+.top {
+  @apply bg-primary/10 relative flex flex-wrap items-center justify-start gap-4 rounded p-6 md:flex-nowrap;
+}
+
+.top > * {
+  @apply relative;
+}
+
+.top .bg {
+  @apply pointer-events-none absolute left-0 top-0 z-0 h-full w-full overflow-hidden;
+}
+
+.top .bg svg {
+  @apply h-full w-auto;
+  fill-opacity: 0.1;
+}
+
+.top .price {
+  @apply inline-block shrink-0 rounded bg-white py-2 px-3 font-semibold text-black;
+  font-family: var(--font-inter);
+  font-size: 28px;
+  line-height: 36px;
+  box-shadow: 0 12px 16px rgba(0, 0, 0, 0.08);
+}
+
+.title {
+  @apply text-base font-semibold text-black;
+}
+
+.info {
+  @apply text-black-3 mt-1 text-sm font-medium;
+}
+
+.invoices {
+  @apply mt-8 mb-6;
+}
+
+.invoices .info {
+  @apply mt-2;
+}
+
+.invoice {
+  @apply border-grey-3 flex flex-wrap items-center justify-between gap-x-4 gap-y-3 border-y p-6 md:gap-x-6;
+}
+
+.invoice + .invoice {
+  @apply border-t-0;
+}
+
+.invoiceDetails {
+  @apply flex items-center justify-start gap-x-4 gap-y-2 text-lg font-semibold text-black;
+  min-width: 300px;
+}
+.invoiceDetails span {
+  @apply text-black-3;
+}
+
+.invoice .iconWrapper {
+  @apply border-grey-3 relative inline-flex items-center justify-center rounded border;
+  padding: 6px;
+}
+
+.button {
+  @apply border-grey-3 bg-grey-4 rounded border py-1 px-2 text-center text-xs font-semibold;
+  line-height: 18px;
+}
+
+.invoice .plan {
+  @apply flex flex-shrink-0 items-center justify-start gap-x-3 gap-y-2 text-sm font-semibold text-black;
+  min-width: 150px;
+}
+
+.invoice .plan .button {
+  @apply bg-primary/10 text-primary border-transparent;
+}

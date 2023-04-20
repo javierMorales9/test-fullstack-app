@@ -1,5 +1,5 @@
-import FlowRepository from '../domain/repos/FlowRepository';
-import FlowNotFoundError from '../domain/errors/FlowNotFoundError';
+import FlowRepository from "../domain/repos/FlowRepository";
+import FlowNotFoundError from "../domain/errors/FlowNotFoundError";
 
 export default class FlowActivator {
   constructor(private flowRepo: FlowRepository) {}
@@ -10,7 +10,7 @@ export default class FlowActivator {
     flow.activated = true;
     const savedFlow = await this.flowRepo.saveOrUpdate(flow);
 
-    if (!savedFlow) throw new Error('Unable to activate the flow');
+    if (!savedFlow) throw new Error("Unable to activate the flow");
 
     return savedFlow;
   }

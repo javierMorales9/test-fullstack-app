@@ -1,0 +1,37 @@
+.accordion {
+  @apply mb-16 cursor-pointer;
+  transition: 0.4s;
+}
+
+.accordionCommon {
+  @apply rounded-xl bg-white p-8;
+}
+
+.accordionHeader {
+  @apply accordionCommon border-primary flex border-b-2 align-middle;
+}
+
+.accordionBody {
+  @apply accordionCommon box-content max-h-0 overflow-hidden;
+  transition: max-height 0.2s ease-out;
+  padding: 0;
+}
+
+.icon {
+  @apply relative flex items-center justify-center;
+  width: 20.67px;
+  height: 31.01px;
+}
+
+.text {
+  @apply ml-12 mt-1;
+  color: #5542f6;
+  font-size: 33px;
+  line-height: 20px;
+}
+
+.caret {
+  @apply icon ml-auto;
+  width: 36px;
+  transition: 0.2s;
+}

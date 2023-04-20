@@ -1,8 +1,8 @@
-import FlowRepository from '../repos/FlowRepository';
-import { Flow } from '../Flow';
-import DeletePageService from './DeletePageService';
-import { Uuid } from '../../../../Context/Shared/domain/value-object/Uuid';
-import DeleteAllSessionsOfAFlowService from '../../../Sessions/domain/services/DeleteAllSessionsOfAFlowService';
+import FlowRepository from "../repos/FlowRepository";
+import { Flow } from "../Flow";
+import DeletePageService from "./DeletePageService";
+import { Uuid } from "../../../../Context/Shared/domain/value-object/Uuid";
+import DeleteAllSessionsOfAFlowService from "../../../Sessions/domain/services/DeleteAllSessionsOfAFlowService";
 
 export default class DeleteFlowService {
   constructor(

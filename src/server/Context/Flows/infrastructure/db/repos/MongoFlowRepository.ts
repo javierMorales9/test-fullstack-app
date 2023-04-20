@@ -1,32 +1,32 @@
-import { Flow } from '../../../domain/Flow';
+import { Flow } from "../../../domain/Flow";
 import {
   transformToArrayOfFlowsFromRepo,
   transformToFlowFromRepo,
-} from './transformToArrayOfFlowsFromRepo';
-import { FlowMongo, FlowModel } from '../models/flowMongo';
-import FlowRepository from '../../../domain/repos/FlowRepository';
-import { PageRepository } from '../../../domain/repos/PageRepository';
-import { Page } from '../../../domain/pages/Page';
-import mongoose from 'mongoose';
-import logger from '../../../../../Context/Shared/infrastructure/logger/logger';
-import FlowAlreadyExistError from '../../../domain/errors/FlowAlreadyExistError';
-import FlowCouldNotBeCreatedError from '../../../domain/errors/FlowCouldNotBeCreatedError';
-import MongoPageRepository from './MongoPageRepository';
+} from "./transformToArrayOfFlowsFromRepo";
+import { FlowMongo, FlowModel } from "../models/flowMongo";
+import FlowRepository from "../../../domain/repos/FlowRepository";
+import { PageRepository } from "../../../domain/repos/PageRepository";
+import { Page } from "../../../domain/pages/Page";
+import mongoose from "mongoose";
+import logger from "../../../../../Context/Shared/infrastructure/logger/logger";
+import FlowAlreadyExistError from "../../../domain/errors/FlowAlreadyExistError";
+import FlowCouldNotBeCreatedError from "../../../domain/errors/FlowCouldNotBeCreatedError";
+import MongoPageRepository from "./MongoPageRepository";
 
 export default class MongoFlowRepository implements FlowRepository {
   private pageRepo: PageRepository = new MongoPageRepository();
 
   public async getAll(): Promise<Flow[]> {
     const flows = await FlowModel.find({})
-      .populate('pages')
-      .populate('account');
+      .populate("pages")
+      .populate("account");
     return transformToArrayOfFlowsFromRepo(flows);
   }
 
   public async getFlowById(id: string): Promise<Flow | null> {
     const flow = await FlowModel.findById(id)
-      .populate('pages')
-      .populate('account');
+      .populate("pages")
+      .populate("account");
     return transformToFlowFromRepo(flow);
   }
 
@@ -35,8 +35,8 @@ export default class MongoFlowRepository implements FlowRepository {
     accountId: string,
   ): Promise<Flow | null> {
     const flow = await FlowModel.findOne({ _id: flowId, account: accountId })
-      .populate('pages')
-      .populate('account');
+      .populate("pages")
+      .populate("account");
 
     return transformToFlowFromRepo(flow);
   }
@@ -49,11 +49,11 @@ export default class MongoFlowRepository implements FlowRepository {
       account: accountId,
     };
 
-    if (filterActivated) filter['activated'] = true;
+    if (filterActivated) filter["activated"] = true;
 
     const flows = await FlowModel.find(filter)
-      .populate('pages')
-      .populate('account');
+      .populate("pages")
+      .populate("account");
 
     return transformToArrayOfFlowsFromRepo(flows);
   }
@@ -69,20 +69,20 @@ export default class MongoFlowRepository implements FlowRepository {
     const flows = await FlowModel.find({ account: accountId })
       .skip(skip)
       .limit(limit)
-      .populate('pages')
-      .populate('account');
+      .populate("pages")
+      .populate("account");
 
     return transformToArrayOfFlowsFromRepo(flows);
   }
 
   public async saveOrUpdate(flow: Flow): Promise<Flow | null> {
-    logger.debug('entered request save or Update');
+    logger.debug("entered request save or Update");
     const session = await mongoose.startSession();
     session.startTransaction();
 
     try {
       const pages = await this.pageRepo.savePages(flow.pages);
-      logger.debug('pages created');
+      logger.debug("pages created");
 
       const flowToUpdate: FlowMongo = createMongoFlow(flow, pages);
       const mongoFlow = await FlowModel.findOneAndUpdate(
@@ -90,10 +90,10 @@ export default class MongoFlowRepository implements FlowRepository {
         { $set: { ...flowToUpdate } },
         { upsert: true, new: true },
       )
-        .populate('account')
-        .populate('pages');
+        .populate("account")
+        .populate("pages");
 
-      logger.debug('Flow saved request database ' + flowToUpdate._id);
+      logger.debug("Flow saved request database " + flowToUpdate._id);
 
       await session.commitTransaction();
       await session.endSession();
@@ -107,7 +107,7 @@ export default class MongoFlowRepository implements FlowRepository {
   }
 
   public async delete(flowId: string, accountId: string): Promise<void> {
-    logger.info('Deleting the flow ' + flowId + ' from mongo');
+    logger.info("Deleting the flow " + flowId + " from mongo");
 
     try {
       await FlowModel.deleteOne(
@@ -115,13 +115,13 @@ export default class MongoFlowRepository implements FlowRepository {
         { upsert: true, new: true },
       );
     } catch (err: any) {
-      logger.info('Error deleting the flow: ' + err.message);
-      throw new Error('Error deleting the flow ' + flowId);
+      logger.info("Error deleting the flow: " + err.message);
+      throw new Error("Error deleting the flow " + flowId);
     }
   }
 
   public async deleteAll(accountId: string): Promise<void> {
-    logger.info('Deleting all the flows from ' + accountId + ' from mongo');
+    logger.info("Deleting all the flows from " + accountId + " from mongo");
 
     try {
       await FlowModel.deleteMany(
@@ -129,8 +129,8 @@ export default class MongoFlowRepository implements FlowRepository {
         { upsert: true, new: true },
       );
     } catch (err: any) {
-      logger.info('Error deleting the flows: ' + err.message);
-      throw new Error('Error deleting the flows from account' + accountId);
+      logger.info("Error deleting the flows: " + err.message);
+      throw new Error("Error deleting the flows from account" + accountId);
     }
   }
 
@@ -171,8 +171,8 @@ export default class MongoFlowRepository implements FlowRepository {
       paymentProvider,
       activated: true,
     })
-      .populate('account')
-      .populate('pages');
+      .populate("account")
+      .populate("pages");
     return transformToArrayOfFlowsFromRepo(flows);
   }
 }
@@ -198,9 +198,9 @@ function createMongoFlow(flow: Flow, pages: Page[]): FlowMongo {
 function handleFlowCreationError(err: any, flow: Flow) {
   const errMessage = err.message as string;
 
-  logger.debug('Error while creating the flow: ' + err.message);
+  logger.debug("Error while creating the flow: " + err.message);
 
-  if (errMessage.includes('duplicate key error'))
+  if (errMessage.includes("duplicate key error"))
     throw new FlowAlreadyExistError(flow.id);
 
   throw new FlowCouldNotBeCreatedError(flow.id);

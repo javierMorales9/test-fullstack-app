@@ -1,4 +1,4 @@
-import { SessionRepository } from '../SessionRepository';
+import { SessionRepository } from "../SessionRepository";
 
 export default class DeleteAllSessionsOfAFlowService {
   constructor(private sessionRepo: SessionRepository) {}

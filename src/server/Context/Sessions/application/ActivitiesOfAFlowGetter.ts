@@ -1,5 +1,5 @@
-import { SessionRepository } from '../domain/SessionRepository';
-import { validateDates } from '../../../Context/Shared/infrastructure/validateDates';
+import { SessionRepository } from "../domain/SessionRepository";
+import { validateDates } from "../../../Context/Shared/infrastructure/validateDates";
 
 type UseCaseOptions = {
   startDate?: any;
@@ -39,7 +39,7 @@ export default class ActivitiesOfAFlowGetter {
         return {
           canceller: el.userData.userId,
           userData: el.userData,
-          status: el.isFinished() ? 'finished' : 'in_progress',
+          status: el.isFinished() ? "finished" : "in_progress",
           flowName: el.flow.name,
           flowId: el.flow.id.value,
           date: el.updatedAt,

@@ -1,5 +1,5 @@
-import { Flow } from '../domain/Flow';
-import FlowRepository from '../domain/repos/FlowRepository';
+import { Flow } from "../domain/Flow";
+import FlowRepository from "../domain/repos/FlowRepository";
 
 export default class PaginatedAccountIdFlowsGetter {
   constructor(private flowRepo: FlowRepository) {}

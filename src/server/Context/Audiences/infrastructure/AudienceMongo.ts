@@ -1,4 +1,4 @@
-import { model, Schema } from 'mongoose';
+import { model, Schema } from "mongoose";
 
 interface SegmentMongo {
   field: string;
@@ -26,7 +26,7 @@ const AudienceSchema = new Schema<AudienceMongo>({
   _id: { type: String },
   name: { type: String, required: true },
   segments: { type: [SegmentSchema] },
-  account: { type: String, ref: 'Account' },
+  account: { type: String, ref: "Account" },
 });
 
-export const AudienceModel = model<AudienceMongo>('Audience', AudienceSchema);
+export const AudienceModel = model<AudienceMongo>("Audience", AudienceSchema);

@@ -31,31 +31,30 @@ export class Post {
     id: PostId;
     authorId: string;
     content: string;
-  }){
-
+  }) {
     return new Post({
-        id,
-        authorId,
-        content,
-        createdAt: new Date(),
+      id,
+      authorId,
+      content,
+      createdAt: new Date(),
     });
   }
 
-  static fromPrimitives(data: any){
+  static fromPrimitives(data: any) {
     return new Post({
-        id: new PostId(data.id),
-        authorId: data.authorId,
-        content: data.content,
-        createdAt: data.createdAt,
+      id: new PostId(data.id),
+      authorId: data.authorId,
+      content: data.content,
+      createdAt: data.createdAt,
     });
   }
 
-  toPrimitives(){
+  toPrimitives() {
     return {
-        id: this.id.value,
-        authorId: this.authorId,
-        content: this.content,
-        createdAt: this.createdAt,
+      id: this.id.value,
+      authorId: this.authorId,
+      content: this.content,
+      createdAt: this.createdAt,
     };
   }
 }

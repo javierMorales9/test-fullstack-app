@@ -1,4 +1,4 @@
-import { AppConstants } from './AppConstants';
+import { AppConstants } from "./AppConstants";
 
 export default interface AppConstantsRepo {
   getAll: () => Promise<AppConstants | null>;

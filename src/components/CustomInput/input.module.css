@@ -1,0 +1,136 @@
+.inputWrapper {
+  position: relative;
+}
+
+.inputWrapper .input {
+  @apply border-grey-3 relative block w-full text-sm text-black;
+  position: relative;
+  z-index: 1;
+}
+
+.inputWrapper[weight="regular"] .input {
+  @apply font-normal;
+}
+
+.inputWrapper[weight="medium"] .input {
+  @apply font-medium;
+}
+
+.inputWrapper[weight="semi-bold"] .input {
+  @apply font-semibold;
+}
+
+.inputWrapper[weight="bold"] .input {
+  @apply font-bold;
+}
+
+.inputWrapper .input:focus {
+  outline: none;
+}
+
+.inputWrapper[variant="standard"] .input {
+  padding: 14px 16px;
+  @apply mt-2 rounded border;
+}
+
+.inputWrapper[variant="standard"].noLabel .input {
+  @apply mt-0;
+}
+
+.inputWrapper[variant="standard"] .input:focus {
+  @apply outline-primary outline outline-1;
+}
+
+.inputWrapper[variant="standard"] .input::-webkit-input-placeholder {
+  /* Edge */
+  @apply text-black-3 font-normal;
+}
+
+.inputWrapper[variant="standard"] .input:-ms-input-placeholder {
+  /* Internet Explorer 10-11 */
+  @apply text-black-3 font-normal;
+}
+
+.inputWrapper[variant="standard"] .input::placeholder {
+  @apply text-black-3 font-normal;
+}
+
+.inputWrapper[variant="floating"] .input {
+  padding: 20px 0 8px;
+  @apply border-b bg-transparent;
+}
+
+.inputWrapper[variant="floating"]::after {
+  content: "";
+  @apply border-primary left-0 right-0 bottom-0 block scale-x-0 border-b;
+  pointer-events: none;
+  transition: transform 200ms cubic-bezier(0, 0, 0.2, 1) 0ms;
+}
+
+.inputWrapper[variant="floating"].isFocused::after {
+  transform: none;
+}
+
+.inputWrapper[variant="floating"] label {
+  @apply pointer-events-none absolute left-0 top-0 translate-y-3;
+  z-index: 2;
+  transition: color 200ms cubic-bezier(0, 0, 0.2, 1) 0ms,
+    transform 200ms cubic-bezier(0, 0, 0.2, 1) 0ms,
+    max-width 200ms cubic-bezier(0, 0, 0.2, 1) 0ms,
+    font-size 200ms cubic-bezier(0, 0, 0.2, 1) 0ms;
+}
+
+.inputWrapper[variant="floating"].hasValue label,
+.inputWrapper[variant="floating"].isFocused label {
+  @apply translate-y-0;
+  font-size: 13px;
+}
+
+.passwordToggle {
+  z-index: 1;
+  transform: translateY(-50%);
+  @apply absolute top-1/2 right-0 flex items-center;
+}
+
+.eyeIcon {
+  display: flex;
+  margin-right: 1px;
+}
+.eyeIcon svg {
+  width: 22px;
+  @apply fill-black-3 h-auto;
+}
+.eyeCrossedIcon {
+  display: none;
+}
+
+.eyeCrossedIcon svg {
+  width: 24px;
+  @apply fill-black-3 h-auto;
+}
+
+.passwordToggle.active .eyeIcon {
+  display: none;
+}
+
+.passwordToggle.active .eyeCrossedIcon {
+  display: flex;
+}
+
+.inputWrapper .input.hasIcon {
+  @apply pr-11;
+}
+
+.iconWrapper {
+  z-index: 1;
+  @apply pointer-events-none absolute top-1/2 right-3 flex h-6 w-6 -translate-y-1/2 items-center;
+}
+
+.unit {
+  z-index: 1;
+  @apply absolute right-4 top-1/2 -translate-y-1/2 text-sm font-semibold;
+}
+
+.error {
+  @apply text-error inline-block pl-1 text-xs font-medium;
+}

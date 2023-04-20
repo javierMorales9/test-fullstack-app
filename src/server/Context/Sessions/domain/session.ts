@@ -1,11 +1,11 @@
-import crypto from 'crypto';
-import { Flow } from '../../Flows/domain/Flow';
-import { UserData } from '../../../Context/Shared/domain/UserData';
-import { Answer } from '../../Flows/domain/pages/answers/Answer';
-import logger from '../../../Context/Shared/infrastructure/logger/logger';
-import { View } from '../../Flows/domain/pages/views/View';
-import { createEmptyAnswer } from '../../Flows/domain/pages/answers/answerFactory';
-import { Uuid } from '../../../Context/Shared/domain/value-object/Uuid';
+import crypto from "crypto";
+import { Flow } from "../../Flows/domain/Flow";
+import { UserData } from "../../../Context/Shared/domain/UserData";
+import { Answer } from "../../Flows/domain/pages/answers/Answer";
+import logger from "../../../Context/Shared/infrastructure/logger/logger";
+import { View } from "../../Flows/domain/pages/views/View";
+import { createEmptyAnswer } from "../../Flows/domain/pages/answers/answerFactory";
+import { Uuid } from "../../../Context/Shared/domain/value-object/Uuid";
 
 type SessionOptions = {
   flow: Flow;
@@ -47,8 +47,8 @@ export class Session {
   }: SessionOptions) {
     this.id = id ? new Uuid(id).value : Uuid.random().value;
     this.flow = flow;
-    this.subscription = subscription || '';
-    this.user = subscription || '';
+    this.subscription = subscription || "";
+    this.user = subscription || "";
     this.token = token || Session.generateSessionToken(flow.name);
     this.userData = userData || UserData.createDefaultUserData();
     this.finished = finished || false;
@@ -60,11 +60,11 @@ export class Session {
 
   private static generateSessionToken(flowName: string): string {
     const timestamp: number = Date.now();
-    const hash = crypto.createHash('md5').update(flowName).digest('hex');
+    const hash = crypto.createHash("md5").update(flowName).digest("hex");
 
     const token = hash + timestamp;
 
-    logger.info('Token generated: ' + token);
+    logger.info("Token generated: " + token);
     return token;
   }
 
@@ -101,7 +101,7 @@ export class Session {
   }
 
   public isTheCancellerSaved() {
-    return this.answers[this.answers.length - 2].type === 'offerpage';
+    return this.answers[this.answers.length - 2].type === "offerpage";
   }
 
   public get updatedAt() {

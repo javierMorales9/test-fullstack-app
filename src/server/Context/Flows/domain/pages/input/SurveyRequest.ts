@@ -1,5 +1,5 @@
 export class SurveyRequest {
-  public type: 'survey';
+  public type: "survey";
   public title: string;
   public hint: string;
   public options: string[];
@@ -9,13 +9,13 @@ export class SurveyRequest {
   constructor(data: any) {
     if (
       !data.type ||
-      data.type !== 'survey' ||
+      data.type !== "survey" ||
       !data.title ||
       !data.hint ||
       !data.options ||
       !data.order
     )
-      throw new Error('Bad Survey Page');
+      throw new Error("Bad Survey Page");
 
     this.type = data.type;
     this.title = data.title;

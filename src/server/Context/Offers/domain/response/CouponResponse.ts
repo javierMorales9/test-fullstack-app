@@ -1,8 +1,8 @@
-import { Coupon } from '../Coupon';
+import { Coupon } from "../Coupon";
 
 export class CouponResponse {
   public id?: string;
-  public type: 'coupon';
+  public type: "coupon";
   public title: string;
   public header: string;
   public message: string;
@@ -11,7 +11,7 @@ export class CouponResponse {
 
   constructor(coupon: Coupon) {
     this.id = coupon.id.value;
-    this.type = 'coupon';
+    this.type = "coupon";
     this.title = coupon.title;
     this.header = coupon.header;
     this.message = coupon.message;

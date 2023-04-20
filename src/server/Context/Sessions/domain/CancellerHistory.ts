@@ -1,8 +1,8 @@
-import { Session } from './session';
-import { randomUUID } from 'crypto';
-import { SurveyAnswer } from '../../Flows/domain/pages/answers/SurveyAnswer';
+import { Session } from "./session";
+import { randomUUID } from "crypto";
+import { SurveyAnswer } from "../../Flows/domain/pages/answers/SurveyAnswer";
 
-type SessionState = 'saved' | 'cancelled';
+type SessionState = "saved" | "cancelled";
 
 type SessionData = {
   session: string;
@@ -65,7 +65,7 @@ export class CancellerHistory {
       },
     ];
     const account = session.flow.account.id.value;
-    const boostedRevenue = state === 'saved' ? ticket : 0;
+    const boostedRevenue = state === "saved" ? ticket : 0;
 
     return new CancellerHistory(
       id,
@@ -89,7 +89,7 @@ export class CancellerHistory {
     this._state = state;
     this._ticket = ticket;
     this._cancellationReason = cancellationReason;
-    this._isResaved = this.state === 'saved' && state === 'saved';
+    this._isResaved = this.state === "saved" && state === "saved";
     this._flow = session.flow.id.value;
 
     this.sessionResults.push({
@@ -100,7 +100,7 @@ export class CancellerHistory {
       date: new Date(),
     });
 
-    if (!this._isResaved && this._state === 'saved')
+    if (!this._isResaved && this._state === "saved")
       this._boostedRevenue += this._ticket;
   }
 
@@ -134,7 +134,7 @@ function calculateTicket(session: Session) {
 }
 
 function getState(session: Session): SessionState {
-  return session.isTheCancellerSaved() ? 'saved' : 'cancelled';
+  return session.isTheCancellerSaved() ? "saved" : "cancelled";
 }
 
 function getCancellationReason(session: Session) {

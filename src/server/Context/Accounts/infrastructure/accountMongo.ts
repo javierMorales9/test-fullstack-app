@@ -1,5 +1,5 @@
-import { model, Schema } from 'mongoose';
-import { CompanyData } from '../domain/CompanyData';
+import { model, Schema } from "mongoose";
+import { CompanyData } from "../domain/CompanyData";
 
 export interface AccountMongo {
   _id: string;
@@ -35,4 +35,4 @@ const AccountSchema = new Schema<AccountMongo>({
   allowedDomains: { type: [String] },
 });
 
-export const AccountModel = model<AccountMongo>('Account', AccountSchema);
+export const AccountModel = model<AccountMongo>("Account", AccountSchema);

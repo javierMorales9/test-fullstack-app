@@ -1,0 +1,19 @@
+.conditionContainer {
+  @apply flex justify-items-center;
+}
+
+.conditionContainer > div:first-child {
+  width: 98%;
+}
+
+.closeBtn {
+  color: #2e2c34;
+}
+
+.btnWithLoader {
+}
+
+.btnWithLoader svg {
+  color: white;
+  height: 20px;
+}

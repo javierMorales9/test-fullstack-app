@@ -1,4 +1,4 @@
-import { FlowDesign } from '../../../Flows/domain/FlowDesign';
+import { FlowDesign } from "../../../Flows/domain/FlowDesign";
 
 export type SessionCreatedResponse = {
   token: string;

@@ -1,0 +1,70 @@
+.block {
+  @apply relative mt-12;
+}
+
+.block::before {
+  content: "";
+  z-index: 0;
+  @apply absolute left-0 top-0 h-full w-full bg-white;
+  filter: drop-shadow(0px 1px 3px rgba(0, 0, 0, 0.12));
+}
+
+.block > * {
+  position: relative;
+}
+
+.block:not(:last-of-type)::after {
+  content: "";
+  @apply absolute left-1/2 top-full -translate-x-1/2  translate-y-1/2;
+  filter: none;
+  width: 2px;
+  height: 24px;
+  background-color: #d5d5dc;
+}
+
+.top {
+  @apply border-grey-3 relative flex items-center justify-start gap-x-2 p-4;
+}
+
+.top .switch {
+  @apply absolute right-5;
+}
+
+.block > *:not(:last-child) {
+  @apply border-b;
+}
+
+.title {
+  @apply text-primary font-semibold;
+  font-family: var(--font-inter);
+  font-size: 18px;
+  line-height: 21px;
+}
+
+.top.disabled .icon svg {
+  @apply fill-grey;
+}
+
+.top.disabled .title {
+  @apply text-grey;
+}
+
+.icon {
+  @apply flex items-center justify-center;
+  width: 24px;
+  height: 24px;
+}
+
+.bottom {
+  @apply px-5 py-6;
+}
+
+.p0 {
+  padding-bottom: 0;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.p0 > * {
+  @apply px-5;
+}

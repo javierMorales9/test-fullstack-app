@@ -88,7 +88,7 @@ container.register("Accounts.domain.AccountRepository", MongoAccountRepository);
 container
   .register(
     "Accounts.domain.CreateSimpleAccountService",
-    CreateSimpleAccountService
+    CreateSimpleAccountService,
   )
   .addArgument("Accounts.domain.AccountRepository");
 
@@ -104,7 +104,7 @@ container
   .addArgument("Audiences.domain.DeleteAllAudiencesService")
   .addArgument("Flows.domain.DeleteAllFlowsService")
   .addArgument(
-    "PaymentProviders.domain.DeleteAllPaymentProvidersOfAnAccountService"
+    "PaymentProviders.domain.DeleteAllPaymentProvidersOfAnAccountService",
   );
 
 container
@@ -156,18 +156,18 @@ container
 //Audiences ----------------------------------------------------------
 container.register(
   "Audiences.domain.AudienceRepository",
-  MongoAudienceRepository
+  MongoAudienceRepository,
 );
 container
   .register(
     "Audiences.domain.CheckAudienceMatchesAUserService",
-    CheckAudienceMatchesAUserService
+    CheckAudienceMatchesAUserService,
   )
   .addArgument("Audiences.domain.AudienceRepository");
 container
   .register(
     "Audiences.domain.DeleteAllAudiencesService",
-    DeleteAllAudiencesService
+    DeleteAllAudiencesService,
   )
   .addArgument("Audiences.domain.AudienceRepository");
 container
@@ -189,7 +189,7 @@ container.register("Flows.domain.PageRepository", MongoPageRepository);
 container
   .register(
     "Flows.domain.AddFlowVisualizationService",
-    AddFlowVisualizationService
+    AddFlowVisualizationService,
   )
   .addArgument("Flows.domain.FlowRepository");
 container
@@ -213,7 +213,7 @@ container
 container
   .register(
     "Flows.domain.IncreaseFlowBoostedRevenueService",
-    IncreaseFlowBoostedRevenueService
+    IncreaseFlowBoostedRevenueService,
   )
   .addArgument("Flows.domain.FlowRepository");
 container
@@ -225,7 +225,7 @@ container
 container
   .register(
     "Flows.application.FlowByIdFromAccountGetter",
-    FlowByIdFromAccountGetter
+    FlowByIdFromAccountGetter,
   )
   .addArgument("Flows.domain.FlowRepository");
 container
@@ -243,7 +243,7 @@ container
 container
   .register(
     "Flows.application.PaginatedAccountIdFlowsGetter",
-    PaginatedAccountIdFlowsGetter
+    PaginatedAccountIdFlowsGetter,
   )
   .addArgument("Flows.domain.FlowRepository");
 
@@ -258,7 +258,7 @@ container
 container
   .register(
     "Offers.domain.GenerateOfferResponseService",
-    GenerateOfferResponseService
+    GenerateOfferResponseService,
   )
   .addArgument("Offers.application.OfferByIdGetter");
 container
@@ -270,7 +270,7 @@ container
 container
   .register(
     "Offers.application.CouponPaymentDataGetter",
-    CouponPaymentDataGetter
+    CouponPaymentDataGetter,
   )
   .addArgument("PaymentProviders.domain.GetPaymentProviderService");
 container
@@ -283,12 +283,12 @@ container
 //PaymentProviders ----------------------------------------------------------
 container.register(
   "PaymentProviders.domain.PaymentProviderRepository",
-  MongoPaymentProviderRepository
+  MongoPaymentProviderRepository,
 );
 container
   .register(
     "PaymentProviders.domain.GetPaymentProviderService",
-    GetPaymentProviderService
+    GetPaymentProviderService,
   )
   .addArgument("PaymentProviders.domain.PaymentProviderRepository")
   .addArgument("Accounts.domain.GetAccountByIdService");
@@ -298,13 +298,13 @@ container
 container
   .register(
     "PaymentProviders.domain.CreateStripePaymentProviderService",
-    CreateStripePaymentProviderService
+    CreateStripePaymentProviderService,
   )
   .addArgument("PaymentProviders.domain.PaymentProviderRepository");
 container
   .register(
     "PaymentProviders.domain.DeleteAllPaymentProvidersOfAnAccountService",
-    DeleteAllPaymentProvidersOfAnAccountService
+    DeleteAllPaymentProvidersOfAnAccountService,
   )
   .addArgument("PaymentProviders.domain.PaymentProviderRepository");
 container
@@ -313,13 +313,13 @@ container
 container
   .register(
     "PaymentProviders.application.IntegratedPaymentProvidersGetter",
-    IntegratedPaymentProvidersGetter
+    IntegratedPaymentProvidersGetter,
   )
   .addArgument("PaymentProviders.domain.PaymentProviderRepository");
 container
   .register(
     "PaymentProviders.application.PaymentProviderCreator",
-    PaymentProviderCreator
+    PaymentProviderCreator,
   )
   .addArgument("PaymentProviders.domain.PaymentProviderRepository");
 container
@@ -330,18 +330,18 @@ container
 container.register("Sessions.domain.SessionRepository", MongoSessionRepository);
 container.register(
   "Sessions.domain.CancellerHistoryRepository",
-  MongoCancellerHistoryRepository
+  MongoCancellerHistoryRepository,
 );
 container
   .register(
     "Sessions.domain.AddSessionToCancellerHistoryService",
-    AddSessionToCancellerHistoryService
+    AddSessionToCancellerHistoryService,
   )
   .addArgument("Sessions.domain.CancellerHistoryRepository");
 container
   .register(
     "Sessions.domain.DeleteAllSessionsOfAFlowService",
-    DeleteAllSessionsOfAFlowService
+    DeleteAllSessionsOfAFlowService,
   )
   .addArgument("Sessions.domain.SessionRepository");
 container
@@ -351,19 +351,19 @@ container
 container
   .register(
     "Sessions.application.ActivitiesOfAFlowGetter",
-    ActivitiesOfAFlowGetter
+    ActivitiesOfAFlowGetter,
   )
   .addArgument("Sessions.domain.SessionRepository");
 container
   .register(
     "Sessions.application.AllSessionsFromAccountGetter",
-    AllSessionsFromAccountGetter
+    AllSessionsFromAccountGetter,
   )
   .addArgument("Sessions.domain.SessionRepository");
 container
   .register(
     "Sessions.application.AllSessionsFromFlowGetter",
-    AllSessionsFromFlowGetter
+    AllSessionsFromFlowGetter,
   )
   .addArgument("Sessions.domain.SessionRepository")
   .addArgument("Flows.domain.GetFlowByIdService");
@@ -382,7 +382,7 @@ container
 container
   .register(
     "Sessions.application.PreviewSessionDestroyer",
-    PreviewSessionDestroyer
+    PreviewSessionDestroyer,
   )
   .addArgument("Sessions.domain.SessionRepository");
 container
@@ -392,7 +392,7 @@ container
 container
   .register(
     "Sessions.application.SessionsByIdFromAccountGetter",
-    SessionsByIdFromAccountGetter
+    SessionsByIdFromAccountGetter,
   )
   .addArgument("Sessions.domain.SessionRepository");
 container

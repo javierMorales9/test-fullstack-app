@@ -1,6 +1,6 @@
-import { SessionRepository } from '../domain/SessionRepository';
-import { Session } from '../domain/session';
-import SessionNotFoundError from '../domain/errors/SessionNotFoundError';
+import { SessionRepository } from "../domain/SessionRepository";
+import { Session } from "../domain/session";
+import SessionNotFoundError from "../domain/errors/SessionNotFoundError";
 
 export default class SessionByIdGetter {
   public constructor(private sessionRepo: SessionRepository) {}

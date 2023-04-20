@@ -1,4 +1,4 @@
-import { model, Schema } from 'mongoose';
+import { model, Schema } from "mongoose";
 
 interface SessionDataMongo {
   session: string;
@@ -21,7 +21,7 @@ export interface CancellerHistoryMongo {
 }
 
 const SessionDataSchema = new Schema<SessionDataMongo>({
-  session: { type: String, ref: 'Session' },
+  session: { type: String, ref: "Session" },
   ticket: Number,
   cancellationReason: String,
   state: String,
@@ -35,12 +35,12 @@ const CancellerHistorySchema = new Schema<CancellerHistoryMongo>({
   state: String,
   ticket: Number,
   cancellationReason: String,
-  account: { type: String, ref: 'Account' },
+  account: { type: String, ref: "Account" },
   isResaved: Boolean,
   boostedRevenue: Number,
 });
 
 export const CancellerHistoryModel = model<CancellerHistoryMongo>(
-  'CancellerHistory',
+  "CancellerHistory",
   CancellerHistorySchema,
 );

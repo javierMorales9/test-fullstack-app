@@ -1,5 +1,5 @@
-import { User } from '../domain/User';
-import { Uuid } from '../../Shared/domain/value-object/Uuid';
+import { User } from "../domain/User";
+import { Uuid } from "../../Shared/domain/value-object/Uuid";
 
 export function transformUserFromRepo(userData: any) {
   if (userData === null) return null;

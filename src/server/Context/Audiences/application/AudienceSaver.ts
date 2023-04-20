@@ -1,7 +1,7 @@
-import { AudienceRequest } from '../domain/AudienceRequest';
-import { Audience } from '../domain/Audience';
-import { AudienceRepository } from '../domain/AudienceRepository';
-import { Uuid } from '../../../Context/Shared/domain/value-object/Uuid';
+import { AudienceRequest } from "../domain/AudienceRequest";
+import { Audience } from "../domain/Audience";
+import { AudienceRepository } from "../domain/AudienceRepository";
+import { Uuid } from "../../../Context/Shared/domain/value-object/Uuid";
 
 export default class AudienceSaver {
   constructor(private audienceRepo: AudienceRepository) {}

@@ -1,0 +1,611 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@600&family=Manrope:wght@400;500;600;700&display=swap");
+#clickout_library {
+  --primary-color: #5542f6;
+  --secondary-color: #00a5ff;
+  --font-inter: "Inter", sans-serif;
+  --font-manrope: "Manrope", sans-serif;
+  --toastify-color-dark: #2e2c34;
+  --toastify-color-info: #5542f6;
+  --toastify-color-success: #14b13b;
+  --toastify-color-warning: #ffa043;
+  --toastify-color-error: #fc3400;
+  font-family: var(--font-manrope);
+}
+/*
+! tailwindcss v3.2.2 | MIT License | https://tailwindcss.com
+*/
+/*
+1. Prevent padding and border from affecting element width. (https://github.com/mozdevs/cssremedy/issues/4)
+2. Allow adding a border to an element by just adding a border-width. (https://github.com/tailwindcss/tailwindcss/pull/116)
+*/
+#clickout_library *,
+#clickout_library ::before,
+#clickout_library ::after {
+  box-sizing: border-box; /* 1 */
+  border-width: 0; /* 2 */
+  border-style: solid; /* 2 */
+  border-color: #e5e7eb; /* 2 */
+}
+#clickout_library ::before,
+#clickout_library ::after {
+  --tw-content: "";
+}
+/*
+1. Use a consistent sensible line-height in all browsers.
+2. Prevent adjustments of font size after orientation changes in iOS.
+3. Use a more readable tab size.
+4. Use the user's configured `sans` font-family by default.
+5. Use the user's configured `sans` font-feature-settings by default.
+*/
+#clickout_library html {
+  line-height: 1.5; /* 1 */
+  -webkit-text-size-adjust: 100%; /* 2 */
+  -moz-tab-size: 4; /* 3 */
+  -o-tab-size: 4;
+  tab-size: 4; /* 3 */
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif,
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"; /* 4 */
+  font-feature-settings: normal; /* 5 */
+}
+/*
+1. Remove the margin in all browsers.
+2. Inherit line-height from `html` so users can set them as a class directly on the `html` element.
+*/
+#clickout_library body {
+  margin: 0; /* 1 */
+  line-height: inherit; /* 2 */
+}
+/*
+1. Add the correct height in Firefox.
+2. Correct the inheritance of border color in Firefox. (https://bugzilla.mozilla.org/show_bug.cgi?id=190655)
+3. Ensure horizontal rules are visible by default.
+*/
+#clickout_library hr {
+  height: 0; /* 1 */
+  color: inherit; /* 2 */
+  border-top-width: 1px; /* 3 */
+}
+/*
+Add the correct text decoration in Chrome, Edge, and Safari.
+*/
+#clickout_library abbr:where([title]) {
+  -webkit-text-decoration: underline dotted;
+  text-decoration: underline dotted;
+}
+/*
+Remove the default font size and weight for headings.
+*/
+#clickout_library h1,
+#clickout_library h2,
+#clickout_library h3,
+#clickout_library h4,
+#clickout_library h5,
+#clickout_library h6 {
+  font-size: inherit;
+  font-weight: inherit;
+}
+/*
+Reset links to optimize for opt-in styling instead of opt-out.
+*/
+#clickout_library a {
+  color: inherit;
+  text-decoration: inherit;
+}
+/*
+Add the correct font weight in Edge and Safari.
+*/
+#clickout_library b,
+#clickout_library strong {
+  font-weight: bolder;
+}
+/*
+1. Use the user's configured `mono` font family by default.
+2. Correct the odd `em` font sizing in all browsers.
+*/
+#clickout_library code,
+#clickout_library kbd,
+#clickout_library samp,
+#clickout_library pre {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+    "Liberation Mono", "Courier New", monospace; /* 1 */
+  font-size: 1em; /* 2 */
+}
+/*
+Add the correct font size in all browsers.
+*/
+#clickout_library small {
+  font-size: 80%;
+}
+/*
+Prevent `sub` and `sup` elements from affecting the line height in all browsers.
+*/
+#clickout_library sub,
+#clickout_library sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+#clickout_library sub {
+  bottom: -0.25em;
+}
+#clickout_library sup {
+  top: -0.5em;
+}
+/*
+1. Remove text indentation from table contents in Chrome and Safari. (https://bugs.chromium.org/p/chromium/issues/detail?id=999088, https://bugs.webkit.org/show_bug.cgi?id=201297)
+2. Correct table border color inheritance in all Chrome and Safari. (https://bugs.chromium.org/p/chromium/issues/detail?id=935729, https://bugs.webkit.org/show_bug.cgi?id=195016)
+3. Remove gaps between table borders by default.
+*/
+#clickout_library table {
+  text-indent: 0; /* 1 */
+  border-color: inherit; /* 2 */
+  border-collapse: collapse; /* 3 */
+}
+/*
+1. Change the font styles in all browsers.
+2. Remove the margin in Firefox and Safari.
+3. Remove default padding in all browsers.
+*/
+#clickout_library button,
+#clickout_library input,
+#clickout_library optgroup,
+#clickout_library select,
+#clickout_library textarea {
+  font-family: inherit; /* 1 */
+  font-size: 100%; /* 1 */
+  font-weight: inherit; /* 1 */
+  line-height: inherit; /* 1 */
+  color: inherit; /* 1 */
+  margin: 0; /* 2 */
+  padding: 0; /* 3 */
+}
+/*
+Remove the inheritance of text transform in Edge and Firefox.
+*/
+#clickout_library button,
+#clickout_library select {
+  text-transform: none;
+}
+/*
+1. Correct the inability to style clickable types in iOS and Safari.
+2. Remove default button styles.
+*/
+#clickout_library button,
+#clickout_library [type="button"],
+#clickout_library [type="reset"],
+#clickout_library [type="submit"] {
+  -webkit-appearance: button; /* 1 */
+  background-color: transparent; /* 2 */
+  background-image: none; /* 2 */
+}
+/*
+Use the modern Firefox focus style for all focusable elements.
+*/
+#clickout_library :-moz-focusring {
+  outline: auto;
+}
+/*
+Remove the additional `:invalid` styles in Firefox. (https://github.com/mozilla/gecko-dev/blob/2f9eacd9d3d995c937b4251a5557d95d494c9be1/layout/style/res/forms.css#L728-L737)
+*/
+#clickout_library :-moz-ui-invalid {
+  box-shadow: none;
+}
+/*
+Add the correct vertical alignment in Chrome and Firefox.
+*/
+#clickout_library progress {
+  vertical-align: baseline;
+}
+/*
+Correct the cursor style of increment and decrement buttons in Safari.
+*/
+#clickout_library ::-webkit-inner-spin-button,
+#clickout_library ::-webkit-outer-spin-button {
+  height: auto;
+}
+/*
+1. Correct the odd appearance in Chrome and Safari.
+2. Correct the outline style in Safari.
+*/
+#clickout_library [type="search"] {
+  -webkit-appearance: textfield; /* 1 */
+  outline-offset: -2px; /* 2 */
+}
+/*
+Remove the inner padding in Chrome and Safari on macOS.
+*/
+#clickout_library ::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+/*
+1. Correct the inability to style clickable types in iOS and Safari.
+2. Change font properties to `inherit` in Safari.
+*/
+#clickout_library ::-webkit-file-upload-button {
+  -webkit-appearance: button; /* 1 */
+  font: inherit; /* 2 */
+}
+/*
+Add the correct display in Chrome and Safari.
+*/
+#clickout_library summary {
+  display: list-item;
+}
+/*
+Removes the default spacing and border for appropriate elements.
+*/
+#clickout_library blockquote,
+#clickout_library dl,
+#clickout_library dd,
+#clickout_library h1,
+#clickout_library h2,
+#clickout_library h3,
+#clickout_library h4,
+#clickout_library h5,
+#clickout_library h6,
+#clickout_library hr,
+#clickout_library figure,
+#clickout_library p,
+#clickout_library pre {
+  margin: 0;
+}
+#clickout_library fieldset {
+  margin: 0;
+  padding: 0;
+}
+#clickout_library legend {
+  padding: 0;
+}
+#clickout_library ol,
+#clickout_library ul,
+#clickout_library menu {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+/*
+Prevent resizing textareas horizontally by default.
+*/
+#clickout_library textarea {
+  resize: vertical;
+}
+/*
+1. Reset the default placeholder opacity in Firefox. (https://github.com/tailwindlabs/tailwindcss/issues/3300)
+2. Set the default placeholder color to the user's configured gray 400 color.
+*/
+#clickout_library input::-moz-placeholder,
+#clickout_library textarea::-moz-placeholder {
+  opacity: 1; /* 1 */
+  color: #9ca3af; /* 2 */
+}
+#clickout_library input::placeholder,
+#clickout_library textarea::placeholder {
+  opacity: 1; /* 1 */
+  color: #9ca3af; /* 2 */
+}
+/*
+Set the default cursor for buttons.
+*/
+#clickout_library button,
+#clickout_library [role="button"] {
+  cursor: pointer;
+}
+/*
+Make sure disabled buttons don't get the pointer cursor.
+*/
+#clickout_library :disabled {
+  cursor: default;
+}
+/*
+1. Make replaced elements `display: block` by default. (https://github.com/mozdevs/cssremedy/issues/14)
+2. Add `vertical-align: middle` to align replaced elements more sensibly by default. (https://github.com/jensimmons/cssremedy/issues/14#issuecomment-634934210)
+   This can trigger a poorly considered lint error in some tools but is included by design.
+*/
+#clickout_library img,
+#clickout_library svg,
+#clickout_library video,
+#clickout_library canvas,
+#clickout_library audio,
+#clickout_library iframe,
+#clickout_library embed,
+#clickout_library object {
+  display: block; /* 1 */
+  vertical-align: middle; /* 2 */
+}
+/*
+Constrain images and videos to the parent width and preserve their intrinsic aspect ratio. (https://github.com/mozdevs/cssremedy/issues/14)
+*/
+#clickout_library img,
+#clickout_library video {
+  max-width: 100%;
+  height: auto;
+}
+/* Make elements with the HTML hidden attribute stay hidden by default */
+#clickout_library [hidden] {
+  display: none;
+}
+#clickout_library *,
+#clickout_library ::before,
+#clickout_library ::after {
+  --tw-border-spacing-x: 0;
+  --tw-border-spacing-y: 0;
+  --tw-translate-x: 0;
+  --tw-translate-y: 0;
+  --tw-rotate: 0;
+  --tw-skew-x: 0;
+  --tw-skew-y: 0;
+  --tw-scale-x: 1;
+  --tw-scale-y: 1;
+  --tw-pan-x: ;
+  --tw-pan-y: ;
+  --tw-pinch-zoom: ;
+  --tw-scroll-snap-strictness: proximity;
+  --tw-ordinal: ;
+  --tw-slashed-zero: ;
+  --tw-numeric-figure: ;
+  --tw-numeric-spacing: ;
+  --tw-numeric-fraction: ;
+  --tw-ring-inset: ;
+  --tw-ring-offset-width: 0px;
+  --tw-ring-offset-color: #fff;
+  --tw-ring-color: rgb(59 130 246 / 0.5);
+  --tw-ring-offset-shadow: 0 0 #0000;
+  --tw-ring-shadow: 0 0 #0000;
+  --tw-shadow: 0 0 #0000;
+  --tw-shadow-colored: 0 0 #0000;
+  --tw-blur: ;
+  --tw-brightness: ;
+  --tw-contrast: ;
+  --tw-grayscale: ;
+  --tw-hue-rotate: ;
+  --tw-invert: ;
+  --tw-saturate: ;
+  --tw-sepia: ;
+  --tw-drop-shadow: ;
+  --tw-backdrop-blur: ;
+  --tw-backdrop-brightness: ;
+  --tw-backdrop-contrast: ;
+  --tw-backdrop-grayscale: ;
+  --tw-backdrop-hue-rotate: ;
+  --tw-backdrop-invert: ;
+  --tw-backdrop-opacity: ;
+  --tw-backdrop-saturate: ;
+  --tw-backdrop-sepia: ;
+}
+#clickout_library ::backdrop {
+  --tw-border-spacing-x: 0;
+  --tw-border-spacing-y: 0;
+  --tw-translate-x: 0;
+  --tw-translate-y: 0;
+  --tw-rotate: 0;
+  --tw-skew-x: 0;
+  --tw-skew-y: 0;
+  --tw-scale-x: 1;
+  --tw-scale-y: 1;
+  --tw-pan-x: ;
+  --tw-pan-y: ;
+  --tw-pinch-zoom: ;
+  --tw-scroll-snap-strictness: proximity;
+  --tw-ordinal: ;
+  --tw-slashed-zero: ;
+  --tw-numeric-figure: ;
+  --tw-numeric-spacing: ;
+  --tw-numeric-fraction: ;
+  --tw-ring-inset: ;
+  --tw-ring-offset-width: 0px;
+  --tw-ring-offset-color: #fff;
+  --tw-ring-color: rgb(59 130 246 / 0.5);
+  --tw-ring-offset-shadow: 0 0 #0000;
+  --tw-ring-shadow: 0 0 #0000;
+  --tw-shadow: 0 0 #0000;
+  --tw-shadow-colored: 0 0 #0000;
+  --tw-blur: ;
+  --tw-brightness: ;
+  --tw-contrast: ;
+  --tw-grayscale: ;
+  --tw-hue-rotate: ;
+  --tw-invert: ;
+  --tw-saturate: ;
+  --tw-sepia: ;
+  --tw-drop-shadow: ;
+  --tw-backdrop-blur: ;
+  --tw-backdrop-brightness: ;
+  --tw-backdrop-contrast: ;
+  --tw-backdrop-grayscale: ;
+  --tw-backdrop-hue-rotate: ;
+  --tw-backdrop-invert: ;
+  --tw-backdrop-opacity: ;
+  --tw-backdrop-saturate: ;
+  --tw-backdrop-sepia: ;
+}
+#clickout_library .absolute {
+  position: absolute;
+}
+#clickout_library .relative {
+  position: relative;
+}
+#clickout_library .bottom-6 {
+  bottom: 1.5rem;
+}
+#clickout_library .top-6 {
+  top: 1.5rem;
+}
+#clickout_library .left-6 {
+  left: 1.5rem;
+}
+#clickout_library .right-6 {
+  right: 1.5rem;
+}
+#clickout_library .mt-4 {
+  margin-top: 1rem;
+}
+#clickout_library .mr-4 {
+  margin-right: 1rem;
+}
+#clickout_library .ml-auto {
+  margin-left: auto;
+}
+#clickout_library .mt-2 {
+  margin-top: 0.5rem;
+}
+#clickout_library .mb-2 {
+  margin-bottom: 0.5rem;
+}
+#clickout_library .ml-4 {
+  margin-left: 1rem;
+}
+#clickout_library .ml-6 {
+  margin-left: 1.5rem;
+}
+#clickout_library .block {
+  display: block;
+}
+#clickout_library .flex {
+  display: flex;
+}
+#clickout_library .w-full {
+  width: 100%;
+}
+#clickout_library .max-w-sm {
+  max-width: 24rem;
+}
+#clickout_library .flex-1 {
+  flex: 1 1 0%;
+}
+#clickout_library .items-center {
+  align-items: center;
+}
+#clickout_library .justify-between {
+  justify-content: space-between;
+}
+#clickout_library .gap-x-4 {
+  -moz-column-gap: 1rem;
+  column-gap: 1rem;
+}
+#clickout_library .overflow-hidden {
+  overflow: hidden;
+}
+#clickout_library .rounded {
+  border-radius: 0.25rem;
+}
+#clickout_library .rounded-xl {
+  border-radius: 0.75rem;
+}
+#clickout_library .rounded-lg {
+  border-radius: 0.5rem;
+}
+#clickout_library .rounded-md {
+  border-radius: 0.375rem;
+}
+#clickout_library .border {
+  border-width: 1px;
+}
+#clickout_library .border-gray-200 {
+  --tw-border-opacity: 1;
+  border-color: rgb(229 231 235 / var(--tw-border-opacity));
+}
+#clickout_library .border-gray-300 {
+  --tw-border-opacity: 1;
+  border-color: rgb(209 213 219 / var(--tw-border-opacity));
+}
+#clickout_library .bg-green-200 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(187 247 208 / var(--tw-bg-opacity));
+}
+#clickout_library .bg-orange-100 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 237 213 / var(--tw-bg-opacity));
+}
+#clickout_library .bg-red-100 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(254 226 226 / var(--tw-bg-opacity));
+}
+#clickout_library .p-2 {
+  padding: 0.5rem;
+}
+#clickout_library .py-2 {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+#clickout_library .px-6 {
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+#clickout_library .px-4 {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+#clickout_library .px-2 {
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
+#clickout_library .pb-6 {
+  padding-bottom: 1.5rem;
+}
+#clickout_library .text-center {
+  text-align: center;
+}
+#clickout_library .text-sm {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}
+#clickout_library .font-thin {
+  font-weight: 100;
+}
+#clickout_library .font-bold {
+  font-weight: 700;
+}
+#clickout_library .text-white {
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+#clickout_library .text-gray-400 {
+  --tw-text-opacity: 1;
+  color: rgb(156 163 175 / var(--tw-text-opacity));
+}
+#clickout_library .shadow {
+  --tw-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+  --tw-shadow-colored: 0 1px 3px 0 var(--tw-shadow-color),
+    0 1px 2px -1px var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),
+    var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+#clickout_library input[type="checkbox"] {
+  flex-shrink: 0;
+  border-radius: 2px;
+  margin: 0;
+  width: 18px;
+  height: 18px;
+  background-color: #fff;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  border: 2px solid;
+  --tw-border-opacity: 1;
+  border-color: rgb(132 129 138 / var(--tw-border-opacity));
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+#clickout_library input[type="checkbox"]:checked {
+  border-width: 0px;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg viewBox='0 0 18 18' fill='none' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M16 0H2C0.89 0 0 0.9 0 2V16C0 17.1 0.89 18 2 18H16C17.11 18 18 17.1 18 16V2C18 0.9 17.11 0 16 0ZM7 14L2 9L3.41 7.59L7 11.17L14.59 3.58L16 5L7 14Z' fill='%235542F6'/%3e%3c/svg%3e ");
+}
+#clickout_library .ml-auto {
+  margin-left: auto;
+}
+#clickout_library textarea {
+  resize: none;
+  height: 120px;
+  font-size: 0.75rem;
+}
+.hover\:cursor-pointer:hover {
+  cursor: pointer;
+}

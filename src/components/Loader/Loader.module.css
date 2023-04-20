@@ -1,0 +1,25 @@
+.wrapper {
+  @apply flex items-center justify-center;
+}
+
+.wrapper.fullScreen {
+  @layer fixed w-screen h-screen top-0 left-0 bg-white;
+  z-index: 99999;
+}
+
+.wrapper.relative {
+  min-width: 60px;
+  min-height: 60px;
+  @apply absolute left-1/2 top-1/2 z-10 h-full w-full -translate-y-1/2 -translate-x-1/2 bg-black/10;
+}
+
+.wrapper svg {
+  @apply text-primary h-10 w-10 animate-spin;
+}
+
+.small {
+}
+
+.small svg {
+  @apply h-6 w-6;
+}

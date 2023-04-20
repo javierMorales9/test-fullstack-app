@@ -1,7 +1,7 @@
-import { Flow } from '../domain/Flow';
-import FlowRepository from '../domain/repos/FlowRepository';
-import FlowNotFoundError from '../domain/errors/FlowNotFoundError';
-import { Uuid } from '../../../Context/Shared/domain/value-object/Uuid';
+import { Flow } from "../domain/Flow";
+import FlowRepository from "../domain/repos/FlowRepository";
+import FlowNotFoundError from "../domain/errors/FlowNotFoundError";
+import { Uuid } from "../../../Context/Shared/domain/value-object/Uuid";
 
 export default class FlowByIdFromAccountGetter {
   constructor(private flowRepo: FlowRepository) {}

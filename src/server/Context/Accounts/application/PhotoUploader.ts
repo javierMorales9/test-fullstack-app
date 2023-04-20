@@ -1,7 +1,7 @@
-import AccountRepository from '../domain/repos/accountRepository';
-import { Account } from '../domain/account';
-import AWS from 'aws-sdk';
-import ImageType from '../domain/ImageType';
+import AccountRepository from "../domain/repos/accountRepository";
+import { Account } from "../domain/account";
+import AWS from "aws-sdk";
+import ImageType from "../domain/ImageType";
 
 export default class PhotoUploader {
   constructor(private accountRepo: AccountRepository) {}
@@ -12,12 +12,12 @@ export default class PhotoUploader {
       secretAccessKey: process.env.AWS_S3_SECRET_ACCESS_KEY,
     });
 
-    let extension = accountImage.mimetype.split('/')[1];
-    extension = extension.includes('svg') ? 'svg' : extension;
+    let extension = accountImage.mimetype.split("/")[1];
+    extension = extension.includes("svg") ? "svg" : extension;
     const uploadedImage = await s3
       .upload({
         Bucket: process.env.S3_BUCKET_NAME!,
-        Key: 'image_' + account.id + '.' + extension,
+        Key: "image_" + account.id + "." + extension,
         Body: accountImage.data,
       })
       .promise();

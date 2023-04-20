@@ -16,7 +16,7 @@ import { UserLoginData } from "~/server/Context/Users/domain/UserLoginData";
 export const usersRouter = createTRPCRouter({
   get: privateProcedure.query(async ({ ctx }) => {
     const userGetter = container.get<UserByEmailGetter>(
-      "Users.application.UserByEmailGetter"
+      "Users.application.UserByEmailGetter",
     );
     try {
       const userId = ctx.userId;
@@ -33,11 +33,11 @@ export const usersRouter = createTRPCRouter({
         lastName: z.string(),
         email: z.string(),
         password: z.string(),
-      })
+      }),
     )
     .mutation(async ({ ctx, input }) => {
       const saveUser = container.get<UserCreator>(
-        "Users.application.UserCreator"
+        "Users.application.UserCreator",
       );
       try {
         const request = new UserRequest(input);
@@ -58,7 +58,7 @@ export const usersRouter = createTRPCRouter({
     }),
   login: privateProcedure.mutation(async ({ ctx, input }) => {
     const userGetter = container.get<UserByEmailGetter>(
-      "Users.application.UserByEmailGetter"
+      "Users.application.UserByEmailGetter",
     );
     try {
       const loginData = new UserLoginData(input);

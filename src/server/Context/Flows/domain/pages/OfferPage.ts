@@ -1,13 +1,13 @@
-import { MapRequest, OfferPageRequest } from './input/OfferPageRequest';
-import { Page } from './Page';
-import { OfferPageView } from './views/OfferPageView';
-import { Answer } from './answers/Answer';
-import GenerateOfferResponseService from '../../../Offers/domain/services/GenerateOfferResponseService';
+import { MapRequest, OfferPageRequest } from "./input/OfferPageRequest";
+import { Page } from "./Page";
+import { OfferPageView } from "./views/OfferPageView";
+import { Answer } from "./answers/Answer";
+import GenerateOfferResponseService from "../../../Offers/domain/services/GenerateOfferResponseService";
 import container from "~/server/api/dependency_injection";
 
 export class OfferPage extends Page {
   constructor(
-    type: 'offerpage',
+    type: "offerpage",
     public maps: Map[],
     order: number,
     id?: string,
@@ -30,7 +30,7 @@ export class OfferPage extends Page {
   ): Promise<OfferPageView | null> {
     const generateOfferResponseService =
       container.get<GenerateOfferResponseService>(
-        'Offers.domain.GenerateOfferResponseService',
+        "Offers.domain.GenerateOfferResponseService",
       );
     const correctMap = this.checkMaps(answers);
 
@@ -50,8 +50,8 @@ export class OfferPage extends Page {
       for (const survey of map.surveys)
         for (const answer of answers)
           if (
-            answer.page.type === 'survey' &&
-            typeof answer.answer === 'string' &&
+            answer.page.type === "survey" &&
+            typeof answer.answer === "string" &&
             answer.page.id === survey.survey &&
             survey.possibleAnswers.includes(answer.answer)
           ) {

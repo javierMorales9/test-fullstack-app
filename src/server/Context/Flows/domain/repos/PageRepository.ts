@@ -1,4 +1,4 @@
-import { Page } from '../pages/Page';
+import { Page } from "../pages/Page";
 
 export interface PageRepository {
   getPageById(id: string): Promise<Page | null>;

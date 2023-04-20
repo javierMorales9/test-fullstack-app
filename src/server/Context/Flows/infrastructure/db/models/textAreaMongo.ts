@@ -1,5 +1,5 @@
-import { Schema } from 'mongoose';
-import { PageModel } from './pageMongo';
+import { Schema } from "mongoose";
+import { PageModel } from "./pageMongo";
 
 export interface TextAreaMongo {
   _id: string;
@@ -19,6 +19,6 @@ const TextAreaSchema = new Schema<TextAreaMongo>({
 });
 
 export const TextAreaModel = PageModel.discriminator(
-  'textarea',
+  "textarea",
   TextAreaSchema,
 );

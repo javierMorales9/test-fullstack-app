@@ -1,0 +1,88 @@
+.answer {
+  @apply py-7;
+}
+
+.answer:first-of-type {
+  @apply pt-0;
+}
+
+.answer:not(:first-of-type) {
+  @apply border-grey-3 border-t;
+}
+
+.label {
+  @apply text-black-3 text-lg font-medium;
+  line-height: 20px;
+}
+
+.label span {
+  @apply font-semibold text-black;
+}
+
+.select {
+  @apply mt-3;
+}
+
+.squareInput label {
+  @apply block;
+}
+
+.squareInput .input {
+  @apply inline-block text-center;
+  width: 55px;
+}
+
+/* Chrome, Safari, Edge, Opera */
+.squareInput .input::-webkit-outer-spin-button,
+.squareInput .input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+.squareInput .input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+.squareInput .input + span {
+  @apply ml-2 text-sm font-semibold text-black;
+}
+
+.reactSelect [class$="-control"] {
+  @apply border-grey-3 relative mt-2 flex w-full items-center gap-x-2 rounded border bg-white py-3 pl-4 pr-8 text-sm font-semibold text-black;
+  -moz-appearance: none; /* Firefox */
+  -webkit-appearance: none; /* Safari and Chrome */
+  appearance: none;
+  outline: none;
+}
+
+.reactSelect [class$="-ValueContainer"] {
+  @apply m-0 p-0;
+}
+
+.reactSelect [class$="-indicatorSeparator"] {
+  @apply hidden;
+}
+
+.reactSelect [class$="-indicatorContainer"] {
+  @apply absolute right-3 top-1/2 flex -translate-y-1/2 items-center justify-center p-0;
+  width: 16px;
+  height: 16px;
+}
+
+.reactSelect [class$="-indicatorContainer"] svg {
+  width: 8px;
+  height: auto;
+}
+
+.reactSelect [class$="-placeholder"] {
+  @apply m-0 p-0;
+}
+
+.reactSelect [class$="-Input"] {
+  @apply m-0 p-0;
+}
+
+.editor {
+  @apply mt-2;
+}

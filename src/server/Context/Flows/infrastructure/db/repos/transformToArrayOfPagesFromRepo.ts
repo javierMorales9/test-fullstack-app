@@ -1,5 +1,5 @@
-import { Page } from '../../../domain/pages/Page';
-import { createPageFromNonSchemaData } from '../../../domain/pages/PageFactory';
+import { Page } from "../../../domain/pages/Page";
+import { createPageFromNonSchemaData } from "../../../domain/pages/PageFactory";
 
 export function transformToArrayOfPagesFromRepo(mongoPages: any[]): Page[] {
   const pages: Page[] = [];
@@ -14,7 +14,7 @@ export function transformToArrayOfPagesFromRepo(mongoPages: any[]): Page[] {
 }
 
 export function transformToPageFromRepo(entryPage: any): Page | null {
-  if (!entryPage || (entryPage.hasOwnProperty('_doc') && !entryPage._doc))
+  if (!entryPage || (entryPage.hasOwnProperty("_doc") && !entryPage._doc))
     return null;
 
   const mongoPage = entryPage._doc ? entryPage._doc : entryPage;

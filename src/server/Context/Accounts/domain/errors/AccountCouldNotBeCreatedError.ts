@@ -1,4 +1,4 @@
-import { Uuid } from '../../../Shared/domain/value-object/Uuid';
+import { Uuid } from "../../../Shared/domain/value-object/Uuid";
 
 export default class AccountCouldNotBeCreatedError extends Error {
   constructor(accountId: Uuid) {

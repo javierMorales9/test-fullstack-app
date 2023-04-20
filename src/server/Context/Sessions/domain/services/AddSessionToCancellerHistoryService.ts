@@ -1,6 +1,6 @@
-import { Session } from '../session';
-import { CancellerHistoryRepository } from '../CancellerHistoryRepository';
-import { CancellerHistory } from '../CancellerHistory';
+import { Session } from "../session";
+import { CancellerHistoryRepository } from "../CancellerHistoryRepository";
+import { CancellerHistory } from "../CancellerHistory";
 
 export default class AddSessionToCancellerHistoryService {
   constructor(private cancellerHistoryRepo: CancellerHistoryRepository) {}

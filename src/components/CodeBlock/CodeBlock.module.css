@@ -1,0 +1,27 @@
+.codeWrapper {
+  @apply relative overflow-hidden rounded-lg;
+  background-color: #1f2937;
+  overflow-x: auto;
+}
+
+.codeBlock {
+  @apply p-4  text-base;
+  padding-left: 68px;
+  word-break: keep-all;
+  color: #d9cccc;
+  display: block;
+  width: max-content;
+}
+
+.lines {
+  @apply pointer-events-none absolute top-0 left-0 h-full select-none p-4 text-base;
+  min-width: 52px;
+  font-family: var(--font-inter);
+  background-color: #374151;
+  text-align: right;
+}
+
+.lines .line {
+  @apply block;
+  color: #9ca3af;
+}

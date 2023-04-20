@@ -1,6 +1,6 @@
-import { OfferRepository } from '../domain/OfferRepository';
-import { Offer } from '../domain/Offer';
-import { Uuid } from '../../../Context/Shared/domain/value-object/Uuid';
+import { OfferRepository } from "../domain/OfferRepository";
+import { Offer } from "../domain/Offer";
+import { Uuid } from "../../../Context/Shared/domain/value-object/Uuid";
 
 export default class AllOfferGetter {
   constructor(private offerRepo: OfferRepository) {}

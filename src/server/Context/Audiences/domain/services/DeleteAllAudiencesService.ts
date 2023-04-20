@@ -1,5 +1,5 @@
-import { AudienceRepository } from '../AudienceRepository';
-import { Uuid } from '../../../../Context/Shared/domain/value-object/Uuid';
+import { AudienceRepository } from "../AudienceRepository";
+import { Uuid } from "../../../../Context/Shared/domain/value-object/Uuid";
 
 export default class DeleteAllAudiencesService {
   constructor(private audienceRepo: AudienceRepository) {}

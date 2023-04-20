@@ -9,7 +9,7 @@ const theModel =
       authorId: { type: String, required: true },
       content: { type: String, required: true },
       createdAt: Date,
-    })
+    }),
   );
 
 export default theModel;

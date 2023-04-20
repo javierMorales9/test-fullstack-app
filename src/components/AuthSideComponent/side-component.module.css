@@ -1,0 +1,6 @@
+.logoWrapper {
+  margin: 2rem;
+  position: relative;
+  height: 68px;
+  flex-grow: 1;
+}

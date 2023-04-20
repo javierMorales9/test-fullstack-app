@@ -1,5 +1,5 @@
-import { PageRepository } from '../repos/PageRepository';
-import { Uuid } from '../../../../Context/Shared/domain/value-object/Uuid';
+import { PageRepository } from "../repos/PageRepository";
+import { Uuid } from "../../../../Context/Shared/domain/value-object/Uuid";
 
 export default class DeletePageService {
   constructor(private pageRepo: PageRepository) {}

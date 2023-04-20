@@ -5,7 +5,7 @@ export function validateDates(...dates: (string | undefined)[]) {
     const date = new Date(el);
     if (isNaN(date.getTime()))
       throw new Error(
-        'Date ' + el + ' not valid. Use the YYYY-MM-DD format instead',
+        "Date " + el + " not valid. Use the YYYY-MM-DD format instead",
       );
 
     return date;

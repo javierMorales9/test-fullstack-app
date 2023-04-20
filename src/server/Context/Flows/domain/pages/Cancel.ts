@@ -9,7 +9,7 @@ export class Cancel extends Page {
     order: number,
     public title: string,
     public message: string,
-    id?: string
+    id?: string,
   ) {
     super(type, order, id);
   }
@@ -20,13 +20,16 @@ export class Cancel extends Page {
       request.order,
       request.title,
       request.message,
-      request.id
+      request.id,
     );
   }
 
   public generateView(answers: Answer[]): Promise<CancelView | null> {
     const previousAnswer = answers[answers.length - 1];
-    if (!previousAnswer) throw new Error("Unexpected error. No previous answers found in the cancel view creation.");
+    if (!previousAnswer)
+      throw new Error(
+        "Unexpected error. No previous answers found in the cancel view creation.",
+      );
 
     if (previousAnswer.type !== "offerpage")
       return Promise.resolve(new CancelView(this));

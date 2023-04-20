@@ -1,4 +1,4 @@
-import { CancellerHistory } from './CancellerHistory';
+import { CancellerHistory } from "./CancellerHistory";
 
 export interface CancellerHistoryRepository {
   getHistoryOfACanceller: (

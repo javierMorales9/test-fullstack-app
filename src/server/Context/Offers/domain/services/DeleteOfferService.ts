@@ -1,5 +1,5 @@
-import { OfferRepository } from '../OfferRepository';
-import { Uuid } from '../../../../Context/Shared/domain/value-object/Uuid';
+import { OfferRepository } from "../OfferRepository";
+import { Uuid } from "../../../../Context/Shared/domain/value-object/Uuid";
 
 export default class DeleteOfferService {
   constructor(private offerRepo: OfferRepository) {}

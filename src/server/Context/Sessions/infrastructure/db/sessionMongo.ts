@@ -1,5 +1,5 @@
-import { Schema, model } from 'mongoose';
-import { AnswerMongo, AnswerSchema } from './AnswerMongo';
+import { Schema, model } from "mongoose";
+import { AnswerMongo, AnswerSchema } from "./AnswerMongo";
 
 interface UserDataMongo {
   userId: string;
@@ -37,7 +37,7 @@ export const UserDataSchema = new Schema<UserDataMongo>({
 
 export const SessionSchema = new Schema<SessionMongo>({
   _id: { type: String },
-  flow: { type: String, ref: 'Flow' },
+  flow: { type: String, ref: "Flow" },
   subscription: { type: String },
   user: { type: String },
   token: { type: String, unique: true },
@@ -49,5 +49,5 @@ export const SessionSchema = new Schema<SessionMongo>({
   preview: Boolean,
 });
 
-export const SessionModel = model<SessionMongo>('Session', SessionSchema);
-export const answers = SessionSchema.path<Schema.Types.Subdocument>('answers');
+export const SessionModel = model<SessionMongo>("Session", SessionSchema);
+export const answers = SessionSchema.path<Schema.Types.Subdocument>("answers");

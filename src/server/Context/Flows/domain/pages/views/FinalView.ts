@@ -10,7 +10,10 @@ export class FinalView extends View {
     const answers = session.answers;
     let message = "";
     const previousAnswer = answers[answers.length - 1];
-    if (!previousAnswer) throw new Error("Unexpected error. No previous answers found in the final View creation.");
+    if (!previousAnswer)
+      throw new Error(
+        "Unexpected error. No previous answers found in the final View creation.",
+      );
 
     if (previousAnswer.type === "offerpage")
       message = previousAnswer.data.offer.type;

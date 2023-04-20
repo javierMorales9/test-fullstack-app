@@ -1,7 +1,7 @@
-import { OfferRepository } from '../domain/OfferRepository';
-import { Offer } from '../domain/Offer';
-import { Uuid } from '../../../Context/Shared/domain/value-object/Uuid';
-import OfferNotFoundError from '../domain/erorrs/OfferNotFoundError';
+import { OfferRepository } from "../domain/OfferRepository";
+import { Offer } from "../domain/Offer";
+import { Uuid } from "../../../Context/Shared/domain/value-object/Uuid";
+import OfferNotFoundError from "../domain/erorrs/OfferNotFoundError";
 
 export default class OfferByIdGetter {
   constructor(private offerRepo: OfferRepository) {}

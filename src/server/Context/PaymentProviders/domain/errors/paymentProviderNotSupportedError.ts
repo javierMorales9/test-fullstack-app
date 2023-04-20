@@ -2,8 +2,8 @@ export class PaymentProviderNotSupportedError extends Error {
   private msg: string;
 
   constructor(paymentProvider?: string) {
-    const paymentProv = paymentProvider !== undefined ? paymentProvider : '';
-    const msg = 'Payment provider ' + paymentProv + ' not supported';
+    const paymentProv = paymentProvider !== undefined ? paymentProvider : "";
+    const msg = "Payment provider " + paymentProv + " not supported";
 
     super(msg);
 

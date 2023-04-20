@@ -1,5 +1,5 @@
-import { View } from './View';
-import { TextArea } from '../TextArea';
+import { View } from "./View";
+import { TextArea } from "../TextArea";
 
 export class TextAreaView extends View {
   public title: string;

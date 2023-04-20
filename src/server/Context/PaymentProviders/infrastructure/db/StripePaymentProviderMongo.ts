@@ -1,5 +1,5 @@
-import { Schema } from 'mongoose';
-import { PaymentProviderModel } from './PaymentProviderMongo';
+import { Schema } from "mongoose";
+import { PaymentProviderModel } from "./PaymentProviderMongo";
 
 export interface StripePaymentProviderMongo {
   account: string;
@@ -7,12 +7,12 @@ export interface StripePaymentProviderMongo {
 }
 
 const StripePaymentProviderSchema = new Schema<StripePaymentProviderMongo>({
-  account: { type: String, ref: 'Account' },
+  account: { type: String, ref: "Account" },
   apiKey: { type: String, required: true },
 });
 
 export const StripePaymentProviderModel =
   PaymentProviderModel.discriminator<StripePaymentProviderMongo>(
-    'stripe',
+    "stripe",
     StripePaymentProviderSchema,
   );

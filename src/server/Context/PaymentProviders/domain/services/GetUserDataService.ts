@@ -1,4 +1,4 @@
-import GetPaymentProviderService from './GetPaymentProviderService';
+import GetPaymentProviderService from "./GetPaymentProviderService";
 
 export default class GetUserDataService {
   constructor(private getPaymentProvider: GetPaymentProviderService) {}
@@ -8,7 +8,7 @@ export default class GetUserDataService {
     accountId: string,
     paymentProvider?: string,
   ) {
-    if (!paymentProvider) paymentProvider = 'stripe';
+    if (!paymentProvider) paymentProvider = "stripe";
     const paymentRepo = await this.getPaymentProvider.execute(
       paymentProvider,
       accountId,
@@ -16,7 +16,7 @@ export default class GetUserDataService {
     const userData = await paymentRepo.getUserData(userId);
 
     if (!userData)
-      throw new Error('User given with id: ' + userId + " don't exist");
+      throw new Error("User given with id: " + userId + " don't exist");
 
     return userData;
   }

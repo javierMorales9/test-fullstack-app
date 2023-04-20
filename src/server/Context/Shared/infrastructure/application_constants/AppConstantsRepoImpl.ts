@@ -1,6 +1,6 @@
-import AppConstantsRepo from './appConstantsRepo';
-import { AppConstants } from './AppConstants';
-import { AppConstantsModel } from './AppConstantsMongo';
+import AppConstantsRepo from "./appConstantsRepo";
+import { AppConstants } from "./AppConstants";
+import { AppConstantsModel } from "./AppConstantsMongo";
 
 export class AppConstantsRepoImpl implements AppConstantsRepo {
   public async getAll(): Promise<AppConstants | null> {

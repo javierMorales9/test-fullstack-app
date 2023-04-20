@@ -1,5 +1,5 @@
-import { Schema, model } from 'mongoose';
-import { FlowDesign } from '../../../domain/FlowDesign';
+import { Schema, model } from "mongoose";
+import { FlowDesign } from "../../../domain/FlowDesign";
 
 export interface FlowMongo {
   _id: string;
@@ -34,9 +34,9 @@ const FlowSchema = new Schema<FlowMongo>({
   _id: { type: String },
   name: { type: String, required: true },
   description: { type: String },
-  pages: { type: [String], ref: 'Page' },
-  account: { type: String, ref: 'Account' },
-  audiences: { type: [String], ref: 'Audience' },
+  pages: { type: [String], ref: "Page" },
+  account: { type: String, ref: "Account" },
+  audiences: { type: [String], ref: "Audience" },
   activated: { type: Boolean },
   design: { type: FlowDesignSchema },
   createdAt: Date,
@@ -46,4 +46,4 @@ const FlowSchema = new Schema<FlowMongo>({
   paymentProvider: String,
 });
 
-export const FlowModel = model<FlowMongo>('Flow', FlowSchema);
+export const FlowModel = model<FlowMongo>("Flow", FlowSchema);

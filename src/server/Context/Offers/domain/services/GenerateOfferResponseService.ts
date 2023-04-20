@@ -1,5 +1,5 @@
-import OfferByIdGetter from '../../application/OfferByIdGetter';
-import { createOfferResponse } from '../response/OfferResponse';
+import OfferByIdGetter from "../../application/OfferByIdGetter";
+import { createOfferResponse } from "../response/OfferResponse";
 
 export default class GenerateOfferResponseService {
   constructor(private offerGetter: OfferByIdGetter) {}

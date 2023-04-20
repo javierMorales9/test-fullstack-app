@@ -1,5 +1,5 @@
-import { Schema } from 'mongoose';
-import { OfferModel } from './OfferMongo';
+import { Schema } from "mongoose";
+import { OfferModel } from "./OfferMongo";
 
 export interface CustomContentMongo {
   _id: string;
@@ -12,10 +12,10 @@ const CustomContentSchema = new Schema<CustomContentMongo>({
   _id: { type: String },
   title: { type: String, required: true },
   content: { type: String, required: true },
-  account: { type: String, ref: 'Account' },
+  account: { type: String, ref: "Account" },
 });
 
 export const CustomContentModel = OfferModel.discriminator<CustomContentMongo>(
-  'CustomContentOffer',
+  "CustomContentOffer",
   CustomContentSchema,
 );
