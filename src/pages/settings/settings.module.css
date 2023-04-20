@@ -1,0 +1,37 @@
+.wrapper {
+    @apply flex justify-start items-start gap-x-7 gap-y-5 flex-wrap md:flex-nowrap;
+}
+
+.left {
+    @apply flex-shrink-0 flex-grow-0 md:w-72 w-full    ;
+}
+
+.right {
+    @apply flex-grow;
+}
+
+.shadow {
+    @apply mb-3;
+    box-shadow: 0px 12px 16px 0px rgba(0, 0, 0, 0.08);
+}
+
+.status {
+    @apply mt-3 rounded  text-grey-4 font-semibold text-sm p-2 flex justify-center items-center gap-x-2 mb-7;
+}
+
+.status.active{
+    @apply bg-success;
+}
+
+.status.inactive{
+    @apply bg-error;
+}
+
+.provider {
+    @apply flex justify-start items-center gap-4;
+}
+
+.title {
+    @apply font-bold text-2xl text-primary;
+    line-height: 48px;
+}

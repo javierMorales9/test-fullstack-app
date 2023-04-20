@@ -1,0 +1,122 @@
+.info {
+    @apply bg-white py-12 px-6 text-center;
+}
+
+.info .userName {
+    @apply font-semibold text-black;
+    font-size: 36px;
+    line-height: 48px;
+}
+
+.info p {
+    @apply text-black-3 font-medium mt-2 mb-5;
+    font-size: 14px;
+    line-height: 20px;
+}
+
+.stats {
+    @apply flex justify-center items-center gap-x-4;
+}
+
+.stats .card {
+    @apply font-semibold bg-grey-4 rounded text-black-3 flex justify-center items-center;
+    font-size: 14px;
+    line-height: 20px;
+    padding: 6px 8px;
+    column-gap: 6px;
+}
+
+.stats .card .icon {
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+}
+
+.createNew {
+    @apply container bg-white rounded h-full flex justify-center items-center p-8;
+}
+
+.createNew .content {
+    @apply mx-auto text-center;
+    max-width: 355px;
+}
+
+.createNew .content .title {
+    @apply text-black font-semibold;
+    font-size: 18px;
+    line-height: 25px;
+}
+
+.createNew .content p {
+    @apply text-black-2 my-5 text-sm;
+    font-weight: 400;
+}
+
+.createNew .content .btnCreate {
+    @apply mx-auto;
+    min-width: 164px;
+}
+
+.flows {
+    @apply container pb-14;
+}
+
+.flows .btnCreate {
+    margin: 56px 0;
+    min-width: 164px;
+}
+
+.flows .flowsWrapper {
+    @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8;
+}
+
+.flow {
+    @apply bg-white rounded py-6 px-5 flex justify-start flex-col;
+
+    box-sizing: border-box;
+    transform: translate3d(var(--translate-x, 0), var(--translate-y, 0), 0)
+    scaleX(var(--scale-x, 1)) scaleY(var(--scale-y, 1));
+    transform-origin: 0 0;
+    touch-action: manipulation;
+}
+
+.flow.fadeIn {
+    animation: fadeIn 500ms ease;
+}
+
+.flow.dragOverlay {
+    --scale: 1.05;
+    --box-shadow:0 0 0 calc(1px / var(--scale-x, 1)) rgba(63, 63, 68, 0.05),0 1px calc(3px / var(--scale-x, 1)) 0 rgba(34, 33, 81, 0.15);
+    --box-shadow-picked-up:0 0 0 calc(1px / var(--scale-x, 1)) rgba(63, 63, 68, 0.05),-1px 0 15px 0 rgba(34, 33, 81, 0.01), 0px 15px 15px 0 rgba(34, 33, 81, 0.25);
+    z-index: 999;
+}
+
+.flow.dragOverlay a {
+    pointer-events: none;
+}
+
+.flow > * {
+    flex-shrink: 0;
+}
+
+
+.flow .details {
+    @apply flex-grow mt-4 mb-8  ;
+}
+
+.flow .details .title {
+    @apply font-semibold text-lg text-black;
+    line-height: 25px;
+}
+
+.flow .details .description {
+    @apply text-sm text-black-2 mt-3;
+}
+
+.flow .top, .flow .bottom {
+    @apply flex justify-between items-center;
+}
+
+.flow .bottom .date {
+    @apply text-sm text-grey font-semibold;
+}

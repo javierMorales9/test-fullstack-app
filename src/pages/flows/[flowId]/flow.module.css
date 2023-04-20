@@ -1,0 +1,41 @@
+
+.brief {
+    @apply container bg-white rounded lg:px-20 px-6 py-14 my-20;
+
+}
+
+.top {
+    @apply grid lg:grid-cols-3 grid-cols-1 gap-y-10 mb-20
+}
+
+.top .left .description {
+    letter-spacing: 0px;
+    margin-top: 10px;
+    @apply text-sm font-normal text-black-2
+}
+
+.top .left .title {
+    @apply font-semibold mt-3 flex justify-between items-center;
+    font-size: 32px;
+    line-height: 48px;
+}
+
+.right {
+    @apply grid grid-cols-1 gap-y-4 lg:col-start-3;
+}
+
+.right .info {
+    @apply flex justify-between items-center gap-2;
+}
+
+.right .info p {
+    @apply text-base font-medium text-black-3;
+}
+
+.right .info span {
+    @apply text-base font-medium text-black-2;
+}
+
+.buttonsWrapper {
+    @apply grid md:grid-cols-4 grid-cols-1 gap-5;
+}

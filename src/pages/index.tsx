@@ -1,141 +1,325 @@
-import { SignInButton, UserButton, useUser } from "@clerk/nextjs";
-import { type NextPage } from "next";
+import React, { useEffect, useState } from "react";
+import withAuth from "~/HOC/withAuth";
+import Loader from "~/components/Loader";
+import TopBar from "~/components/Navigation/TopBar";
+import StatsCard from "~/components/Stats/StatsCard";
+import CustomInput from "~/components/CustomInput/index2";
+import RevenueIcon from "public/images/icons/revenue.inline.svg";
+import RatioIcon from "public/images/icons/switch_account.inline.svg";
+import UsersIcon from "public/images/icons/receipt.inline.svg";
+import CancelIcon from "public/images/icons/undo.inline.svg";
+import { wrapper, h2 } from "~/styles/styles.module.css";
+import { Doughnut } from "react-chartjs-2";
+import { getStatsAPI } from "~/apis/session";
+import { getFlowsAPI } from "~/apis/flow";
+import Pagination from "~/components/Pagination";
+import { PRICE_FORMATTER } from "~/utils/constants";
+import styles from "./stats.module.css";
 
-import { api } from "~/utils/api";
+import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 
-import { LoadingPage, LoadingSpinner } from "~/components/loading";
-import { useState } from "react";
-import { toast } from "react-hot-toast";
-import { PageLayout } from "~/components/layout";
-import { PostView } from "~/components/postview";
+ChartJS.register(ArcElement, Tooltip, Legend);
 
-const CreatePostWizard = () => {
-  const { user } = useUser();
+const colors = ["#5542F6", "#FA699D", "#20C9AC", "#00A5FF"];
 
-  const [input, setInput] = useState("");
+const limit = 5;
 
-  const ctx = api.useContext();
+const Stats = () => {
+  const [stats, setStats] = useState<{
+    boostedRevenue: number;
+    savedRatio: number;
+    savedUsers: number;
+    cancelUsers: number;
+    cancellationReasonsStats: [{ _id: string; count: number }];
+  }>();
+  const [startDate, setStartDate] = useState("");
+  const [endDate, setEndDate] = useState("");
+  const [loadingStats, setLoadingStats] = useState(true);
+  const [loadingFlows, setLoadingFlows] = useState(true);
+  const [pagination, setPagination] = useState({ currentPage: 1 });
+  const [flows, setFlows] = useState<{
+    flows: {
+      id: string;
+      name: string;
+      updatedAt: string;
+      visualizations: number;
+      boostedRevenue: number;
+    }[];
+    totalCount: number;
+  }>({ flows: [], totalCount: 1 });
 
-  const { mutate, isLoading: isPosting } = api.posts.create.useMutation({
-    onSuccess: () => {
-      setInput("");
-      void ctx.posts.getAll.invalidate();
-    },
-    onError: (e) => {
-      const errorMessage = e.data?.zodError?.fieldErrors.content;
-      if (errorMessage && errorMessage[0]) {
-        toast.error(errorMessage[0]);
-      } else {
-        toast.error("Failed to post! Please try again later.");
-      }
-    },
-  });
+  const fetchStats = async (payload = {}) => {
+    setLoadingStats(true);
+    const response = await getStatsAPI(payload);
+    if (response.isSuccess()) {
+      setStats(response.success());
+    }
+    setLoadingStats(false);
+  };
 
-  if (!user) return null;
+  useEffect(() => {
+    fetchStats({ startDate, endDate });
+  }, [startDate, endDate]);
+
+  const fetchFlows = async () => {
+    setLoadingFlows(true);
+    const response = await getFlowsAPI({
+      page: pagination.currentPage.toString(),
+      length: limit.toString(),
+    });
+    if (response.isSuccess()) {
+      setFlows(response.success());
+    }
+    setLoadingFlows(false);
+  };
+  useEffect(() => {
+    fetchFlows();
+  }, [pagination]);
+
+  if (loadingStats) {
+    return <Loader fullScreen />;
+  }
+
+  const handleDateChange = (e: any) => {
+    const { name, value } = e.target;
+    if (name === "startDate") {
+      setStartDate(value);
+    }
+    if (name === "endDate") {
+      setEndDate(value);
+    }
+  };
+
+  const handlePreviousPage = () => {
+    setPagination((prevState) => ({
+      ...prevState,
+      currentPage: prevState.currentPage - 1,
+    }));
+  };
+
+  const handleNextPage = () => {
+    setPagination((prevState) => ({
+      ...prevState,
+      currentPage: prevState.currentPage + 1,
+    }));
+  };
+
+  const handlePage = (page: number) => {
+    setPagination((prevState) => ({
+      ...prevState,
+      currentPage: page,
+    }));
+  };
 
   return (
-    <div className="flex w-full gap-3">
-      <UserButton
-        appearance={{
-          elements: {
-            userButtonAvatarBox: {
-              width: 56,
-              height: 56,
-            },
-          },
-        }}
-      />
-      <input
-        placeholder="Type some emojis!"
-        className="grow bg-transparent outline-none"
-        type="text"
-        value={input}
-        onChange={(e) => setInput(e.target.value)}
-        onKeyDown={(e) => {
-          if (e.key === "Enter") {
-            e.preventDefault();
-            if (input !== "") {
-              mutate({ content: input });
-            }
-          }
-        }}
-        disabled={isPosting}
-      />
-      {input !== "" && !isPosting && (
-        <button onClick={() => mutate({ content: input })}>Post</button>
-      )}
-      {isPosting && (
-        <div className="flex items-center justify-center">
-          <LoadingSpinner size={20} />
+    <>
+      <TopBar active={"stats"} />
+      <div className={wrapper}>
+        <h2 className={`${h2} ${styles.header}`}>
+          Stats
+          <div className={styles.dateWrapper}>
+            <CustomInput
+              type={"date"}
+              name={"startDate"}
+              value={startDate}
+              onChange={handleDateChange}
+            />
+            <CustomInput
+              type={"date"}
+              name={"endDate"}
+              value={endDate}
+              onChange={handleDateChange}
+            />
+          </div>
+        </h2>
+        <div className={styles.cards}>
+          <StatsCard
+            variant={"primary"}
+            change={"positive"}
+            icon={RevenueIcon}
+            title={"Boosted Revenue"}
+            value={PRICE_FORMATTER.format(stats?.boostedRevenue!)}
+            info={"21.9%"}
+            subInfo={"+1,65K €"}
+          />
+          <StatsCard
+            change={"positive"}
+            icon={RatioIcon}
+            title={"Saved Ratio"}
+            value={`${stats?.savedRatio.toFixed(2)}%`}
+            subInfo={"13% this month"}
+          />
+          <StatsCard
+            change={"positive"}
+            icon={UsersIcon}
+            title={"Saved Users"}
+            value={`${stats?.savedUsers}`}
+            info={"5.7%"}
+            subInfo={"+7 today"}
+          />
+          <StatsCard
+            change={"negative"}
+            icon={CancelIcon}
+            title={"Cancel Users"}
+            value={`${stats?.cancelUsers}`}
+            info={"11%"}
+            subInfo={"+9 today"}
+          />
         </div>
-      )}
-    </div>
-  );
-};
-
-const Feed = () => {
-  const { data, isLoading: postsLoading } = api.posts.getAll.useQuery();
-
-  if (postsLoading)
-    return (
-      <div className="flex grow">
-        <LoadingPage />
-      </div>
-    );
-
-  if (!data) return <div>Something went wrong</div>;
-
-  return (
-    <div className="flex grow flex-col overflow-y-scroll">
-      {data.map((fullPost) => (
-        <PostView {...fullPost} key={fullPost.post.id} />
-      ))}
-    </div>
-  );
-};
-
-const Home: NextPage = () => {
-  const { isLoaded: userLoaded, isSignedIn } = useUser();
-
-  // Start fetching asap
-  api.posts.getAll.useQuery();
-
-  // Return empty div if user isn't loaded
-  if (!userLoaded) return <div />;
-
-  return (
-    <PageLayout>
-      <div className="flex border-b border-slate-400 p-4">
-        {!isSignedIn && (
-          <div className="flex justify-center">
-            <SignInButton />
+        <div className={styles.charts}>
+          <h2 className={`${h2} ${styles.h2}`}>
+            Cancellation Reasons
+            <span className={styles.iconWrapper}>
+              <UsersIcon />
+            </span>
+          </h2>
+          {stats?.cancellationReasonsStats.length ? (
+            <div className={styles.chart}>
+              <div className={styles.info}>
+                <div className={styles.left}>
+                  {stats?.cancellationReasonsStats.map(
+                    ({ _id: label, count: value }, index) => (
+                      <span key={index} className={styles.legend}>
+                        <span
+                          style={{ backgroundColor: colors[index] }}
+                          className={styles.bullet}
+                        ></span>
+                        {label} ({value}%)
+                      </span>
+                    ),
+                  )}
+                </div>
+                <div className={styles.right}>
+                  <Doughnut
+                    options={{
+                      cutout: "88%",
+                      plugins: {
+                        legend: {
+                          display: false,
+                        },
+                      },
+                    }}
+                    data={{
+                      labels: stats?.cancellationReasonsStats.map(
+                        ({ _id }) => _id,
+                      ),
+                      datasets: [
+                        {
+                          data: stats?.cancellationReasonsStats.map(
+                            ({ count: value }) => value,
+                          ),
+                          backgroundColor: colors,
+                          hoverOffset: 4,
+                        },
+                      ],
+                    }}
+                  />
+                </div>
+              </div>
+            </div>
+          ) : (
+            <h2>No Data</h2>
+          )}
+        </div>
+        {/*
+        <div className={styles.savedCharts}>
+          <div className={styles.left}>
+            <LineChart />
           </div>
-        )}
-        {isSignedIn && <CreatePostWizard />}
-      </div>
-
-      <Feed />
-      <div className="flex items-center justify-between p-4 text-xl">
-        <a href="https://github.com/t3dotgg/chirp">
-          <div className="flex items-center justify-center gap-2">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="white"
-            >
-              <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
-            </svg>
-            <div>Github</div>
+          <div className={styles.right}>
+            <span>Movement</span>
+            <div className={styles.chartWrapper}>
+              <Doughnut
+                options={{
+                  cutout: '90%',
+                  plugins: {
+                    legend: {
+                      display: true,
+                      position: 'bottom',
+                      labels: {
+                        usePointStyle: true,
+                        // pointStyleWidth: 10,/
+                        boxWidth: 5,
+                        boxHeight: 5,
+                        padding: 16,
+                        font: {
+                          size: 14,
+                          family: "'Manrope', sans-serif",
+                        },
+                      },
+                    },
+                  },
+                }}
+                data={{
+                  labels: ['Total', 'Boosted', 'Lost'],
+                  datasets: [
+                    {
+                      data: [150, 100, 50],
+                      backgroundColor: ['#5542F6', '#20C9AC', '#FC3400'],
+                      hoverOffset: 8,
+                      borderWidth: 0,
+                    },
+                  ],
+                }}
+              />
+            </div>
           </div>
-        </a>
-        <span>
-          <a href="https://patreon.com/t3dotgg">🐦 Chirp Blue</a>
-        </span>
+        </div>
+        */}
+        <div className={styles.listingWrapper}>
+          <div className={styles.listing}>
+            <table className={styles.table}>
+              <thead>
+                <tr>
+                  <th align={"left"}>Flow Id</th>
+                  <th align={"left"}>Flow Name</th>
+                  <th align={"center"}>Last edition</th>
+                  <th align={"center"}>Triggers</th>
+                  <th align={"center"}>Boosted</th>
+                  {/*<th align={'center'}>Cancellations</th>*/}
+                </tr>
+              </thead>
+              <tbody>
+                {flows?.flows?.map((flow) => {
+                  const {
+                    id,
+                    name,
+                    updatedAt,
+                    visualizations,
+                    boostedRevenue,
+                    // cancellations,
+                  } = flow;
+                  return (
+                    <tr key={id}>
+                      <td>{id}</td>
+                      <td className={styles.bold}>{name}</td>
+                      <td className={`${styles.bold} ${styles.centered}`}>
+                        {new Date(updatedAt).toLocaleDateString()}
+                      </td>
+                      <td className={styles.centered}>{visualizations}</td>
+                      <td className={`${styles.success} ${styles.centered}`}>
+                        {PRICE_FORMATTER.format(boostedRevenue)}
+                      </td>
+                      {/*<td className={styles.centered}>{cancellations}</td>*/}
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+            {loadingFlows && <Loader relative />}
+          </div>
+          <Pagination
+            currentPage={pagination.currentPage}
+            limit={limit}
+            onNext={handleNextPage}
+            onPrev={handlePreviousPage}
+            onPageClick={handlePage}
+            totalCount={flows?.totalCount}
+          />
+        </div>
       </div>
-    </PageLayout>
+    </>
   );
 };
 
-export default Home;
+export default withAuth(Stats);

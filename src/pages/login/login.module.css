@@ -1,0 +1,44 @@
+.right{
+    @apply lg:pl-24 flex justify-center lg:items-start items-center flex-col bg-white;
+}
+
+.formWrapper {
+    padding: 2rem 2.25rem;
+    min-height: 596px;
+    max-width: 470px;
+    width: 100%;
+}
+
+.formWrapper.forgotPassword{
+    min-height: auto;
+}
+
+.subText {
+    margin-top: 12px;
+    line-height: 1.429;
+    font-size: 14px;
+}
+
+.link {
+    margin-left: 4px;
+}
+
+.linkText{
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+.form{
+    @apply mt-9 mb-4;
+}
+
+.btnSubmit{
+    padding: 14px 16px;
+    min-width: 164px;
+}
+
+.googleSignin{
+    @apply w-full flex justify-center items-center gap-2 text-sm font-bold text-black;
+    padding: 14px;
+    line-height: 1.429;
+}

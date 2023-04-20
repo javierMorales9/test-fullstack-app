@@ -1,0 +1,51 @@
+name: Running the linter
+
+on:
+  pull_request:
+    branches: ['*']
+    types: [opened, edited]
+  workflow_call:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - uses: actions/setup-node@v3
+      with:
+        node-version: 16
+
+    - name: Cache node modules
+      id: cache-nodemodules
+      uses: actions/cache@v3
+      with:
+        path: node_modules
+        key: build-${{ hashFiles('**/package-lock.json')}}
+
+    - name: Install Dependencies
+      if: steps.cache-nodemodules.outputs.cache-hit != 'true'
+      run: npm ci
+  
+  lint:
+    needs: [build]
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+      with: 
+        fetch-depth: 0
+
+    - uses: actions/setup-node@v3
+      with:
+        node-version: 16
+
+    - uses: actions/cache@v3
+      id: restore-nodemodules
+      with:
+        path: node_modules
+        key: build-${{ hashFiles('**/package-lock.json')}}
+
+    - name: Lint
+      #run: npm run lint

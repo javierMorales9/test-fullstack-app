@@ -1,0 +1,18 @@
+.contentWrapper{
+    @apply grid grid-cols-1 lg:grid-cols-2 gap-y-8 gap-x-24;
+}
+
+.modalWrapper{
+    @apply sticky top-0 bg-black/20 mt-12;
+    padding: 50px;
+    border-radius: 20px;
+    /*max-width: 490px;*/
+    max-height: 100vh;
+    overflow: auto;
+}
+.btnCreate{
+    @apply mt-8 ml-auto block;
+    width: 100%;
+    max-width: 264px;
+
+}

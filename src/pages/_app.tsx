@@ -3,21 +3,31 @@ import { type AppType } from "next/app";
 import { api } from "~/utils/api";
 
 import "~/styles/global.css";
-import { ClerkProvider } from "@clerk/nextjs";
-import { Toaster } from "react-hot-toast";
-import Head from "next/head";
+import React from "react";
+import { UserProvider } from "~/contexts/userContext";
+import "public/css/modal.css";
+import "highlight.js/styles/atom-one-dark.css";
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer } from "react-toastify";
 
 const MyApp: AppType = ({ Component, pageProps }) => {
   return (
-    <ClerkProvider {...pageProps}>
-      <Head>
-        <title>Chirp</title>
-        <meta name="description" content="💭" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-      <Toaster position="bottom-center" />
-      <Component {...pageProps} />
-    </ClerkProvider>
+    <UserProvider>
+      <div id={"main"}>
+        <Component {...pageProps} />
+        <ToastContainer
+          position="bottom-left"
+          autoClose={5000}
+          hideProgressBar
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          //pauseOnVisibilityChange={false}
+          pauseOnHover={false}
+          theme="colored"
+        />
+      </div>
+    </UserProvider>
   );
 };
 
