@@ -31,7 +31,7 @@ const Register = () => {
     terms,
   }) => {
     if (!terms) {
-      toast.error('Please accept our Terms of use before continuing.');
+      toast.error("Please accept our Terms of use before continuing.");
       return;
     }
 
@@ -44,8 +44,8 @@ const Register = () => {
       password,
     });
     if (response.isSuccess()) {
-      toast.success('User created Successfully');
-      toast.success('Logging you in...');
+      toast.success("User created Successfully");
+      toast.success("Logging you in...");
       const { token, user } = response.success() || {};
       if (!token) {
         setLoading(false);
@@ -58,7 +58,7 @@ const Register = () => {
     } else {
       const msg =
         response.fail()?.response?.data?.error ||
-        'Unable to create user. Please try again later';
+        "Unable to create user. Please try again later";
       toast.error(msg);
     }
 
@@ -67,71 +67,71 @@ const Register = () => {
 
   return (
     <>
-      <div className={'h-full grid grid-cols-1 lg:grid-cols-2 gap-y-8'}>
+      <div className={"grid h-full grid-cols-1 gap-y-8 lg:grid-cols-2"}>
         <AuthSideComponent />
         <div className={loginStyles.right}>
           <div className={loginStyles.formWrapper}>
-            <h1 className={'h1'}>Create an Account</h1>
+            <h1 className={"h1"}>Create an Account</h1>
             <p className={`${loginStyles.subText} font-medium text-black`}>
               Already have an account?
-              <Link href={routes.login}>
-                <a className={`${loginStyles.link} link`}>Login</a>
+              <Link href={routes.login} className={`${loginStyles.link} link`}>
+                Login
               </Link>
             </p>
             <form
               className={loginStyles.form}
               onSubmit={handleSubmit(handleRegister)}
             >
-              <div className={'mb-6'}>
+              <div className={"mb-6"}>
                 <CustomInput
-                  variant={'floating'}
-                  type={'email'}
-                  label={'Email *'}
-                  name={'email'}
+                  variant={"floating"}
+                  type={"email"}
+                  label={"Email *"}
+                  name={"email"}
                   error={errors.email}
-                  {...register('email', { required: true })}
+                  {...register("email", { required: true })}
                 />
               </div>
-              <div className={'mb-6 grid grid-cols-2 gap-x-6'}>
+              <div className={"mb-6 grid grid-cols-2 gap-x-6"}>
                 <CustomInput
-                  variant={'floating'}
-                  type={'text'}
-                  label={'Name *'}
-                  name={'firstName'}
+                  variant={"floating"}
+                  type={"text"}
+                  label={"Name *"}
+                  name={"firstName"}
                   error={errors.firstName}
-                  {...register('firstName', { required: true })}
+                  {...register("firstName", { required: true })}
                 />
                 <CustomInput
-                  variant={'floating'}
-                  type={'text'}
-                  label={'Surname *'}
-                  name={'lastName'}
+                  variant={"floating"}
+                  type={"text"}
+                  label={"Surname *"}
+                  name={"lastName"}
                   error={errors.lastName}
-                  {...register('lastName', { required: true })}
+                  {...register("lastName", { required: true })}
                 />
               </div>
-              <div className={'mb-6'}>
+              <div className={"mb-6"}>
                 <CustomInput
-                  variant={'floating'}
-                  type={'password'}
-                  label={'Password *'}
-                  name={'password'}
+                  variant={"floating"}
+                  type={"password"}
+                  label={"Password *"}
+                  name={"password"}
                   error={errors.password}
-                  {...register('password', { required: true })}
+                  {...register("password", { required: true })}
                 />
               </div>
-              <div className={'flex justify-start items-start gap-x-4 mb-6 '}>
-                <input id={'terms'} type="checkbox" {...register('terms')} />
+              <div className={"mb-6 flex items-start justify-start gap-x-4 "}>
+                <input id={"terms"} type="checkbox" {...register("terms")} />
                 <label
-                  htmlFor={'terms'}
+                  htmlFor={"terms"}
                   className={`${loginStyles.linkText} linkText`}
                 >
                   If you click in “Create Account” means that you have read and
-                  accept our{' '}
+                  accept our{" "}
                   <a
-                    href={'https://www.clickout.io/legal/privacy'}
-                    target={'_blank'}
-                    className={'link'}
+                    href={"https://www.clickout.io/legal/privacy"}
+                    target={"_blank"}
+                    className={"link"}
                     rel="noreferrer"
                   >
                     Terms of use
@@ -139,9 +139,9 @@ const Register = () => {
                   .
                 </label>
               </div>
-              <div className="flex justify-between items-center">
+              <div className="flex items-center justify-between">
                 <Button
-                  type={'submit'}
+                  type={"submit"}
                   disabled={loading}
                   className={`w-full ${loginStyles.btnSubmit}`}
                 >

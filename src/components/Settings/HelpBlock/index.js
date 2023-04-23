@@ -33,8 +33,8 @@ const faqs = [
         You can set Clickout up in as little as 15 minutes (we've seen it
         happen). If you get fancier with segmentation or test environments, that
         adds a bit of overhead.{" "}
-        <Link href={routes.settingsScript}>
-          <a className={"link"}> Check out our documentation.</a>
+        <Link href={routes.settingsScript} className={"link"}>
+          Check out our documentation.
         </Link>
       </>
     ),

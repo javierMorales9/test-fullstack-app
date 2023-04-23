@@ -133,30 +133,26 @@ const FlowDetail = () => {
         </div>
         <div className={styles.buttonsWrapper}>
           <Link href={routes.editFlow(flowId)}>
-            <a>
-              <Button
-                type={"button"}
-                className={"w-full"}
-                variant={"outline"}
-                size={"large"}
-                icon={EditIcon}
-              >
-                Edit Flow
-              </Button>
-            </a>
+            <Button
+              type={"button"}
+              className={"w-full"}
+              variant={"outline"}
+              size={"large"}
+              icon={EditIcon}
+            >
+              Edit Flow
+            </Button>
           </Link>
           <Link href={routes.previewFlow(flowId)}>
-            <a>
-              <Button
-                type={"button"}
-                className={"w-full"}
-                variant={"outline"}
-                size={"large"}
-                icon={EyeIcon}
-              >
-                Preview Flow
-              </Button>
-            </a>
+            <Button
+              type={"button"}
+              className={"w-full"}
+              variant={"outline"}
+              size={"large"}
+              icon={EyeIcon}
+            >
+              Preview Flow
+            </Button>
           </Link>
           <Button
             type={"button"}

@@ -39,8 +39,11 @@ const ConfigurationBlock = () => {
             <h5 className={styles.title}>
               {accountData?.companyData?.name || "My company"}
             </h5>
-            <Link href={routes.settingsConfigurationCompany}>
-              <a className={styles.button}>Manage</a>
+            <Link
+              href={routes.settingsConfigurationCompany}
+              className={styles.button}
+            >
+              Manage
             </Link>
           </div>
         </div>
@@ -59,8 +62,8 @@ const ConfigurationBlock = () => {
         <div className={styles.block}>
           <div className={styles.top}>
             <h5 className={styles.title}>Authorized domains</h5>
-            <Link href={routes.settingsDomains}>
-              <a className={styles.button}>Manage</a>
+            <Link href={routes.settingsDomains} className={styles.button}>
+              Manage
             </Link>
           </div>
         </div>

@@ -134,15 +134,15 @@ const CompanyBlock = ({
                   resetField("accountImage");
                 }}
                 variant={"clean"}
-                className={"text-black-3 mt-2 w-full"}
+                className={"mt-2 w-full text-black-3"}
               >
                 Delete logo
               </Button>
               <p className={"label mt-12"}>
                 Manage your company logo. It will be visible in messages and
                 alerts.{" "}
-                <Link href={"#"}>
-                  <a className={"link"}>Más info</a>
+                <Link href={"#"} className={"link"}>
+                  More info
                 </Link>
               </p>
             </div>

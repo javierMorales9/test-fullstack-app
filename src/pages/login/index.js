@@ -53,8 +53,11 @@ const Login = () => {
             <h1 className={"h1"}>Login</h1>
             <p className={`${loginStyles.subText} font-medium text-black`}>
               Don’t have an account?
-              <Link href={routes.register}>
-                <a className={`${loginStyles.link} link`}>Create One</a>
+              <Link
+                href={routes.register}
+                className={`${loginStyles.link} link`}
+              >
+                Create One
               </Link>
             </p>
             <form

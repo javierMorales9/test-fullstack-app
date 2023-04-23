@@ -100,15 +100,13 @@ const Flows = () => {
           {flows && flows.length ? (
             <div className={styles.flows}>
               <Link href={routes.createFlow}>
-                <a>
-                  <Button
-                    size={"large"}
-                    className={styles.btnCreate}
-                    icon={addIcon}
-                  >
-                    Create new
-                  </Button>
-                </a>
+                <Button
+                  size={"large"}
+                  className={styles.btnCreate}
+                  icon={addIcon}
+                >
+                  Create new
+                </Button>
               </Link>
               <FlowsList fetchFlows={fetchFlows} flows={flows} />
             </div>

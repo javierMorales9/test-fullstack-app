@@ -53,53 +53,51 @@ const FlowCard = ({ flow, index }) => {
       }}
     >
       <Link href={routes.flow(id)}>
-        <a>
-          <div
-            className={styles.top}
-            style={{
-              justifyContent: "unset",
-            }}
-          >
-            <span className={"status-pill"}>
-              {status === "active" && "Activated"}
-              {status === "paused" && "Paused"}
+        <div
+          className={styles.top}
+          style={{
+            justifyContent: "unset",
+          }}
+        >
+          <span className={"status-pill"}>
+            {status === "active" && "Activated"}
+            {status === "paused" && "Paused"}
+          </span>
+          {paymentProvider ? (
+            <span
+              className={`status-pill ${providerPillClass(paymentProvider)}`}
+              style={{
+                marginLeft: ".5rem",
+              }}
+            >
+              {paymentProvider === "local" && "Local"}
+              {paymentProvider === "stripe" && "Stripe"}
+              {paymentProvider === "braintree" && "Braintree"}
             </span>
-            {paymentProvider ? (
-              <span
-                className={`status-pill ${providerPillClass(paymentProvider)}`}
-                style={{
-                  marginLeft: ".5rem",
-                }}
-              >
-                {paymentProvider === "local" && "Local"}
-                {paymentProvider === "stripe" && "Stripe"}
-                {paymentProvider === "braintree" && "Braintree"}
-              </span>
-            ) : (
-              ""
-            )}
-            <span className="order-number ml-auto">{order}</span>
-            {/*<Button*/}
-            {/*  className={''}*/}
-            {/*  size={'small'}*/}
-            {/*  variant={'clean'}*/}
-            {/*  icon={moreIcon}*/}
-            {/*/>*/}
+          ) : (
+            ""
+          )}
+          <span className="order-number ml-auto">{order}</span>
+          {/*<Button*/}
+          {/*  className={''}*/}
+          {/*  size={'small'}*/}
+          {/*  variant={'clean'}*/}
+          {/*  icon={moreIcon}*/}
+          {/*/>*/}
+        </div>
+        <div className={styles.details}>
+          <h4 className={styles.title}>{name}</h4>
+          <p className={styles.description}>{description}</p>
+        </div>
+        <div className={styles.bottom}>
+          <span className={styles.date}>{date}</span>
+          <div className={"stats-count"}>
+            {count}
+            <span className={"icon"}>
+              <ChartIcon />
+            </span>
           </div>
-          <div className={styles.details}>
-            <h4 className={styles.title}>{name}</h4>
-            <p className={styles.description}>{description}</p>
-          </div>
-          <div className={styles.bottom}>
-            <span className={styles.date}>{date}</span>
-            <div className={"stats-count"}>
-              {count}
-              <span className={"icon"}>
-                <ChartIcon />
-              </span>
-            </div>
-          </div>
-        </a>
+        </div>
       </Link>
     </div>
   );

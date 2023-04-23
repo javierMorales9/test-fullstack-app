@@ -98,16 +98,14 @@ const TopBar = ({ active }) => {
     <header className={styles.header}>
       <div className={styles.wrapper}>
         <div>
-          <Link href={routes.home}>
-            <a className={styles.logo}>
-              <Image
-                src={logo}
-                layout={"fill"}
-                objectFit={"contain"}
-                objectPosition={"center"}
-                alt={"Clickout Logo"}
-              />
-            </a>
+          <Link href={routes.home} className={styles.logo}>
+            <Image
+              src={logo}
+              layout={"fill"}
+              objectFit={"contain"}
+              objectPosition={"center"}
+              alt={"Clickout Logo"}
+            />
           </Link>
         </div>
         <div className={styles.tabs}>
@@ -115,17 +113,17 @@ const TopBar = ({ active }) => {
             renderer ? (
               <div key={id}>{renderer()}</div>
             ) : (
-              <Link key={id} href={href}>
-                <a
-                  className={`${styles.tab} ${
-                    value === active ? styles.active : ""
-                  }`}
-                >
-                  <span className={styles.icon}>
-                    <Icon />
-                  </span>
-                  {title}
-                </a>
+              <Link
+                key={id}
+                href={href}
+                className={`${styles.tab} ${
+                  value === active ? styles.active : ""
+                }`}
+              >
+                <span className={styles.icon}>
+                  <Icon />
+                </span>
+                {title}
               </Link>
             ),
           )}

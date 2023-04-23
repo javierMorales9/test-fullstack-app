@@ -30,8 +30,8 @@ const ForgotPassword = () => {
               <div className="flex items-center justify-between">
                 <p className={`${styles.subText} font-medium text-black`}>
                   Go back to{" "}
-                  <Link href={routes.login}>
-                    <a className={`link text-sm`}>Login</a>
+                  <Link href={routes.login} className={`link text-sm`}>
+                    Login
                   </Link>
                 </p>
 

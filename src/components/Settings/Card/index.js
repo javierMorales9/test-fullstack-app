@@ -21,8 +21,8 @@ const Card = ({ title, p0, pb0, mb4, children, backTo, className }) => {
                     {typeof t === "string" ? (
                       t
                     ) : (
-                      <Link href={t.href}>
-                        <a className={styles.link}>{t.label} > </a>
+                      <Link href={t.href} className={styles.link}>
+                        {t.label} >
                       </Link>
                     )}
                   </React.Fragment>
@@ -30,9 +30,7 @@ const Card = ({ title, p0, pb0, mb4, children, backTo, className }) => {
           </span>
           {backTo && (
             <Link href={backTo}>
-              <a>
-                <Button variant={"outline"}>Go Back</Button>
-              </a>
+              <Button variant={"outline"}>Go Back</Button>
             </Link>
           )}
         </h3>

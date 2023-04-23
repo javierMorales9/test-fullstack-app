@@ -166,11 +166,9 @@ const Preview = () => {
       <TopBar active={"flows"} />
       <div className={"container  p-4 "}>
         <Link href={routes.flow(flowId)}>
-          <a>
-            <Button variant={"outline"} type={"button"}>
-              Go Back
-            </Button>
-          </a>
+          <Button variant={"outline"} type={"button"}>
+            Go Back
+          </Button>
         </Link>
         <div className={"flex justify-center gap-2"}>
           <Button disabled={!!session} onClick={startSession}>
@@ -570,28 +568,36 @@ const Preview = () => {
               background-color: ${colors.buttonColor};
               color: ${colors.buttonTextColor};
             }
+
             .modal__text-success {
               color: ${colors.acceptButtonTextColor};
             }
+
             .modal__text-error {
               color: ${colors.wrongAnswerButtonTextColor};
             }
+
             .modal__error-message {
               color: ${colors.wrongAnswerButtonTextColor};
             }
+
             .modal__text-title {
               color: ${colors.mainTitleColor};
             }
+
             .modal__info {
               color: ${colors.descriptionTextColor};
             }
+
             .modal__label {
               color: ${colors.subtitleTextColor};
             }
+
             .modal__radio label {
               color: ${colors.surveyOptionsColor};
               background-color: ${colors.surveyBoxColor};
             }
+
             .modal__radio input:checked + label {
               background-color: ${colors.buttonColor};
               color: ${colors.buttonTextColor};

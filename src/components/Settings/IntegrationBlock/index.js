@@ -83,11 +83,13 @@ const HelpBlock = () => {
         <div className={styles.wrapper}>
           {paymentProviders.map(({ id, label, img, href, enabled }) =>
             enabled ? (
-              <Link key={id} href={href}>
-                <a className={`${titleCss} ${styles.provider}`}>
-                  <Image src={img} width={36} height={36} />
-                  {label}
-                </a>
+              <Link
+                key={id}
+                href={href}
+                className={`${titleCss} ${styles.provider}`}
+              >
+                <Image src={img} width={36} height={36} />
+                {label}
               </Link>
             ) : (
               <>
