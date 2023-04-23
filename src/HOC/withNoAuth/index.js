@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import Loader from "~/components/Loader";
 import routes from "~/utils/routes";
 import Router from "next/router";
-import useUser from "~contexts/userContext";
+import useUser from "~/contexts/userContext";
 
 const withNoAuth = (Component) => {
   const NoAuthComponent = () => {

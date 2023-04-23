@@ -1,6 +1,6 @@
 import React from "react";
 import Step from "./Step";
-import useUser from "~contexts/userContext";
+import useUser from "~/contexts/userContext";
 
 const IntegrationBlock = () => {
   const { accountData, loading } = useUser();

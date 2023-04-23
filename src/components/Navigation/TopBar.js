@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import Image from "next/image";
 import Link from "next/link";
 import routes from "~/utils/routes";
-import useUser from "~contexts/userContext";
+import useUser from "~/contexts/userContext";
 import logo from "public/images/logo-primary.svg";
 import FlowsIcon from "public/images/icons/flows.inline.svg";
 import UserIcon from "public/images/icons/account_circle.svg";

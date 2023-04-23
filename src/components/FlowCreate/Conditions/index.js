@@ -6,7 +6,7 @@ import Button from "~/components/Button";
 import Block from "~/components/FlowCreateBlock";
 import Condition from "./Condition";
 import { getPlansAPI } from "~/apis/payment";
-import useForm from "~contexts/useFormContext";
+import useForm from "~/contexts/useFormContext";
 
 const ConditionsBlock = ({ fRef }) => {
   const { control, watch } = useForm();
@@ -70,7 +70,7 @@ const ConditionsBlock = ({ fRef }) => {
           plans={plans}
         />
       ))}
-      <div className={"border-grey-3 border-t py-1"}>
+      <div className={"border-t border-grey-3 py-1"}>
         <Button
           type={"button"}
           size={"large"}

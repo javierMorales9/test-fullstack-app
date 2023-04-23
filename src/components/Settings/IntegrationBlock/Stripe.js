@@ -8,7 +8,7 @@ import CancelIcon from "public/images/icons/cancel_circle.svg";
 import routes from "~/utils/routes";
 import CustomInput from "~/components/CustomInput/index2";
 import Button from "~/components/Button";
-import useUser from "~contexts/userContext";
+import useUser from "~/contexts/userContext";
 import { useForm } from "react-hook-form";
 import { addInfoAPI } from "~/apis/account";
 import { toast } from "react-toastify";

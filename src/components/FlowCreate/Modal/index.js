@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { OFFER_VALUES } from "~/utils/constants";
-import useUser from "~contexts/userContext";
+import useUser from "~/contexts/userContext";
 
 const closeIconUrl = "/images/icons/close.svg";
 const caretIconUrl = "/images/icons/caret.inline.svg";

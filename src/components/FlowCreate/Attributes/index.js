@@ -8,7 +8,7 @@ import AttributesIcon from "public/images/icons/attributes.svg";
 import CloseIcon from "public/images/icons/close.svg";
 import styles from "./Attribute.module.css";
 import { useFieldArray } from "react-hook-form";
-import useForm from "~contexts/useFormContext";
+import useForm from "~/contexts/useFormContext";
 
 const AttributesBlock = () => {
   const { register, watch, control } = useForm();
@@ -73,7 +73,7 @@ const AttributesBlock = () => {
           </div>
         ))}
       </div>
-      <div className={"border-grey-3 border-t py-1"}>
+      <div className={"border-t border-grey-3 py-1"}>
         <Button
           type={"button"}
           size={"large"}

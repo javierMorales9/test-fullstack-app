@@ -5,7 +5,7 @@ import Button from "~/components/Button";
 import Image from "next/image";
 import CloseIcon from "public/images/icons/close.svg";
 import styles from "./Conditions.module.css";
-import useForm from "~contexts/useFormContext";
+import useForm from "~/contexts/useFormContext";
 
 //   ["plan", ["=", "!="]],
 //   ["subscriptionPrice", ["=", "!=","<", ">","<=", ">="]],

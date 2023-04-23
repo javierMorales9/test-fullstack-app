@@ -4,7 +4,7 @@ import Block from "~/components/FlowCreateBlock";
 import SetUpIcon from "public/images/icons/record_voice_over.inline.svg";
 import CustomInput from "~/components/CustomInput/index2";
 import CustomSelect from "~/components/CustomSelect";
-import useForm from "~contexts/useFormContext";
+import useForm from "~/contexts/useFormContext";
 import { getPaymentProvidersAPI } from "~/apis/payment";
 
 const SetUpBlock = ({ fRef }) => {

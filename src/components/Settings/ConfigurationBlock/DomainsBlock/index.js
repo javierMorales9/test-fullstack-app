@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import Card from "~/components/Settings/Card";
 import CustomInput from "~/components/CustomInput/index2";
 import Button from "~/components/Button";
-import useUser from "~contexts/userContext";
+import useUser from "~/contexts/userContext";
 import Link from "next/link";
 import routes from "~/utils/routes";
 import DomainIcon from "public/images/icons/domain.svg";

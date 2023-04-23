@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import Block from "~/components/FlowCreateBlock";
 import OfferIcon from "public/images/icons/offer.inline.svg";
 import Offer from "./Offer";
-import useForm from "~contexts/useFormContext";
+import useForm from "~/contexts/useFormContext";
 import { getCouponsAPI } from "~/apis/offer";
 
 const OfferBlock = ({ surveyOptions, fRef }) => {
@@ -29,7 +29,7 @@ const OfferBlock = ({ surveyOptions, fRef }) => {
     label: (
       <>
         {coupon.name}:{" "}
-        <span className={"text-primary font-normal"}>{coupon.id}</span>
+        <span className={"font-normal text-primary"}>{coupon.id}</span>
       </>
     ),
   }));

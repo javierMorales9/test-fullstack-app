@@ -6,7 +6,7 @@ import MenuIcon from "public/images/icons/menu.svg";
 import CustomInput from "~/components/CustomInput/index2";
 import Button from "~/components/Button";
 import CloseIcon from "public/images/icons/close.svg";
-import useForm from "~contexts/useFormContext";
+import useForm from "~/contexts/useFormContext";
 import styles from "./Survey.module.css";
 
 const reorder = (list, startIndex, endIndex) => {

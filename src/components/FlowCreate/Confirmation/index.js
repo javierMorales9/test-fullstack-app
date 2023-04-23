@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import Block from "~/components/FlowCreateBlock";
 import ConfirmationIcon from "public/images/icons/confirmation.inline.svg";
 import CustomInput from "~/components/CustomInput/index2";
-import useForm from "~contexts/useFormContext";
+import useForm from "~/contexts/useFormContext";
 
 const ConfirmationBlock = ({ fRef }) => {
   const {

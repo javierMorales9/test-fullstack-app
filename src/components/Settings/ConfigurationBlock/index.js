@@ -5,7 +5,7 @@ import Card from "~/components/Settings/Card";
 import Button from "~/components/Button";
 import Modal from "~/components/Modal";
 import CustomInput from "~/components/CustomInput/index2";
-import useUser from "~contexts/userContext";
+import useUser from "~/contexts/userContext";
 import { useForm } from "react-hook-form";
 import { deleteAccountAPI } from "~/apis/account";
 import styles from "./ConfigurationBlock.module.css";

@@ -7,7 +7,7 @@ import CustomInput from "~/components/CustomInput/index2";
 import Select, { components } from "react-select";
 import CaretIcon from "public/images/icons/caret.inline.svg";
 import "react-quill/dist/quill.snow.css";
-import useForm from "~contexts/useFormContext";
+import useForm from "~/contexts/useFormContext";
 import { OFFER_VALUES } from "~/utils/constants";
 import styles from "./Offer.module.css";
 

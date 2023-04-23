@@ -5,7 +5,7 @@ import CustomInput from "~/components/CustomInput/index2";
 import Button from "~/components/Button";
 import Block from "~/components/FlowCreateBlock";
 import dynamic from "next/dynamic";
-import useForm from "~contexts/useFormContext";
+import useForm from "~/contexts/useFormContext";
 
 const DraggableWrapper = dynamic(() => import("./draggable"), {
   ssr: false,
@@ -65,7 +65,7 @@ const SurveyBlock = ({ surveyOptions, remove, add, move, fRef }) => {
         move={move}
         removeItem={removeSurveyOption}
       />
-      <div className={"border-grey-3 border-t py-1"}>
+      <div className={"border-t border-grey-3 py-1"}>
         <Button
           type={"button"}
           size={"large"}
