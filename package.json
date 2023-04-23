@@ -3,7 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "prebuild": "node build.mjs",
     "build": "next build",
+    "predev": "npm run prebuild",
     "dev": "next dev",
     "lint": "next lint",
     "start": "next start",
